@@ -1,20 +1,19 @@
 package model;
 
+// import model.Product;
+
 public class LineItem {
     private Product item;
     private int quantity;
-    private String itemSize;
 
     public LineItem() {
-        this.item = null;
+        this.item = new Product();
         this.quantity = 0;
-        this.itemSize = "";
     }
 
-    public LineItem(Product item, int quantity, String itemSize) {
+    public LineItem(Product item, int quantity) {
         this.item = item;
         this.quantity = quantity;
-        this.itemSize = itemSize;
     }
 
     public Product getItem() {
@@ -33,11 +32,8 @@ public class LineItem {
         this.quantity = quantity;
     }
 
-    public String getItemSize() {
-        return itemSize;
-    }
-
-    public void setItemSize(String itemSize) {
-        this.itemSize = itemSize;
+    public double getTotalPrice() {
+        return this.item.getPrice() * this.quantity;
     }
 }
+

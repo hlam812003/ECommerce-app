@@ -1,39 +1,72 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Product {
-    private String code;
+    private String productId;
+    private String name;
     private String description;
-    private double price;
-    private String category;
-    private String imageUrl;
-    private List<String> sizes;
+    private String type;
+    private float price;
+    private String size;
+    private String color;
+    private String material;
+    private String brand;
+    private List<String> categories;
+    private List<String> tags;
+    private List<String> imageUrls;
+    private Date releaseDate;
 
     public Product() {
-        this.code = "";
+        this.productId = "";
+        this.name = "";
         this.description = "";
-        this.price = 0.0;
-        this.category = "";
-        this.imageUrl = "";
-        this.sizes = null;
+        this.type = "";
+        this.price = 0.0f;
+        this.size = "";
+        this.color = "";
+        this.material = "";
+        this.brand = "";
+        this.categories = new ArrayList<>();
+        this.tags = new ArrayList<>();
+        this.imageUrls = new ArrayList<>();
+        this.releaseDate = new Date();
     }
 
-    public Product(String code, String description, double price, String category, String imageUrl, List<String> sizes) {
-        this.code = code;
+    public Product(String productId, String name, String description, String type, float price, String size, 
+                   String color, String material, String brand, List<String> categories, List<String> tags, 
+                   List<String> imageUrls, Date releaseDate) {
+        this.productId = productId;
+        this.name = name;
         this.description = description;
+        this.type = type;
         this.price = price;
-        this.category = category;
-        this.imageUrl = imageUrl;
-        this.sizes = sizes;
+        this.size = size;
+        this.color = color;
+        this.material = material;
+        this.brand = brand;
+        this.categories = categories;
+        this.tags = tags;
+        this.imageUrls = imageUrls;
+        this.releaseDate = releaseDate;
     }
 
-    public String getCode() {
-        return code;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -44,36 +77,84 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSize() {
+        return size;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getColor() {
+        return color;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public List<String> getSizes() {
-        return sizes;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setSizes(List<String> sizes) {
-        this.sizes = sizes;
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
 

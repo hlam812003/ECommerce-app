@@ -1,43 +1,57 @@
 package model; 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class User implements Serializable {
+    private String userId;
     private String firstName;
     private String lastName;
+    private String gender;
+    private Date dateOfBirth;
+    private String shippingAddress;
     private String email;
     private String password;
-    private String address;
-    private String country;
     private boolean isAdmin;
-    private List<Integer> invoiceNumbers;
+    private Date registerDate;
 
     public User() {
+        this.userId = "";
         this.firstName = "";
         this.lastName = "";
+        this.gender = "";
+        this.dateOfBirth = new Date();
+        this.shippingAddress = "";
         this.email = "";
         this.password = "";
-        this.address = "";
-        this.country = "";
         this.isAdmin = false;
-        this.invoiceNumbers = new ArrayList<>();
+        this.registerDate = new Date();
     }
 
-    public User(String firstName, String lastName, String email, String password, String address, String country, boolean isAdmin, List<Integer> invoiceNumbers) {
+    public User(String userId, String firstName, String lastName, String gender, Date dateOfBirth, 
+                String shippingAddress, String email, String password, boolean isAdmin, Date registerDate) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.shippingAddress = shippingAddress;
         this.email = email;
         this.password = password;
-        this.address = address;
-        this.country = country;
         this.isAdmin = isAdmin;
-        this.invoiceNumbers = invoiceNumbers;
+        this.registerDate = registerDate;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -45,15 +59,39 @@ public class User implements Serializable {
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -68,22 +106,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -92,23 +114,15 @@ public class User implements Serializable {
         this.isAdmin = isAdmin;
     }
 
-    public List<Integer> getInvoiceNumbers() {
-        return invoiceNumbers;
+    public Date getRegisterDate() {
+        return registerDate;
     }
 
-    public void setInvoiceNumbers(List<Integer> invoiceNumbers) {
-        this.invoiceNumbers = invoiceNumbers;
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
     }
 
-    public void addInvoiceNumber(int num) {
-        this.invoiceNumbers.add(num);
-    }
-
-    public void deleteInvoiceNumber(int num) {
-        this.invoiceNumbers.remove(Integer.valueOf(num));
-    }
-
-    public double getMoneySpent() {
-        return 0.0;
+    public void updateProfile() {
+        
     }
 }

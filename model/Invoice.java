@@ -4,26 +4,32 @@ import java.util.Date;
 import java.util.List;
 
 public class Invoice {
+    private String invoiceId;
     private User user;
-    private List<LineItem> lineItems;
-    private Date invoiceDate;
-    private int invoiceNumber;
-    private double invoiceTotal;
+    private List<LineItem> items;
+    private Date invoiceDateTime;
 
     public Invoice() {
-        this.user = null;
-        this.lineItems = null;
-        this.invoiceDate = null;
-        this.invoiceNumber = 0;
-        this.invoiceTotal = 0.0;
+        this.invoiceId = "";
+        this.user = new User(); 
+        this.items = new ArrayList<>();
+        this.invoiceDateTime = new Date(); 
     }
 
-    public Invoice(User user, List<LineItem> lineItems, Date invoiceDate, int invoiceNumber, double invoiceTotal) {
+    public Invoice(String invoiceId, User user, List<LineItem> items, Date invoiceDateTime) {
+        this.invoiceId = invoiceId;
         this.user = user;
-        this.lineItems = lineItems;
-        this.invoiceDate = invoiceDate;
-        this.invoiceNumber = invoiceNumber;
-        this.invoiceTotal = invoiceTotal;
+        this.items = items;
+        this.invoiceDateTime = invoiceDateTime;
+    }
+
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(String invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
     public User getUser() {
@@ -34,35 +40,27 @@ public class Invoice {
         this.user = user;
     }
 
-    public List<LineItem> getLineItems() {
-        return lineItems;
+    public List<LineItem> getItems() {
+        return items;
     }
 
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+    public void setItems(List<LineItem> items) {
+        this.items = items;
     }
 
-    public Date getInvoiceDate() {
-        return invoiceDate;
+    public Date getInvoiceDateTime() {
+        return invoiceDateTime;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
-        this.invoiceDate = invoiceDate;
-    }
-
-    public int getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public void setInvoiceNumber(int invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
+    public void setInvoiceDateTime(Date invoiceDateTime) {
+        this.invoiceDateTime = invoiceDateTime;
     }
 
     public double getInvoiceTotal() {
-        return invoiceTotal;
-    }
-
-    public void setInvoiceTotal(double invoiceTotal) {
-        this.invoiceTotal = invoiceTotal;
+        double total = 0.0;
+        for (LineItem item : items) {
+            total += item.getTotalPrice();
+        }
+        return total;
     }
 }

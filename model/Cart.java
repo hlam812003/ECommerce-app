@@ -4,26 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+    private User user;
     private List<LineItem> items;
 
     public Cart() {
+        this.user = new User();
         this.items = new ArrayList<>();
+    }
+
+    public Cart(User user) {
+        this.user = user;
+        this.items = new ArrayList<>();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<LineItem> getItems() {
         return items;
     }
 
-    public void setItems(List<LineItem> lineItems) {
-        this.items = lineItems;
+    public void setItems(List<LineItem> items) {
+        this.items = items;
     }
 
     public void addItem(LineItem item) {
         this.items.add(item);
     }
 
-    public void removeItem(String code) {
-        items.removeIf(lineItem -> lineItem.getItem().getCode().equals(code));
+    public void removeItem(String productId) {
+        items.removeIf(lineItem -> lineItem.getItem().getProductId().equals(productId));
     }
 
     public void removeAll() {
@@ -33,7 +48,7 @@ public class Cart {
     public double getTotalPrice() {
         double total = 0.0;
         for (LineItem item : items) {
-            total += item.getItem().getPrice() * item.getQuantity();
+            total += item.getTotalPrice(); // Use getTotalPrice from LineItem if available
         }
         return total;
     }
