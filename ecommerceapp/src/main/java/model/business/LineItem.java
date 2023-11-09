@@ -1,6 +1,4 @@
-package model;
-
-// import model.Product;
+package model.business;
 
 public class LineItem {
     private Product item;
