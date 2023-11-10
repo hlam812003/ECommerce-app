@@ -10,14 +10,24 @@
 'use strict';
 
 (function ($) {
-
+    $("body").css("overflow", "hidden");
+    // var current = location.pathname;
     /*------------------
         Preloader
     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
+        $("#preloder").delay(200).fadeOut("slow", function() {
+            $('body').css('overflow', 'auto');
+        });
     });
+
+    // $('.nav-menu a').each(function(){
+    //     if($(this).attr('href') === current){
+    //         $('.nav-menu li').removeClass('active');
+    //         $(this).parent('li').addClass('active');
+    //     }
+    // });
 
     /*------------------
         Background Set
