@@ -1,0 +1,5 @@
+/target
+/nbactions.xml
+/nb-configuration.xml
+/.vscode
+/src/main/webapp/META-INF/context.xml
