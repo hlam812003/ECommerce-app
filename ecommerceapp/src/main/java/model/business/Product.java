@@ -1,10 +1,18 @@
 package model.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
     private String name;
     private String description;
@@ -17,6 +25,7 @@ public class Product {
     private List<String> categories;
     private List<String> tags;
     private List<String> imageUrls;
+    @Temporal(jakarta.persistence.TemporalType.DATE)
     private Date releaseDate;
 
     public Product() {

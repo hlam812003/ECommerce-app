@@ -1,12 +1,17 @@
 package model.business;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-
 public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String userId;
     private String firstName;
     private String lastName;
@@ -16,7 +21,10 @@ public class User implements Serializable {
     private String email;
     private String password;
     private boolean isAdmin;
+    
+    @Temporal(jakarta.persistence.TemporalType.DATE)
     private Date registerDate;
+    
 
     public User() {
         this.userId = "";
@@ -30,6 +38,7 @@ public class User implements Serializable {
         this.isAdmin = false;
         this.registerDate = new Date();
     }
+    
 
     public User(String userId, String firstName, String lastName, String gender, Date dateOfBirth, 
                 String shippingAddress, String email, String password, boolean isAdmin, Date registerDate) {
@@ -128,4 +137,5 @@ public class User implements Serializable {
     public void updateProfile() {
         
     }
+
 }
