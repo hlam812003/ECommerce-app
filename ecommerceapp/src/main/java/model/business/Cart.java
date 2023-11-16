@@ -1,10 +1,18 @@
 package model.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+@Entity
 public class Cart {
+    @OneToOne
     private User user;
+    @OneToMany (targetEntity = LineItem.class)
     private List<LineItem> items;
 
     public Cart() {

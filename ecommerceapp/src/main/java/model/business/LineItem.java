@@ -1,6 +1,12 @@
 package model.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+
+
+@Entity
 public class LineItem {
+    @OneToOne
     private Product item;
     private int quantity;
 

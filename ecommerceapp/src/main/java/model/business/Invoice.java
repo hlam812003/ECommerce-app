@@ -1,20 +1,28 @@
 package model.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Invoice {
-    private String invoiceId;
-    private User user;
-    private List<LineItem> items;
-    private Date invoiceDateTime;
 
+    private String invoiceId;
+    @OneToMany (targetEntity = LineItem.class)
+    private List<LineItem> items;
+    @Temporal(jakarta.persistence.TemporalType.DATE)
+    private Date invoiceDateTime;
+    @ManyToOne
+    private User user;
     public Invoice() {
         this.invoiceId = "";
-        this.user = new User(); 
+        this.user = new User();
         this.items = new ArrayList<>();
-        this.invoiceDateTime = new Date(); 
+        this.invoiceDateTime = new Date();
     }
 
     public Invoice(String invoiceId, User user, List<LineItem> items, Date invoiceDateTime) {
@@ -23,7 +31,6 @@ public class Invoice {
         this.items = items;
         this.invoiceDateTime = invoiceDateTime;
     }
-
 
     public String getInvoiceId() {
         return invoiceId;

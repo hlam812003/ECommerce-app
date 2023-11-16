@@ -1,10 +1,18 @@
 package model.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
 public class Favorites {
+    
+    @OneToOne
     private User user;
+    @OneToMany (targetEntity = Product.class )
     private List<Product> products;
 
     public Favorites() {
