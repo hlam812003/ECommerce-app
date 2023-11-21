@@ -1,14 +1,21 @@
 package model.business;
 
+import java.io.Serializable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
-
 @Entity
-public class LineItem {
+public class LineItem implements Serializable {
+
     @OneToOne
     private Product item;
     private int quantity;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     public LineItem() {
         this.item = new Product();
@@ -39,5 +46,12 @@ public class LineItem {
     public double getTotalPrice() {
         return this.item.getPrice() * this.quantity;
     }
-}
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}

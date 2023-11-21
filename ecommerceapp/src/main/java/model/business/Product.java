@@ -1,5 +1,6 @@
 package model.business;
 
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String productId;
@@ -18,7 +19,7 @@ public class Product {
     private String description;
     private String type;
     private float price;
-    private String size;
+    private String productSize;
     private String color;
     private String material;
     private String brand;
@@ -34,7 +35,7 @@ public class Product {
         this.description = "";
         this.type = "";
         this.price = 0.0f;
-        this.size = "";
+        this.productSize = "";
         this.color = "";
         this.material = "";
         this.brand = "";
@@ -44,7 +45,7 @@ public class Product {
         this.releaseDate = new Date();
     }
 
-    public Product(String productId, String name, String description, String type, float price, String size, 
+    public Product(String productId, String name, String description, String type, float price, String productSize, 
                    String color, String material, String brand, List<String> categories, List<String> tags, 
                    List<String> imageUrls, Date releaseDate) {
         this.productId = productId;
@@ -52,7 +53,7 @@ public class Product {
         this.description = description;
         this.type = type;
         this.price = price;
-        this.size = size;
+        this.productSize = productSize;
         this.color = color;
         this.material = material;
         this.brand = brand;
@@ -102,12 +103,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getSize() {
-        return size;
+    public String getProductSize() {
+        return productSize;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
     }
 
     public String getColor() {

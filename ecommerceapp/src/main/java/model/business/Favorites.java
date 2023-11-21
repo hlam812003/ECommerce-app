@@ -1,19 +1,25 @@
 package model.business;
 
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class Favorites {
-    
+public class Favorites implements Serializable {
+
     @OneToOne
     private User user;
-    @OneToMany (targetEntity = Product.class )
+    @OneToMany(targetEntity = Product.class)
     private List<Product> products;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String id;
 
     public Favorites() {
         this.user = new User();
@@ -48,5 +54,12 @@ public class Favorites {
     public void removeProduct(String productId) {
         this.products.removeIf(product -> product.getProductId().equals(productId));
     }
-}
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}

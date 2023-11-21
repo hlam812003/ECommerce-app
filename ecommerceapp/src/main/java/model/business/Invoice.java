@@ -1,5 +1,6 @@
 package model.business;
 
+import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -7,10 +8,14 @@ import jakarta.persistence.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class Invoice {
-
+public class Invoice implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String invoiceId;
     @OneToMany (targetEntity = LineItem.class)
     private List<LineItem> items;
