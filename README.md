@@ -1,1 +1,1 @@
-# ECommerce-app
+# Fashi | E-commerce Web Application
