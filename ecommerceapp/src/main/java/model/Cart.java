@@ -1,12 +1,10 @@
-package model.business;
+package model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 @Entity
 public class Cart {
