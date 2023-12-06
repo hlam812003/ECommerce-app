@@ -7,7 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet("/test")
+// @WebServlet("/test")
 public class UserServlet extends HttpServlet {
         @Override
     protected void doPost(HttpServletRequest request,
