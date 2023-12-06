@@ -1,6 +1,7 @@
 package com.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 public class Invoice {
-
+    @Id
     private String invoiceId;
     
     @OneToMany (targetEntity = LineItem.class)
