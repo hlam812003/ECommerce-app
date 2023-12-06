@@ -73,9 +73,6 @@ public class UserDB {
 
     public static boolean emailExists(String email) {
         User u = selectUser(email);
-        if (u == null) {
-            System.out.println("NULL");
-        }
         return u != null;
     }
 }
