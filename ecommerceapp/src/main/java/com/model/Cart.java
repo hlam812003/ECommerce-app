@@ -43,9 +43,9 @@ public class Cart {
         this.items.add(item);
     }
 
-    public void removeItem(String productId) {
+    public void removeItem(Long productId) {
         items.removeIf(lineItem -> lineItem.getItem().getProductId().equals(productId));
-    }
+    }    
 
     public void removeAll() {
         this.items.clear();

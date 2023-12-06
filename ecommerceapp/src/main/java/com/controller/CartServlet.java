@@ -24,7 +24,7 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Cart cart = CartDB.findCartByUser(user);
-
+    
         switch (action) {
             case "add":
                 Long productId = Long.parseLong(request.getParameter("productId"));
@@ -48,7 +48,7 @@ public class CartServlet extends HttpServlet {
                 break;
             case "remove":
                 productId = Long.parseLong(request.getParameter("productId"));
-                cart.removeItem(productId.toString());
+                cart.removeItem(productId);
                 CartDB.update(cart);
                 break;
             case "empty":
@@ -58,20 +58,24 @@ public class CartServlet extends HttpServlet {
             default:
                 break;
         }
-
-        response.sendRedirect("view/shopping-cart.jsp");
+    
+        response.sendRedirect(request.getContextPath() + "/view/shopping-cart.jsp");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String url = "/view/shopping-cart.jsp";
+        throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Cart cart = CartDB.findCartByUser(user);
 
+        if (cart != null) {
+            double total = cart.getTotalPrice();
+            request.setAttribute("cartTotal", total);
+        }
+
         request.setAttribute("cart", cart);
+        String url = "/view/shopping-cart.jsp";
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
-
 }

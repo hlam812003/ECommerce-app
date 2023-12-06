@@ -88,12 +88,38 @@
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
-                            <li class="heart-icon"><a href="#">
+                            <li class="heart-icon">
+                                <a href="#">
                                     <i class="icon_heart_alt"></i>
                                     <!-- <span>1</span> -->
                                 </a>
+								<div class="select-items">
+									<table>
+										<tbody>
+											<c:forEach items="${favorites.products}" var="product">
+												<tr>
+													<td class="si-pic">
+														<c:if test="${not empty product.imageUrls}">
+															<img src="${product.imageUrls[0]}" alt="${product.name}" />
+														</c:if>
+													</td>
+													<td class="si-text">
+														<div class="product-selected">
+															<p>$${product.price}</p>
+															<h6>${product.name}</h6>
+														</div>
+													</td>
+													<td class="si-close">
+														<i class="ti-close"></i>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
                             </li>
-                            <li class="cart-icon"><a href="#">
+                            <li class="cart-icon">
+                                <a href="#">
                                     <i class="icon_bag_alt"></i>
                                     <!-- <span>3</span> -->
                                 </a>
@@ -138,7 +164,7 @@
                                     </div>                                    
                                 </div>
                             </li>
-                            <li class="cart-price">$0</li>
+							<li class="cart-price">$${cartTotal}</li>
                         </ul>
                     </div>
                 </div>

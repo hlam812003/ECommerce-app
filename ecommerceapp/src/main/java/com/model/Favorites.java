@@ -1,4 +1,4 @@
-package TEST;
+package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,9 +9,6 @@ import jakarta.persistence.OneToOne;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.model.User;
-
 
 @Entity
 public class Favorites {
