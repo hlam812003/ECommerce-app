@@ -15,7 +15,7 @@
 
 	<!-- Css Styles -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css" type="text/css" />
-	<link rel="stylesheet" href="./assets/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="../assets/css/font-awesome.min.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/themify-icons.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/elegant-icons.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/owl.carousel.min.css" type="text/css" />
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="ht-right">
-					<a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
+					<a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
 					<!-- <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
                             <option value='yt' data-image="./public/img/flag-1.jpg" data-imagecss="flag yt"
@@ -181,12 +181,12 @@
 	<!-- Header End -->
 
 	<!-- Breadcrumb Section Begin -->
-	<div class="breacrumb-section">
+	<div class="breadcrumb-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb-text">
-						<a href="/"><i class="fa fa-home"></i>Home</a>
+						<a href="/"><i class="fa fa-home"></i> Home</a>
 						<span>Register</span>
 					</div>
 				</div>
