@@ -47,6 +47,7 @@ public class RegisterServlet extends HttpServlet {
                 if (UserDB.emailExists(user.getEmail())) {
                     message = "This email address already exists.<br>" +
                             "Please enter another email address.";
+                    System.out.println(message);
                     url = "/view/register.jsp";
                 } else {
                     message = "";

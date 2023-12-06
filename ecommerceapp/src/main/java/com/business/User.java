@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 @Entity
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     private String firstName;
     private String lastName;
@@ -54,8 +56,6 @@ public class User implements Serializable {
         this.registerDate = registerDate;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getUserId() {
         return userId;
     }

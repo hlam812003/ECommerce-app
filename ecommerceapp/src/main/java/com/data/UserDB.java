@@ -59,13 +59,11 @@ public class UserDB {
 
     public static User selectUser(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String qString = "SELECT u FROM User u " +
-                "WHERE u.email = :email";
-        TypedQuery<User> q = em.createQuery(qString, User.class);
-        q.setParameter("email", email);
+        String queryString = "SELECT u FROM User u " + "WHERE u.email = :email";
+        TypedQuery<User> query = em.createQuery(queryString, User.class);
+        query.setParameter("email", email);
         try {
-            // Return user
-            return q.getSingleResult();
+            return query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         } finally {
@@ -75,6 +73,9 @@ public class UserDB {
 
     public static boolean emailExists(String email) {
         User u = selectUser(email);
+        if (u == null) {
+            System.out.println("NULL");
+        }
         return u != null;
     }
 }
