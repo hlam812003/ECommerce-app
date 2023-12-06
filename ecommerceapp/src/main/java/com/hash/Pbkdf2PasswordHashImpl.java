@@ -170,8 +170,8 @@ public class Pbkdf2PasswordHashImpl implements Pbkdf2PasswordHash {
         private byte[] hash;
         private String encoded;
 
-        private EncodedPasswordHash() {
-        };
+        // private EncodedPasswordHash() {
+        // };
 
         EncodedPasswordHash(byte[] hash, byte[] salt, String algorithm, int iterations) {
             this.algorithm = algorithm;
