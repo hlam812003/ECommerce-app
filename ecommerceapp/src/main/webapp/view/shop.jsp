@@ -342,8 +342,8 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <c:if test="${not empty product.imageUrls}">
-                                                <img src="${product.imageUrls[0]}" alt="${product.name}">
+                                            <c:if test="${not empty product.imageUrl}">
+                                                <img src="${product.imageUrl}" alt="${product.name}">
                                             </c:if>
                                             <div class="icon">
                                                 <i class="icon_heart_alt"></i>
@@ -355,8 +355,8 @@
                                             </ul>
                                         </div>
                                         <div class="pi-text">
-                                            <c:if test="${not empty product.categories}">
-                                                <div class="catagory-name">${product.categories[0]}</div>
+                                            <c:if test="${not empty product.category}">
+                                                <div class="catagory-name">${product.category}</div>
                                             </c:if>
                                             <a href="#">
                                                 <h5>${product.name}</h5>

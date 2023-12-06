@@ -1,7 +1,7 @@
 package com.data;
 
-import java.util.logging.Logger;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.model.Product;
 
@@ -60,19 +60,16 @@ public class ProductDB {
 
     public static List<Product> getAllProducts() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String queryStr = "SELECT p FROM Product p";
-        TypedQuery<Product> query = em.createQuery(queryStr, Product.class);
-    
-        List<Product> products;
+        String queryString = "SELECT p FROM Product p";
+        TypedQuery<Product> query = em.createQuery(queryString, Product.class);
         try {
-            products = query.getResultList();
-            if (products == null || products.isEmpty())
-                products = null;
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
         } finally {
             em.close();
         }
-        return products;
-    }    
+    }
 
     public static Product findProductById(Long productId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

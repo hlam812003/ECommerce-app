@@ -1,52 +1,50 @@
 package com.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
 
 @Entity
 public class Product {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String name;
     private String description;
     private String type;
-    private float price;
+    private double price;
     private String size;
     private String color;
     private String material;
     private String brand;
-    private List<String> categories;
-    private List<String> tags;
-    private List<String> imageUrls;
-    @Temporal(jakarta.persistence.TemporalType.DATE)
-    private Date releaseDate;
+    private String category;
+    private String tags;
+    private String imageUrl;
+    private LocalDate releaseDate;
 
     public Product() {
-        this.productId = 0L;
+        this.productId = null;
         this.name = "";
         this.description = "";
         this.type = "";
-        this.price = 0.0f;
+        this.price = 0;
         this.size = "";
         this.color = "";
         this.material = "";
         this.brand = "";
-        this.categories = new ArrayList<>();
-        this.tags = new ArrayList<>();
-        this.imageUrls = new ArrayList<>();
-        this.releaseDate = new Date();
+        this.category = "";
+        this.tags = "";
+        this.imageUrl = "";
+        this.releaseDate = LocalDate.of(1000, 1, 1);
     }
 
-    public Product(Long productId, String name, String description, String type, float price, String size, 
-                   String color, String material, String brand, List<String> categories, List<String> tags, 
-                   List<String> imageUrls, Date releaseDate) {
+    public Product(Long productId, String name, String description, String type, float price, String size,
+            String color, String material, String brand, String category, String tags, String imageUrl,
+            LocalDate releaseDate) {
         this.productId = productId;
         this.name = name;
         this.description = description;
@@ -56,9 +54,9 @@ public class Product {
         this.color = color;
         this.material = material;
         this.brand = brand;
-        this.categories = categories;
+        this.category = category;
         this.tags = tags;
-        this.imageUrls = imageUrls;
+        this.imageUrl = imageUrl;
         this.releaseDate = releaseDate;
     }
 
@@ -94,11 +92,11 @@ public class Product {
         this.type = type;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -134,35 +132,35 @@ public class Product {
         this.brand = brand;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategories(List<String> categories) {
-        this.categories = categories;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public List<String> getImageUrls() {
-        return imageUrls;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setImageUrl(String imageUrls) {
+        this.imageUrl = imageUrls;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 }
