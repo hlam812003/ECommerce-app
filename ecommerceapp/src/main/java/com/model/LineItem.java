@@ -1,10 +1,16 @@
 package com.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class LineItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OneToOne
     private Product item;
     private int quantity;

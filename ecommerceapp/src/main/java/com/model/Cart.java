@@ -1,16 +1,24 @@
 package com.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
 @Entity
 public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OneToOne
     private User user;
-    @OneToMany (targetEntity = LineItem.class)
+
+    @OneToMany(targetEntity = LineItem.class)
     private List<LineItem> items;
 
     public Cart() {
@@ -45,7 +53,7 @@ public class Cart {
 
     public void removeItem(Long productId) {
         items.removeIf(lineItem -> lineItem.getItem().getProductId().equals(productId));
-    }    
+    }
 
     public void removeAll() {
         this.items.clear();
