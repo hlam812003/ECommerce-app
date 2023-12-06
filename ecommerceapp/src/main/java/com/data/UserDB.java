@@ -2,7 +2,7 @@ package com.data;
 
 import java.util.logging.Logger;
 
-import com.business.User;
+import com.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;

@@ -1,9 +1,9 @@
-package com.user;
+package com.controller;
 
 import java.io.IOException;
 
-import com.business.User;
 import com.data.UserDB;
+import com.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -17,7 +17,7 @@
     --------------------*/
     $(window).on('load', function () {
         $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow", function() {
+        $("#preloader").delay(200).fadeOut("slow", function() {
             $('body').css('overflow', 'auto');
         });
     });

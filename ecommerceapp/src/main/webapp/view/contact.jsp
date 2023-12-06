@@ -7,7 +7,7 @@
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Template</title>
+    <title>Fashi | Contact</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- Page preloader -->
+    <div id="preloader">
         <div class="loader"></div>
     </div>
 
@@ -155,7 +155,7 @@
                             </ul>
                         </li>
                         <!-- <li><a href="./blog.html">Blog</a></li> -->
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li class="active"><a href="./contact.html">Contact</a></li>
                         <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
@@ -178,10 +178,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb-text product-more">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <span>Check Out</span>
+                    <div class="breadcrumb-text">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Contact</span>
                     </div>
                 </div>
             </div>
@@ -189,107 +188,88 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
-    <!-- Shopping Cart Section Begin -->
-    <section class="checkout-section spad">
+    <!-- Map Section Begin -->
+    <div class="map spad">
         <div class="container">
-            <form action="#" class="checkout-form">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="checkout-content">
-                            <a href="#" class="content-btn">Click Here To Login</a>
-                        </div>
-                        <h4>Biiling Details</h4>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <label for="fir">First Name<span>*</span></label>
-                                <input type="text" id="fir">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="last">Last Name<span>*</span></label>
-                                <input type="text" id="last">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="cun-name">Company Name</label>
-                                <input type="text" id="cun-name">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="cun">Country<span>*</span></label>
-                                <input type="text" id="cun">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="street">Street Address<span>*</span></label>
-                                <input type="text" id="street" class="street-first">
-                                <input type="text">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="zip">Postcode / ZIP (optional)</label>
-                                <input type="text" id="zip">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="town">Town / City<span>*</span></label>
-                                <input type="text" id="town">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="email">Email Address<span>*</span></label>
-                                <input type="text" id="email">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone">Phone<span>*</span></label>
-                                <input type="text" id="phone">
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="create-item">
-                                    <label for="acc-create">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-create">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+            <div class="map-inner">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4853986111016!2d106.76933817506156!3d10.850637657820473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1699598550697!5m2!1svi!2s"
+                    height="610" style="border:0" allowfullscreen="">
+                </iframe>
+                <div class="icon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Map Section Begin -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-title">
+                        <h4>Contacts Us</h4>
+                        <p>Contrary to popular belief, Lorem Ipsum is simply random text. It has roots in a piece of
+                            classical Latin literature from 45 BC, maki years old.</p>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="checkout-content">
-                            <input type="text" placeholder="Enter Your Coupon Code">
+                    <div class="contact-widget">
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                                <i class="ti-location-pin"></i>
+                            </div>
+                            <div class="ci-text">
+                                <span>Address:</span>
+                                <p>60-49 Road 11378 New York</p>
+                            </div>
                         </div>
-                        <div class="place-order">
-                            <h4>Your Order</h4>
-                            <div class="order-total">
-                                <ul class="order-table">
-                                    <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
-                                </ul>
-                                <div class="payment-check">
-                                    <div class="pc-item">
-                                        <label for="pc-check">
-                                            Cheque Payment
-                                            <input type="checkbox" id="pc-check">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="pc-item">
-                                        <label for="pc-paypal">
-                                            Paypal
-                                            <input type="checkbox" id="pc-paypal">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
-                                </div>
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                                <i class="ti-mobile"></i>
+                            </div>
+                            <div class="ci-text">
+                                <span>Phone:</span>
+                                <p>+84 90.188.888</p>
+                            </div>
+                        </div>
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                                <i class="ti-email"></i>
+                            </div>
+                            <div class="ci-text">
+                                <span>Email:</span>
+                                <p>hellocolorlib@gmail.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="col-lg-6 offset-lg-1">
+                    <div class="contact-form">
+                        <div class="leave-comment">
+                            <h4>Leave A Comment</h4>
+                            <p>Our staff will call back later and answer your questions.</p>
+                            <form action="#" class="comment-form">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="Your name">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" placeholder="Your email">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea placeholder="Your message"></textarea>
+                                        <button type="submit" class="site-btn">Send message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- Shopping Cart Section End -->
+    <!-- Contact Section End -->
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">

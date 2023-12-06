@@ -200,9 +200,9 @@ ol {
 	cursor: pointer;
 }
 
-/* Preloder */
+/* preloader */
 
-#preloder {
+#preloader {
 	position: fixed;
 	width: 100%;
 	height: 100%;

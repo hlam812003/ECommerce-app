@@ -1,47 +1,49 @@
-package model;
+package com.model;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.hash.Pbkdf2PasswordHashImpl;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String userId;
+    private Long userId;
     private String firstName;
     private String lastName;
     private String gender;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String shippingAddress;
     private String email;
     private String password;
     private boolean isAdmin;
-    
-    @Temporal(jakarta.persistence.TemporalType.DATE)
-    private Date registerDate;
-    
+    private LocalDateTime registerDate;
+
+    private static Pbkdf2PasswordHashImpl passwordHash = new Pbkdf2PasswordHashImpl();
 
     public User() {
-        this.userId = "";
+        this.userId = null;
         this.firstName = "";
         this.lastName = "";
         this.gender = "";
-        this.dateOfBirth = new Date();
+        this.dateOfBirth = null;
         this.shippingAddress = "";
         this.email = "";
         this.password = "";
         this.isAdmin = false;
-        this.registerDate = new Date();
+        this.registerDate = LocalDateTime.now();
     }
-    
 
-    public User(String userId, String firstName, String lastName, String gender, Date dateOfBirth, 
-                String shippingAddress, String email, String password, boolean isAdmin, Date registerDate) {
+    public User(Long userId, String firstName, String lastName, String gender, LocalDate dateOfBirth,
+            String shippingAddress, String email, String password, boolean isAdmin, LocalDateTime registerDate) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +56,11 @@ public class User implements Serializable {
         this.registerDate = registerDate;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -86,11 +88,11 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -115,27 +117,23 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = passwordHash.generate(password.toCharArray());
     }
 
     public boolean isAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
-    public Date getRegisterDate() {
+    public LocalDateTime getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(Date registerDate) {
+    public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
-    }
-
-    public void updateProfile() {
-        
     }
 
 }

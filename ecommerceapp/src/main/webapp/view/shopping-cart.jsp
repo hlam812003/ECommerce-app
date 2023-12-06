@@ -7,7 +7,7 @@
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Contact</title>
+    <title>Fashi | Shopping Cart</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- Page preloader -->
+    <div id="preloader">
         <div class="loader"></div>
     </div>
 
@@ -155,7 +155,7 @@
                             </ul>
                         </li>
                         <!-- <li><a href="./blog.html">Blog</a></li> -->
-                        <li class="active"><a href="./contact.html">Contact</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
                         <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
@@ -178,9 +178,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Contact</span>
+                    <div class="breadcrumb-text product-more">
+                        <a href="./home.html"><i class="fa fa-home"></i> Home</a>
+                        <a href="./shop.html">Shop</a>
+                        <span>Shopping Cart</span>
                     </div>
                 </div>
             </div>
@@ -188,88 +189,104 @@
     </div>
     <!-- Breadcrumb Section Begin -->
 
-    <!-- Map Section Begin -->
-    <div class="map spad">
-        <div class="container">
-            <div class="map-inner">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4853986111016!2d106.76933817506156!3d10.850637657820473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1699598550697!5m2!1svi!2s"
-                    height="610" style="border:0" allowfullscreen="">
-                </iframe>
-                <div class="icon">
-                    <i class="fa fa-map-marker"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Map Section Begin -->
-
-    <!-- Contact Section Begin -->
-    <section class="contact-section spad">
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
-                    <div class="contact-title">
-                        <h4>Contacts Us</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is simply random text. It has roots in a piece of
-                            classical Latin literature from 45 BC, maki years old.</p>
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th><i class="ti-close"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cart-pic first-row"><img src="../public/img/cart-page/product-1.jpg" alt=""></td>
+                                    <td class="cart-title first-row">
+                                        <h5>Pure Pineapple</h5>
+                                    </td>
+                                    <td class="p-price first-row">$60.00</td>
+                                    <td class="qua-col first-row">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price first-row">$60.00</td>
+                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="cart-pic"><img src="../public/img/cart-page/product-2.jpg" alt=""></td>
+                                    <td class="cart-title">
+                                        <h5>American lobster</h5>
+                                    </td>
+                                    <td class="p-price">$60.00</td>
+                                    <td class="qua-col">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price">$60.00</td>
+                                    <td class="close-td"><i class="ti-close"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="cart-pic"><img src="../public/img/cart-page/product-3.jpg" alt=""></td>
+                                    <td class="cart-title">
+                                        <h5>Guangzhou sweater</h5>
+                                    </td>
+                                    <td class="p-price">$60.00</td>
+                                    <td class="qua-col">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price">$60.00</td>
+                                    <td class="close-td"><i class="ti-close"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="contact-widget">
-                        <div class="cw-item">
-                            <div class="ci-icon">
-                                <i class="ti-location-pin"></i>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="cart-buttons">
+                                <a href="#" class="primary-btn continue-shop">Continue shopping</a>
+                                <a href="#" class="primary-btn up-cart">Update cart</a>
                             </div>
-                            <div class="ci-text">
-                                <span>Address:</span>
-                                <p>60-49 Road 11378 New York</p>
-                            </div>
-                        </div>
-                        <div class="cw-item">
-                            <div class="ci-icon">
-                                <i class="ti-mobile"></i>
-                            </div>
-                            <div class="ci-text">
-                                <span>Phone:</span>
-                                <p>+84 90.188.888</p>
+                            <div class="discount-coupon">
+                                <h6>Discount Codes</h6>
+                                <form action="#" class="coupon-form">
+                                    <input type="text" placeholder="Enter your codes">
+                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                </form>
                             </div>
                         </div>
-                        <div class="cw-item">
-                            <div class="ci-icon">
-                                <i class="ti-email"></i>
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul>
+                                    <li class="subtotal">Subtotal <span>$240.00</span></li>
+                                    <li class="cart-total">Total <span>$240.00</span></li>
+                                </ul>
+                                <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
-                            <div class="ci-text">
-                                <span>Email:</span>
-                                <p>hellocolorlib@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 offset-lg-1">
-                    <div class="contact-form">
-                        <div class="leave-comment">
-                            <h4>Leave A Comment</h4>
-                            <p>Our staff will call back later and answer your questions.</p>
-                            <form action="#" class="comment-form">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your name">
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your email">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <textarea placeholder="Your message"></textarea>
-                                        <button type="submit" class="site-btn">Send message</button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact Section End -->
+    <!-- Shopping Cart Section End -->
 
     <!-- Partner Logo Section Begin -->
     <div class="partner-logo">

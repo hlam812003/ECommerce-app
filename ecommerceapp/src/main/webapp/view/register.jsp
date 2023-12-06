@@ -27,7 +27,7 @@
 
 <body>
 	<!-- Page Preloader -->
-	<div id="preloder">
+	<div id="preloader">
 		<div class="loader"></div>
 	</div>
 

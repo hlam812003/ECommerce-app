@@ -1,12 +1,15 @@
-package model;
+package TEST;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.model.User;
 
 @Entity
 public class Invoice {
