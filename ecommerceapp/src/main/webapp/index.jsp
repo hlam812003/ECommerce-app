@@ -1,3 +1,7 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,34 +104,24 @@
 									<div class="select-items">
 										<table>
 											<tbody>
-												<tr>
-													<td class="si-pic">
-														<img src="./public/img/select-product-1.jpg" alt="" />
-													</td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close">
-														<i class="ti-close"></i>
-													</td>
-												</tr>
-												<tr>
-													<td class="si-pic">
-														<img src="./public/img/select-product-2.jpg" alt="" />
-													</td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close">
-														<i class="ti-close"></i>
-													</td>
-												</tr>
+												<c:forEach items="${cart.items}" var="item">
+													<tr>
+														<td class="si-pic">
+															<c:if test="${not empty item.item.imageUrls}">
+																<img src="${item.item.imageUrls[0]}" alt="${item.item.name}" />
+															</c:if>
+														</td>
+														<td class="si-text">
+															<div class="product-selected">
+																<p>$${item.item.price} x ${item.quantity}</p>
+																<h6>${item.item.name}</h6>
+															</div>
+														</td>
+														<td class="si-close">
+															<i class="ti-close"></i>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>

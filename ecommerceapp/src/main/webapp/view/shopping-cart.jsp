@@ -1,3 +1,7 @@
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,42 +100,42 @@
                                 <div class="cart-hover">
                                     <div class="select-items">
                                         <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="../public/img/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="../public/img/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+											<tbody>
+												<c:forEach items="${cart.items}" var="item">
+													<tr>
+														<td class="si-pic">
+															<c:if test="${not empty item.item.imageUrls}">
+																<img src="${item.item.imageUrls[0]}" alt="${item.item.name}" />
+															</c:if>
+														</td>
+														<td class="si-text">
+															<div class="product-selected">
+																<p>$${item.item.price} x ${item.quantity}</p>
+																<h6>${item.item.name}</h6>
+															</div>
+														</td>
+														<td class="si-close">
+															<i class="ti-close"></i>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
                                     </div>
+                                    <c:set var="total" value="0" />
+                                    <c:forEach items="${cart.items}" var="item">
+                                        <c:set var="total" value="${total + item.totalPrice}" />
+                                    </c:forEach>
+
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>$120.00</h5>
+                                        <h5>$${total}</h5>
                                     </div>
+                                
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>
+                                        <a href="./view/shopping-cart.html" class="primary-btn view-card">VIEW CART</a>
+                                        <a href="./view/check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    </div>                                    
                                 </div>
                             </li>
                             <li class="cart-price">$0</li>
@@ -207,54 +211,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="cart-pic first-row"><img src="../public/img/cart-page/product-1.jpg" alt=""></td>
-                                    <td class="cart-title first-row">
-                                        <h5>Pure Pineapple</h5>
-                                    </td>
-                                    <td class="p-price first-row">$60.00</td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
+                                <c:forEach items="${cart.items}" var="item">
+                                    <tr>
+                                        <td class="cart-pic">
+                                            <c:if test="${not empty item.item.imageUrls}">
+                                                <img src="${item.item.imageUrls[0]}" alt="${item.item.name}">
+                                            </c:if>
+                                        </td>
+                                        <td class="cart-title">
+                                            <h5>${item.item.name}</h5>
+                                        </td>
+                                        <td class="p-price">$${item.item.price}</td>
+                                        <td class="qua-col">
+                                            <div class="quantity">
+                                                <input type="text" value="${item.quantity}">
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price first-row">$60.00</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart-pic"><img src="../public/img/cart-page/product-2.jpg" alt=""></td>
-                                    <td class="cart-title">
-                                        <h5>American lobster</h5>
-                                    </td>
-                                    <td class="p-price">$60.00</td>
-                                    <td class="qua-col">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price">$60.00</td>
-                                    <td class="close-td"><i class="ti-close"></i></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart-pic"><img src="../public/img/cart-page/product-3.jpg" alt=""></td>
-                                    <td class="cart-title">
-                                        <h5>Guangzhou sweater</h5>
-                                    </td>
-                                    <td class="p-price">$60.00</td>
-                                    <td class="qua-col">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price">$60.00</td>
-                                    <td class="close-td"><i class="ti-close"></i></td>
-                                </tr>
+                                        </td>
+                                        <td class="total-price">$${item.totalPrice}</td>
+                                        <td class="close-td">
+                                            <i class="ti-close"></i>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -273,13 +251,19 @@
                             </div>
                         </div>
                         <div class="col-lg-4 offset-lg-4">
+                            <c:set var="total" value="0" />
+                            <c:forEach items="${cart.items}" var="item">
+                                <c:set var="total" value="${total + item.totalPrice}" />
+                            </c:forEach>
+
                             <div class="proceed-checkout">
                                 <ul>
-                                    <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                    <li class="cart-total">Total <span>$240.00</span></li>
+                                    <li class="subtotal">Subtotal <span>$${total}</span></li>
+                                    <li class="cart-total">Total <span>$${total}</span></li>
                                 </ul>
                                 <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
+                           
                         </div>
                     </div>
                 </div>

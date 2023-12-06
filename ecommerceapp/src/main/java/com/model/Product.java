@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 @Entity
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productId;
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long productId;
     private String name;
     private String description;
     private String type;
@@ -29,7 +29,7 @@ public class Product {
     private Date releaseDate;
 
     public Product() {
-        this.productId = "";
+        this.productId = 0L;
         this.name = "";
         this.description = "";
         this.type = "";
@@ -44,7 +44,7 @@ public class Product {
         this.releaseDate = new Date();
     }
 
-    public Product(String productId, String name, String description, String type, float price, String size, 
+    public Product(Long productId, String name, String description, String type, float price, String size, 
                    String color, String material, String brand, List<String> categories, List<String> tags, 
                    List<String> imageUrls, Date releaseDate) {
         this.productId = productId;
@@ -62,11 +62,11 @@ public class Product {
         this.releaseDate = releaseDate;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

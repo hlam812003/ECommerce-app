@@ -1,4 +1,4 @@
-package TEST;
+package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -9,12 +9,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.model.User;
-
 @Entity
 public class Invoice {
 
     private String invoiceId;
+    
     @OneToMany (targetEntity = LineItem.class)
     private List<LineItem> items;
     @Temporal(jakarta.persistence.TemporalType.DATE)

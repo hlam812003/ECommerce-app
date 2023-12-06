@@ -1,4 +1,4 @@
-package TEST;
+package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
@@ -39,4 +39,3 @@ public class LineItem {
         return this.item.getPrice() * this.quantity;
     }
 }
-

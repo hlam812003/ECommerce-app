@@ -1,24 +1,22 @@
 package com.data;
 
 import java.util.logging.Logger;
-import java.util.List;
-
-import com.model.Product;
+import com.model.Invoice;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
-public class ProductDB {
-    private static Logger logger = Logger.getLogger(ProductDB.class.getName());
+public class InvoiceDB {
+        private static Logger logger = Logger.getLogger(InvoiceDB.class.getName());
 
-    public static void insert(Product product) {
+    public static void insert(Invoice invoice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.persist(product);
+            em.persist(invoice);
             trans.commit();
         } catch (Exception e) {
             logger.info(e.getMessage());
@@ -28,12 +26,12 @@ public class ProductDB {
         }
     }
 
-    public static void update(Product product) {
+    public static void update(Invoice invoice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.merge(product);
+            em.merge(invoice);
             trans.commit();
         } catch (Exception e) {
             logger.info(e.getMessage());
@@ -43,12 +41,12 @@ public class ProductDB {
         }
     }
 
-    public static void delete(Product product) {
+    public static void delete(Invoice invoice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.remove(em.merge(product));
+            em.remove(em.merge(invoice));
             trans.commit();
         } catch (Exception e) {
             logger.info(e.getMessage());
@@ -58,36 +56,12 @@ public class ProductDB {
         }
     }
 
-    public static List<Product> getAllProducts() {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String queryStr = "SELECT p FROM Product p";
-        TypedQuery<Product> query = em.createQuery(queryStr, Product.class);
-    
-        List<Product> products;
-        try {
-            products = query.getResultList();
-            if (products == null || products.isEmpty())
-                products = null;
-        } finally {
-            em.close();
-        }
-        return products;
-    }    
-
-    public static Product findProductById(Long productId) {
+    public static Invoice findInvoiceById(String invoiceId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            return em.find(Product.class, productId);
+            return em.find(Invoice.class, invoiceId);
         } finally {
             em.close();
         }
     }
-    
-    public static List<Product> findProductsByName(String name) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :name", Product.class);
-        query.setParameter("name", "%" + name + "%");
-        return query.getResultList();
-    }    
-
 }

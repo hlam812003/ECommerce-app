@@ -1,12 +1,10 @@
-package TEST;
+package com.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.model.User;
 
 @Entity
 public class Cart {
@@ -56,7 +54,7 @@ public class Cart {
     public double getTotalPrice() {
         double total = 0.0;
         for (LineItem item : items) {
-            total += item.getTotalPrice(); // Use getTotalPrice from LineItem if available
+            total += item.getTotalPrice();
         }
         return total;
     }
