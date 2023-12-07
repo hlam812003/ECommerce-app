@@ -202,7 +202,7 @@
 				<div class="col-lg-6 offset-lg-3">
 					<div class="login-form">
 						<h2>Login</h2>
-						<form action="#">
+						<form action="#" class="form__login">
 							<div class="group-input">
 								<label for="username">Username or email address *</label>
 								<input type="text" id="username" />
@@ -214,7 +214,7 @@
 							<div class="group-input gi-check">
 								<div class="gi-more">
 									<label for="save-pass">
-										Save Password
+										Remember me
 										<input type="checkbox" id="save-pass" />
 										<span class="checkmark"></span>
 									</label>
@@ -337,6 +337,49 @@
 	<script src="../assets/js/jquery.slicknav.js"></script>
 	<script src="../assets/js/owl.carousel.min.js"></script>
 	<script src="../assets/js/main.js"></script>
+
+	<script type="module">
+		import Toast from '../assets/js/Toast/Toast.js';
+
+		const displayToast = (message, title, type) => {
+			new Toast({
+				autoClose: 5000,
+				canCloseOnClick: true,
+				darkMode: false,
+				onClose: () => {},
+				position: "top-center",
+				pauseOnHover: true,
+				pauseOnFocusLoss: true,
+				playNotificationSound: false,
+				showProgressBar: true,
+				toastContent: {
+					message,
+					title,
+					type
+				},
+			});
+		};
+	
+		document.addEventListener('DOMContentLoaded', () => {
+			const loginError = '${requestScope.loginError}';
+	
+			if (loginError === 'true') {
+				displayToast("No account found or incorrect password.", "Login Error!", "error");
+			}
+	
+			const form = document.querySelector('.form__login');
+			form.addEventListener('submit', (e) => {
+				const username = document.getElementById('username').value.trim();
+				const password = document.getElementById('pass').value.trim();
+	
+				if (!username || !password) {
+					e.preventDefault(); 
+					displayToast("Please enter your login information!", "Information is empty", "warning");
+				}
+			});
+		});
+	</script>
+	
 </body>
 
 </html>

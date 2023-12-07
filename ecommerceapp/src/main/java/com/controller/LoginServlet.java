@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
             if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
                 message = "Incorrect username or password.";
                 url = "/view/login.jsp";
+                request.setAttribute("loginError", "true");
             } else {
                 message = "";
 
