@@ -36,9 +36,9 @@ public class LoginServlet extends HttpServlet {
             // get parameters from the request
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String saveLogin = request.getParameter("save-password");
+            String savePassword = request.getParameter("save-password");
 
-            System.out.println(saveLogin);
+            System.out.println(savePassword);
 
             String message;
 
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             User selectedUser = UserDB.selectUser(email);
 
             if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
-                message = "Incorrect username or password.";
+                message = "Incorrect email address or password.";
                 url = "/view/login.jsp";
                 request.setAttribute("loginError", "true");
             } else {
@@ -55,10 +55,18 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", selectedUser);
 
-                Cookie emailCookie = new Cookie("emailCookie", email);
+                Cookie emailCookie = new Cookie("email", email);
                 emailCookie.setMaxAge(30 * 24 * 60 * 60);
                 emailCookie.setPath("/");
                 response.addCookie(emailCookie);
+
+                if (savePassword != null) {
+                    System.out.println("In loop statement.");
+                    Cookie passwordCookie = new Cookie("password", passwordHash.generate(password.toCharArray()));
+                    passwordCookie.setMaxAge(30 * 24 * 60 * 60);
+                    passwordCookie.setPath("/");
+                    response.addCookie(passwordCookie);
+                }
 
                 response.sendRedirect(request.getContextPath() + "/");
                 return;
@@ -95,7 +103,7 @@ public class LoginServlet extends HttpServlet {
         if (user == null) {
             Cookie[] cookies = request.getCookies();
 
-            String email = CookieUtil.getCookieValue(cookies, "emailCookie");
+            String email = CookieUtil.getCookieValue(cookies, "email");
 
             // if cookie doesn't exist, go to Registration page
             if (email == null || email.equals("")) {

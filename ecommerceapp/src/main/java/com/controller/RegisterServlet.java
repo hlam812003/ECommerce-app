@@ -56,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
 
-                    Cookie emailCookie = new Cookie("emailCookie", email);
+                    Cookie emailCookie = new Cookie("email", email);
                     emailCookie.setMaxAge(30 * 24 * 60 * 60);
                     emailCookie.setPath("/");
                     response.addCookie(emailCookie);
