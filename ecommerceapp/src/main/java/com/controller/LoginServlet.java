@@ -38,11 +38,8 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("password");
             String savePassword = request.getParameter("save-password");
 
-            System.out.println(savePassword);
-
             String message;
 
-            // store data in User object
             User selectedUser = UserDB.selectUser(email);
 
             if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
@@ -61,7 +58,6 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(emailCookie);
 
                 if (savePassword != null) {
-                    System.out.println("In loop statement.");
                     Cookie passwordCookie = new Cookie("password", passwordHash.generate(password.toCharArray()));
                     passwordCookie.setMaxAge(30 * 24 * 60 * 60);
                     passwordCookie.setPath("/");
@@ -72,7 +68,6 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
 
-            // request.setAttribute("email", selectedUser);
             request.setAttribute("message", message);
 
         }
