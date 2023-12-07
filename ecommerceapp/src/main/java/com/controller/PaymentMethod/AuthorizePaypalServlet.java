@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.PaymentMethod;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class AuthorizePaypalServlet extends HttpServlet {
         String subtotal = request.getParameter("subtotal");
         String shipping = request.getParameter("shipping");
         String total = request.getParameter("total");
-
+    
         // Tạo đối tượng
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setFirstName(firstName);
@@ -47,11 +47,18 @@ public class AuthorizePaypalServlet extends HttpServlet {
         orderDetail.setPhoneNumber(phoneNumber);
 
         try {
-            // Tính toán và thiết lập tổng số tiền
-            double subtotalAmount = parseDoubleOrZero(request.getParameter("subtotal"));
-            double shippingAmount = parseDoubleOrZero(request.getParameter("shipping"));
-            double totalAmount = parseDoubleOrZero(request.getParameter("total"));
+            // Kiểm tra và chuyển đổi giá trị số tiền
+            double subtotalAmount = (subtotal != null && !subtotal.trim().isEmpty()) ? Double.parseDouble(subtotal) : 0.0;
+            double shippingAmount = (shipping != null && !shipping.trim().isEmpty()) ? Double.parseDouble(shipping) : 0.0;
+            double totalAmount = (total != null && !total.trim().isEmpty()) ? Double.parseDouble(total) : 0.0;
     
+            // Kiểm tra nếu tổng số tiền là 0, thì thông báo lỗi
+            if (totalAmount <= 0) {
+                request.setAttribute("errorMessage", "Total amount cannot be zero.");
+                response.sendRedirect(request.getContextPath() + "/view/error.jsp");
+                return;
+            }
+
             orderDetail.setSubtotalAmount(subtotalAmount);
             orderDetail.setTotalAmount(totalAmount);
             orderDetail.setShipping(shippingAmount);
@@ -69,11 +76,11 @@ public class AuthorizePaypalServlet extends HttpServlet {
         }
     }
 
-    private double parseDoubleOrZero(String value) {
-        try {
-            return value != null && !value.isEmpty() ? Double.parseDouble(value) : 0.0;
-        } catch (NumberFormatException e) {
-            return 0.0;
-        }
-    }
+    // private double parseDoubleOrZero(String value) {
+    //     try {
+    //         return value != null && !value.isEmpty() ? Double.parseDouble(value) : 0.0;
+    //     } catch (NumberFormatException e) {
+    //         return 0.0;
+    //     }
+    // }
 }
