@@ -154,8 +154,8 @@
 										<h5>$120.00</h5>
 									</div>
 									<div class="select-button">
-										<a href="./view/shopping-cart.html" class="primary-btn view-cart">VIEW CART</a>
-										<a href="./view/check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
+										<a href="/cart" class="primary-btn view-cart">VIEW CART</a>
+										<a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
 									</div>
 								</div>
 							</li>
@@ -170,7 +170,7 @@
 				<nav class="nav-menu mobile-menu" style="display: flex; justify-content: center; align-items: center">
 					<ul>
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="./view/shop.html">Shop</a></li>
+						<li><a href="/shop">Shop</a></li>
 						<li>
 							<a href="#">Collection</a>
 							<ul class="dropdown">
@@ -179,7 +179,7 @@
 								<li><a href="#">Kid's</a></li>
 							</ul>
 						</li>
-						<li><a href="./view/contact.html">Contact</a></li>
+						<li><a href="/contact">Contact</a></li>
 					</ul>
 				</nav>
 				<div id="mobile-menu-wrap"></div>
@@ -201,7 +201,7 @@
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
 								incididunt ut labore et dolore
 							</p>
-							<a href="#" class="primary-btn">Shop Now</a>
+							<a href="/shop" class="primary-btn">Shop Now</a>
 						</div>
 					</div>
 					<div class="off-card">
