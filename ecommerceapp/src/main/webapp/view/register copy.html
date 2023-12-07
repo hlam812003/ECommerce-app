@@ -333,51 +333,6 @@
 	<script src="../assets/js/jquery.slicknav.js"></script>
 	<script src="../assets/js/owl.carousel.min.js"></script>
 	<script src="../assets/js/main.js"></script>
-	<script type="module">
-		import Toast from '../assets/js/Toast/Toast.js';
-
-		const displayToast = (message, title, type) => {
-			new Toast({
-				autoClose: 5000,
-				canCloseOnClick: true,
-				darkMode: false,
-				onClose: () => {},
-				position: "top-center",
-				pauseOnHover: true,
-				pauseOnFocusLoss: true,
-				playNotificationSound: false,
-				showProgressBar: true,
-				toastContent: {
-					message,
-					title,
-					type
-				},
-			});
-		};
-	
-		document.addEventListener('DOMContentLoaded', () => {
-			const registrationError = '${requestScope.message}';
-			
-			if (registrationError) {
-				displayToast(registrationError, "Registration failed!", "error");
-			}
-	
-			const form = document.querySelector('.register-form form');
-			form.addEventListener('submit', (e) => {
-				const email = document.querySelector('input[name="email"]').value.trim();
-				const password = document.querySelector('input[name="password"]').value.trim();
-				const confirmPassword = document.querySelector('input[name="confirm-password"]').value.trim();
-	
-				if (!email || !password || !confirmPassword) {
-					e.preventDefault(); 
-					displayToast("Please enter your login information!", "Information is empty!", "warning");
-				} else if (password !== confirmPassword) {
-					e.preventDefault();
-					displayToast("Password and confirm password do not match.", "Password incorrect!", "error");
-				}
-			});
-		});
-	</script>
 </body>
 
 </html>

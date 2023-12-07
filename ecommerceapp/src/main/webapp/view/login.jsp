@@ -374,7 +374,7 @@
 	
 				if (!username || !password) {
 					e.preventDefault(); 
-					displayToast("Please enter your login information!", "Information is empty", "warning");
+					displayToast("Please enter your login information!", "Information is empty!", "warning");
 				}
 			});
 		});
