@@ -83,7 +83,7 @@
                             <div class="row">
                                 <div class="col-lg-2 col-md-2">
                                     <div class="logo">
-                                        <a href="../index.html">
+                                        <a href="/">
                                             <img src="../public/img/logo.png" alt="">
                                         </a>
                                     </div>
@@ -165,8 +165,8 @@
                             <nav class="nav-menu mobile-menu"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <ul>
-                                    <li><a href="../index.html">Home</a></li>
-                                    <li><a href="./shop.html">Shop</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/shop">Shop</a></li>
                                     <li><a href="#">Collection</a>
                                         <ul class="dropdown">
                                             <li><a href="#">Men's</a></li>
@@ -175,7 +175,7 @@
                                         </ul>
                                     </li>
                                     <!-- <li><a href="./blog.html">Blog</a></li> -->
-                                    <li class="active"><a href="./contact.html">Contact</a></li>
+                                    <li class="active"><a href="/contact">Contact</a></li>
                                     <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="./shopping-cart.html">Shopping Cart</a></li>
