@@ -1,12 +1,12 @@
 package com.data;
 
 import java.util.logging.Logger;
+
 import com.model.Cart;
 import com.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 public class CartDB {

@@ -71,7 +71,7 @@ public class UserDB {
         }
     }
 
-    public static boolean emailExists(String email) {
+    public static boolean isEmailExists(String email) {
         User u = selectUser(email);
         return u != null;
     }

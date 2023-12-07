@@ -9,7 +9,6 @@ import com.model.Favorites;
 import com.model.Product;
 import com.model.User;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class FavoritesServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        
+
         if (user == null) {
             // Người dùng chưa đăng nhập
             response.sendRedirect(request.getContextPath() + "/login");
@@ -39,7 +38,7 @@ public class FavoritesServlet extends HttpServlet {
             favorites = new Favorites(user, new ArrayList<>());
         }
 
-            
+
         if ("add".equals(action)) {
             // Thêm sản phẩm vào danh sách yêu thích
             Product product = ProductDB.findProductById(productId);
@@ -61,7 +60,7 @@ public class FavoritesServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        
+
         if (user == null) {
             // Người dùng chưa đăng nhập
             response.sendRedirect(request.getContextPath() + "/view/login.jsp");
