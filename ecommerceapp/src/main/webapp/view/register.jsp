@@ -207,15 +207,15 @@
 							<input type="hidden" name="action" value="register" />
 							<div class="group-input">
 								<label for="email">Email address *</label>
-								<input type="email" name="email" required />
+								<input type="email" name="email" required autocomplete="off"/>
 							</div>
 							<div class="group-input">
 								<label for="password">Password *</label>
-								<input type="password" name="password" required />
+								<input type="password" name="password" required autocomplete="off"/>
 							</div>
 							<div class="group-input">
 								<label for="confirm-password">Confirm Password *</label>
-								<input type="password" name="confirm-password" required />
+								<input type="password" name="confirm-password" required autocomplete="off"/>
 							</div>
 							<button type="submit" class="site-btn register-btn">REGISTER</button>
 						</form>

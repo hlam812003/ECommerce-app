@@ -204,18 +204,18 @@
 						<h2>Login</h2>
 						<form action="#" class="form__login">
 							<div class="group-input">
-								<label for="username">Username or email address *</label>
-								<input type="text" id="username" />
+								<label for="username">Email address *</label>
+								<input type="text" id="username" autocomplete="off"/>
 							</div>
 							<div class="group-input">
 								<label for="pass">Password *</label>
-								<input type="text" id="pass" />
+								<input type="password" id="pass" autocomplete="off"/>
 							</div>
 							<div class="group-input gi-check">
 								<div class="gi-more">
 									<label for="save-pass">
 										Remember me
-										<input type="checkbox" id="save-pass" />
+										<input type="checkbox" id="save-pass"/>
 										<span class="checkmark"></span>
 									</label>
 									<a href="#" class="forget-pass">Forget your Password</a>
