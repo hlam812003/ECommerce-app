@@ -133,7 +133,7 @@
                                         <h5>$120.00</h5>
                                     </div>
                                     <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
+                                        <a href="#" class="primary-btn view-cart">VIEW CART</a>
                                         <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                     </div>
                                 </div>
@@ -266,7 +266,7 @@
                                     </c:forEach>
                                     <li class="fw-normal">Subtotal <span>$${cartTotal}</span></li>
                                     <li class="fw-normal">Shipping <span>$${shippingFee}</span></li>
-                                    <li class="total-price">Total <span>$${cartTotal + shippingFee}</span></li>                                    
+                                    <li class="total-price">Total <span>$${cartTotal + shippingFee}</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">
@@ -281,10 +281,10 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                </div>  
+                                </div>
                                 <div class="order-btn">
                                     <button type="submit" class="site-btn place-btn">Place Order</button>
-                                </div>                             
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -405,7 +405,7 @@
             var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
             form.action = paymentMethod === 'paypal' ? 'paypal-authorize' : 'checkout';
         }
-    </script>    
+    </script>
 </body>
 
 </html>

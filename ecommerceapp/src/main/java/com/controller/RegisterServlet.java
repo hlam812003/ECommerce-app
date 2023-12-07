@@ -7,9 +7,11 @@ import com.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -27,7 +29,6 @@ public class RegisterServlet extends HttpServlet {
         if (action.equals("load")) {
             url = "/view/register.jsp";
         } else if (action.equals("register")) {
-            // get parameters from the request
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirm-password");
@@ -35,27 +36,35 @@ public class RegisterServlet extends HttpServlet {
             String message;
 
             if (!password.equals(confirmPassword)) {
-                message = "Those passwords didn't match. Try again";
+                message = "Those passwords didn't match. Try again.";
                 url = "/view/register.jsp";
             } else {
-                // store data in User object
-                User user = new User();
-                user.setEmail(email);
-                user.setPassword(password);
+                User user = UserDB.selectUser(email);
 
-                // validate the parameters
-                if (UserDB.emailExists(user.getEmail())) {
+                if (user != null) {
                     message = "This email address already exists.<br>" +
                             "Please enter another email address.";
                     url = "/view/register.jsp";
                 } else {
                     message = "";
-                    // url = "/login";
+
+                    user = new User();
+                    user.setEmail(email);
+                    user.setPassword(password);
                     UserDB.insert(user);
-                    response.sendRedirect(request.getContextPath() + "/login");
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", user);
+
+                    Cookie emailCookie = new Cookie("emailCookie", email);
+                    emailCookie.setMaxAge(30 * 24 * 60 * 60);
+                    emailCookie.setPath("/");
+                    response.addCookie(emailCookie);
+
+                    response.sendRedirect(request.getContextPath() + "/");
                     return;
                 }
-                request.setAttribute("user", user);
+                // request.setAttribute("user", user);
             }
             request.setAttribute("message", message);
         }
@@ -68,10 +77,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "/view/register.jsp";
-
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+        if (!LoginServlet.isLoggedIn(request, response)) {
+            String url = "/view/register.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/");
+            return;
+        }
     }
+
 }

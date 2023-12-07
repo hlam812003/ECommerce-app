@@ -635,8 +635,8 @@ ol {
 	float: right;
 }
 
-.inner-header .nav-right li.cart-icon .cart-hover .select-button .view-card,
-.inner-header .nav-right li.heart-icon .cart-hover .select-button .view-card {
+.inner-header .nav-right li.cart-icon .cart-hover .select-button .view-cart,
+.inner-header .nav-right li.heart-icon .cart-hover .select-button .view-cart {
 	font-size: 12px;
 	letter-spacing: 2px;
 	display: block;

@@ -19,7 +19,7 @@ public class Favorites {
 
     @OneToOne
     private User user;
-    @OneToMany (targetEntity = Product.class )
+    @OneToMany(targetEntity = Product.class)
     private List<Product> products;
 
     public Favorites() {
@@ -56,4 +56,3 @@ public class Favorites {
         this.products.removeIf(product -> product.getProductId().equals(productId));
     }
 }
-

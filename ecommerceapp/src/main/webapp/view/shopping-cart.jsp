@@ -157,11 +157,11 @@
                                         <span>total:</span>
                                         <h5>$${total}</h5>
                                     </div>
-                                
+
                                     <div class="select-button">
-                                        <a href="./view/shopping-cart.html" class="primary-btn view-card">VIEW CART</a>
+                                        <a href="./view/shopping-cart.html" class="primary-btn view-cart">VIEW CART</a>
                                         <a href="./view/check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </li>
 							<li class="cart-price">$${cartTotal}</li>
@@ -289,7 +289,7 @@
                                 </ul>
                                 <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
