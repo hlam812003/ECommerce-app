@@ -202,20 +202,21 @@
 				<div class="col-lg-6 offset-lg-3">
 					<div class="login-form">
 						<h2>Login</h2>
-						<form action="#" class="form__login">
+						<form action="login" class="form__login" method="post">
+                            <input type="hidden" name="action" value="login" />
 							<div class="group-input">
-								<label for="username">Email address *</label>
-								<input type="text" id="username" autocomplete="off"/>
+								<label for="email">Email address *</label>
+								<input type="email" name="email" id="email" autocomplete="off"/>
 							</div>
 							<div class="group-input">
-								<label for="pass">Password *</label>
-								<input type="password" id="pass" autocomplete="off"/>
+								<label for="password">Password *</label>
+								<input type="password" id="password" name="password" autocomplete="off"/>
 							</div>
 							<div class="group-input gi-check">
 								<div class="gi-more">
-									<label for="save-pass">
+									<label for="save-password">
 										Remember me
-										<input type="checkbox" id="save-pass"/>
+										<input type="checkbox" id="save-password" name="save-password"/>
 										<span class="checkmark"></span>
 									</label>
 									<a href="/forgot-password" class="forget-pass">Forget your Password</a>
@@ -359,27 +360,27 @@
 				},
 			});
 		};
-	
+
 		document.addEventListener('DOMContentLoaded', () => {
 			const loginError = '${requestScope.loginError}';
-	
+
 			if (loginError === 'true') {
 				displayToast("No account found or incorrect password.", "Login Error!", "error");
 			}
-	
+
 			const form = document.querySelector('.form__login');
 			form.addEventListener('submit', (e) => {
 				const username = document.getElementById('username').value.trim();
 				const password = document.getElementById('pass').value.trim();
-	
+
 				if (!username || !password) {
-					e.preventDefault(); 
+					e.preventDefault();
 					displayToast("Please enter your login information!", "Information is empty!", "warning");
 				}
 			});
 		});
 	</script>
-	
+
 </body>
 
 </html>
