@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="../assets/css/nice-select.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/jquery-ui.min.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/slicknav.min.css" type="text/css" />
+	<link rel="stylesheet" href="../assets/css/toast.css" type="text/css" />
 	<link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
 </head>
 
