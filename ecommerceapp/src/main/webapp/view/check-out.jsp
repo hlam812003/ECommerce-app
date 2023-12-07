@@ -196,7 +196,7 @@
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="checkout" method="post" class="checkout-form">
+            <form id="checkoutForm" method="post" class="checkout-form" onsubmit="handleFormSubmit()">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-content">
@@ -206,40 +206,40 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="fir">First Name<span>*</span></label>
-                                <input type="text" id="fir" name="firstName">
+                                <input type="text" id="fir" name="firstName" required>
                             </div>
                             <div class="col-lg-6">
                                 <label for="last">Last Name<span>*</span></label>
-                                <input type="text" id="last" name="lastName">
+                                <input type="text" id="last" name="lastName" required>
                             </div>
                             <div class="col-lg-12">
                                 <label for="cun-name">Company Name</label>
-                                <input type="text" id="cun-name" name="companyName">
+                                <input type="text" id="cun-name" name="companyName" required>
                             </div>
                             <div class="col-lg-12">
                                 <label for="cun">Country<span>*</span></label>
-                                <input type="text" id="cun" name="countryName">
+                                <input type="text" id="cun" name="countryName" required>
                             </div>
                             <div class="col-lg-12">
                                 <label for="street">Street Address<span>*</span></label>
-                                <input type="text" id="street" class="street-first" name="streetAddress">
+                                <input type="text" id="street" class="street-first" name="streetAddress" required>
                                 <!-- <input type="text"> -->
                             </div>
                             <div class="col-lg-12">
                                 <label for="zip">Postcode / ZIP (optional)</label>
-                                <input type="text" id="zip" name="postCode">
+                                <input type="text" id="zip" name="postCode" required>
                             </div>
                             <div class="col-lg-12">
                                 <label for="town">Town / City<span>*</span></label>
-                                <input type="text" id="town" name="cityName">
+                                <input type="text" id="town" name="cityName" required>
                             </div>
                             <div class="col-lg-6">
                                 <label for="email">Email Address<span>*</span></label>
-                                <input type="text" id="email" name="emailAddress">
+                                <input type="text" id="email" name="emailAddress" required>
                             </div>
                             <div class="col-lg-6">
                                 <label for="phone">Phone<span>*</span></label>
-                                <input type="text" id="phone" name="phoneNumber">
+                                <input type="text" id="phone" name="phoneNumber" required>
                             </div>
                             <div class="col-lg-12">
                                 <div class="create-item">
@@ -265,27 +265,26 @@
                                         <li class="fw-normal">${item.item.name} x ${item.quantity} <span>$${item.totalPrice}</span></li>
                                     </c:forEach>
                                     <li class="fw-normal">Subtotal <span>$${cartTotal}</span></li>
-                                    <li class="total-price">Total <span>$${cartTotal}</span></li>
+                                    <li class="fw-normal">Shipping <span>$${shippingFee}</span></li>
+                                    <li class="total-price">Total <span>$${cartTotal + shippingFee}</span></li>                                    
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">
-                                        <label for="pc-check">
-                                            Cheque Payment
-                                            <input type="checkbox" id="pc-check">
+                                        <label for="pc-check">Cheque Payment
+                                            <input type="radio" id="pc-check" name="paymentMethod" value="cheque" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="pc-item">
-                                        <label for="pc-paypal">
-                                            Paypal
-                                            <input type="checkbox" id="pc-paypal">
+                                        <label for="pc-paypal">Paypal
+                                            <input type="radio" id="pc-paypal" name="paymentMethod" value="paypal">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                </div>
+                                </div>  
                                 <div class="order-btn">
                                     <button type="submit" class="site-btn place-btn">Place Order</button>
-                                </div>                                
+                                </div>                             
                             </div>
                         </div>
                     </div>
@@ -400,6 +399,13 @@
     <script src="../assets/js/jquery.slicknav.js"></script>
     <script src="../assets/js/owl.carousel.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script type="text/javascript">
+        function handleFormSubmit() {
+            var form = document.getElementById('checkoutForm');
+            var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            form.action = paymentMethod === 'paypal' ? 'paypal-authorize' : 'checkout';
+        }
+    </script>    
 </body>
 
 </html>

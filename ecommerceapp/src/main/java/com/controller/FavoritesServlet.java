@@ -64,7 +64,7 @@ public class FavoritesServlet extends HttpServlet {
         
         if (user == null) {
             // Người dùng chưa đăng nhập
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/view/login.jsp");
             return;
         }
 

@@ -29,7 +29,11 @@ public class InvoiceServlet extends HttpServlet {
             invoice.setItems(cart.getItems());
             invoice.setInvoiceDateTime(new Date());
             invoice.setInvoiceId(generateInvoiceId());
-    
+
+            // Test thôi có gì ô làm rồi chỉnh lại nhé!
+            double shippingFee = 30.0;
+            double totalAmount = cart.getTotalPrice() + shippingFee;
+
             // Lưu hóa đơn
             InvoiceDB.insert(invoice);
 
