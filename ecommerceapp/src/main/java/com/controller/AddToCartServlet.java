@@ -36,7 +36,8 @@ public class AddToCartServlet extends HttpServlet {
 
             Cart cart = CartDB.findCartByUser(user);
             if (cart == null) {
-                cart = new Cart(user);
+                cart = new Cart();
+                cart.setUser(user);
                 CartDB.insert(cart);
             }
 
