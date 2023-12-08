@@ -76,6 +76,19 @@ public class UserDB {
         return u != null;
     }
 
+    public static User getUserByEmail(String email) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                     .setParameter("email", email)
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }    
+
     public static User getUserByVerificationCode(String code) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

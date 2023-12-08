@@ -33,22 +33,16 @@ public class LoginServlet extends HttpServlet {
         if (action.equals("load")) {
             url = "/view/login.jsp";
         } else if (action.equals("login")) {
-            // get parameters from the request
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String savePassword = request.getParameter("save-password");
 
-            String message;
-
             User selectedUser = UserDB.selectUser(email);
 
-            if (selectedUser == null || !selectedUser.isVerified() || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
-                message = "Incorrect email address or password, or account not verified.";
-                url = "/view/login.jsp";
+            if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword()) || !selectedUser.isVerified()) {
                 request.setAttribute("loginError", "true");
+                request.setAttribute("message", "Incorrect email address or password, or account not verified.");
             } else {
-                message = "";
-
                 HttpSession session = request.getSession();
                 session.setAttribute("user", selectedUser);
 
@@ -67,9 +61,6 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/");
                 return;
             }
-
-            request.setAttribute("message", message);
-
         }
 
         getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -83,30 +74,26 @@ public class LoginServlet extends HttpServlet {
             getServletContext().getRequestDispatcher(url).forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/");
-            return;
         }
-
     }
 
-    public static boolean isLoggedIn(HttpServletRequest request,
-            HttpServletResponse response) {
-
+    public static boolean isLoggedIn(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
             Cookie[] cookies = request.getCookies();
-
             String email = CookieUtil.getCookieValue(cookies, "email");
-
             // if cookie doesn't exist, go to Registration page
-            if (email == null || email.equals("")) {
+            if (email == null || email.isEmpty()) {
                 return false;
             } else {
                 user = UserDB.selectUser(email);
-                session.setAttribute("user", user);
-                return true;
+                if (user != null && user.isVerified()) {
+                    session.setAttribute("user", user);
+                    return true;
+                }
+                return false;
             }
         } else {
             return true;
