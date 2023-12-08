@@ -602,7 +602,7 @@
 
                     function updateDisplayedProductCount(totalProductCount) {
                         const displayCountElement = document.getElementById('displayCount');
-                        displayCountElement.textContent = "Show 01 - ${productsDisplayed}  Of ${totalProductCount} Products";
+                        displayCountElement.textContent = "Show 01 ${productsDisplayed}  Of ${totalProductCount} Products";
                     };
 
                     document.addEventListener('DOMContentLoaded', () => {
