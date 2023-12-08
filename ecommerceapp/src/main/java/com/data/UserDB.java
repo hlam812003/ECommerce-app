@@ -87,5 +87,5 @@ public class UserDB {
         } finally {
             em.close();
         }
-    }    
+    }
 }

@@ -42,8 +42,8 @@ public class LoginServlet extends HttpServlet {
 
             User selectedUser = UserDB.selectUser(email);
 
-            if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
-                message = "Incorrect email address or password.";
+            if (selectedUser == null || !selectedUser.isVerified() || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
+                message = "Incorrect email address or password, or account not verified.";
                 url = "/view/login.jsp";
                 request.setAttribute("loginError", "true");
             } else {

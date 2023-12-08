@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <!DOCTYPE html>
             <html lang="en">
 
@@ -10,7 +10,7 @@
                 <meta name="keywords" content="Fashi, unica, creative, html" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-                <title>Fashi | Reset Password</title>
+                <title>Fashi | Verify Account</title>
 
                 <!-- Google Font -->
                 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
@@ -205,7 +205,7 @@
                             <div class="col-lg-12">
                                 <div class="breadcrumb-text">
                                     <a href="/"><i class="fa fa-home"></i> Home</a>
-                                    <span>Reset Password</span>
+                                    <span>Verify Account</span>
                                 </div>
                             </div>
                         </div>
@@ -218,21 +218,20 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 offset-lg-3">
-                                <div class="register-form">
-                                    <h2>Reset Your Password</h2>
-                                    <form action="reset-password" method="post">
-                                        <input type="hidden" name="action" value="reset-password" />
-                                        <div class="group-input">
-                                            <label for="newPassword">New Password</label>
-                                            <input type="password" name="newPassword" required />
-                                        </div>
-                                        <div class="group-input">
-                                            <label for="confirmPassword">Confirm New Password</label>
-                                            <input type="password" name="confirmPassword" required />
-                                        </div>
-                                        <button type="submit" class="site-btn register-btn">Reset Password</button>
-                                    </form>
-                                </div>
+								<div class="register-form">
+									<h2>Registration Successful</h2>
+                                    <c:choose>
+                                        <c:when test="${not empty message}">
+                                            <p>${message}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>Thank you for registering. Please check your email to verify your account.</p>
+                                        </c:otherwise>
+                                    </c:choose>
+									<div class="switch-login">
+										<a href="/login" class="or-login">Or Login</a>
+									</div>
+								</div>								
                             </div>
                         </div>
                     </div>
@@ -343,41 +342,6 @@
                 <script src="../assets/js/jquery.slicknav.js"></script>
                 <script src="../assets/js/owl.carousel.min.js"></script>
                 <script src="../assets/js/main.js"></script>
-                <script type="module">
-                    import Toast from '../assets/js/Toast/Toast.js';
-
-                    const message = "<c:out value='${message}'/>";
-					const error = "<c:out value='${error}'/>";
-			
-					document.addEventListener('DOMContentLoaded', () => {
-						if (message !== "") {
-							displayToast(message, "Successfully!", "success");
-						}
-						if (error !== "") {
-							displayToast(error, "Error!", "error");
-						}
-					});
-                
-                    const displayToast = (message, title, type) => {
-                        new Toast({
-                            autoClose: 5000,
-                            canCloseOnClick: true,
-                            darkMode: true,
-                            onClose: () => { },
-                            position: "top-center",
-                            pauseOnHover: true,
-                            pauseOnFocusLoss: true,
-                            playNotificationSound: false,
-                            showProgressBar: true,
-                            toastContent: {
-                                message,
-                                title,
-                                type
-                            },
-                        });
-                    };
-            
-                </script>
             </body>
 
             </html>

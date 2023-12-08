@@ -51,16 +51,60 @@
 							</div>
 						</div>
 						<div class="ht-right">
-							<c:choose>
-								<c:when test="${cookie.email.value != null}">
-									<a href="/profile" class="login-panel">Welcome back,
-										<strong><c:out value='${fn:split(cookie.email.value, "@")[0]}' /></strong>
-									</a>
-								</c:when>
-								<c:otherwise>
-									<a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
-								</c:otherwise>
-							</c:choose>
+							<div class="login__sec">
+								<c:choose>
+									<c:when test="${cookie.email.value != null}">
+										<a href="/profile" class="login-panel">Welcome back,
+											<strong><c:out value='${fn:split(cookie.email.value, "@")[0]}' /></strong>
+										</a>
+										<div class="cart-hover">
+											<div class="select-items">
+												<table>
+													<tbody>
+														<c:if test="${not empty user}">
+															<tr>
+																<td class="si-pic">
+																	<img src="${user.avatar}" alt="${user.name}" />
+																</td>
+																<td class="si-text">
+																	<div class="product-selected">
+																		<h6>${user.name}</h6>
+																	</div>
+																</td>
+																<td class="si-close">
+																	<a href="/logout"><i class="ti-close"></i></a>
+																</td>
+															</tr>
+														</c:if>
+														<c:if test="${empty user}">
+															<tr>
+																<td class="si-pic">
+																	<img src="./public/img/user.png" alt="user" />
+																</td>
+																<td class="si-text">
+																	<div class="product-selected">
+																		<h6>Guest</h6>
+																	</div>
+																</td>
+																<td class="si-close">
+																	<a href="/login"><i class="ti-close"></i></a>
+																</td>
+															</tr>
+														</c:if>
+													</tbody>
+												</table>
+											</div>
+											<div class="select-button">
+												<a href="${pageContext.request.contextPath}/logout" class="primary-btn log-out">LOG OUT</a>
+											</div>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
 							<!-- <div class="lan-selector">
 					<select class="language_drop" name="countries" id="countries" style="width:300px;">
 						<option value='yt' data-image="./public/img/flag-1.jpg" data-imagecss="flag yt"

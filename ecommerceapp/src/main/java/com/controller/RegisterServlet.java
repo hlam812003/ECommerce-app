@@ -54,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
                 user.setVerificationCode(verificationCode);
                 UserDB.insert(user);
 
-                // Send Verif
+                // Send Verification
                 String subject = "Account Verification";
                 String content = "Please click on the following link to verify your account: "
                                 + "<a href='http://localhost:8080/verify?code=" + verificationCode + "'>Verify Account</a>";
@@ -67,7 +67,7 @@ public class RegisterServlet extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                url = "/view/message.jsp"; 
+                url = "/view/verify-account.jsp"; 
             }
 
             request.setAttribute("message", message);
