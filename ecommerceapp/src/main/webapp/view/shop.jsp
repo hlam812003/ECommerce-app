@@ -136,42 +136,42 @@
                                             <i class="icon_bag_alt"></i>
                                             <!-- <span>3</span> -->
                                         </a>
-                                            <div class="cart-hover">
-                                                <div class="select-items">
-                                                    <table>
-                                                        <tbody>
-                                                            <c:forEach items="${cart.items}" var="item">
-                                                                <tr>
-                                                                    <td class="si-pic">
-                                                                        <c:if test="${not empty item.item.imageUrls}">
-                                                                            <img src="${item.item.imageUrls[0]}"
-                                                                                alt="${item.item.name}" />
-                                                                        </c:if>
-                                                                    </td>
-                                                                    <td class="si-text">
-                                                                        <div class="product-selected">
-                                                                            <p>$${item.item.price} x ${item.quantity}
-                                                                            </p>
-                                                                            <h6>${item.item.name}</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="si-close">
-                                                                        <i class="ti-close"></i>
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="select-total">
-                                                    <span>total:</span>
-                                                    <h5>$${cartTotal}</h5>
-                                                </div>
-                                                <div class="select-button">
-                                                    <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
-                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
-                                                </div>
+                                        <div class="cart-hover">
+                                            <div class="select-items">
+                                                <table>
+                                                    <tbody>
+                                                        <c:forEach items="${cart.items}" var="item">
+                                                            <tr>
+                                                                <td class="si-pic">
+                                                                    <c:if test="${not empty item.item.imageUrls}">
+                                                                        <img src="${item.item.imageUrls[0]}"
+                                                                            alt="${item.item.name}" />
+                                                                    </c:if>
+                                                                </td>
+                                                                <td class="si-text">
+                                                                    <div class="product-selected">
+                                                                        <p>$${item.item.price} x ${item.quantity}
+                                                                        </p>
+                                                                        <h6>${item.item.name}</h6>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="si-close">
+                                                                    <i class="ti-close"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
                                             </div>
+                                            <div class="select-total">
+                                                <span>total:</span>
+                                                <h5>$${cartTotal}</h5>
+                                            </div>
+                                            <div class="select-button">
+                                                <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+                                                <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
+                                            </div>
+                                        </div>
                                     </li>
                                    <li class="cart-price">$${cartTotal}</li>
                                 </ul>

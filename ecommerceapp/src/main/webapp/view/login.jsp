@@ -177,7 +177,7 @@
 									</div>
 									<div class="select-total">
 										<span>total:</span>
-										<h5>$120.00</h5>
+										<h5>$${cartTotal}</h5>
 									</div>
 									<div class="select-button">
 										<a href="#" class="primary-btn view-cart">VIEW CART</a>
