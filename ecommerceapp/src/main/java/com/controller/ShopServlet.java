@@ -44,15 +44,36 @@ public class ShopServlet extends HttpServlet {
 
         ProductDB.insert(product);
 
-        // Lấy danh sách tất cả sản phẩm
-        List<Product> productList = ProductDB.getAllProducts();
-        
-        // Gán danh sách sản phẩm và tổng số lượng sản phẩm vào request
-        request.setAttribute("products", productList);
-        request.setAttribute("totalProductCount", productList.size());
+        String category = request.getParameter("category");
+        String brand = request.getParameter("brand");
+        String color = request.getParameter("color");
+        String size = request.getParameter("size");
+        String tags = request.getParameter("tags");
+        Double minPrice = parseDouble(request.getParameter("minPrice"));
+        Double maxPrice = parseDouble(request.getParameter("maxPrice"));
 
-        // Chuyển tiếp request và response tới trang JSP
+        List<Product> products;
+
+        // Nếu có ít nhất một tham số lọc, lọc sản phẩm
+        if (category != null || brand != null || color != null || size != null || tags != null || minPrice != null || maxPrice != null) {
+            products = ProductDB.getFilteredProducts(category, brand, color, size, tags, minPrice, maxPrice);
+        } else {
+            products = ProductDB.getAllProducts();
+        }
+
+        // Gán danh sách sản phẩm và tổng số lượng sản phẩm vào request
+        request.setAttribute("products", products);
+        request.setAttribute("totalProductCount", products.size());
+
         String url = "/view/shop.jsp";
         getServletContext().getRequestDispatcher(url).forward(request, response);
+    }
+
+    private Double parseDouble(String value) {
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -9,6 +10,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 public class ProductDB {
     private static Logger logger = Logger.getLogger(ProductDB.class.getName());
@@ -84,6 +89,45 @@ public class ProductDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :name", Product.class);
         query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
+    }
+
+    public static List<Product> getFilteredProducts(String category, String brand, String color, String size, String tags, Double minPrice, Double maxPrice) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Product> cq = cb.createQuery(Product.class);
+
+        Root<Product> product = cq.from(Product.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (category != null) {
+            predicates.add(cb.equal(product.get("category"), category));
+        }
+
+        if (brand != null) {
+            predicates.add(cb.equal(product.get("brand"), brand));
+        }
+
+        if (color != null) {
+            predicates.add(cb.equal(product.get("color"), color));
+        }
+
+        if (size != null) {
+            predicates.add(cb.equal(product.get("size"), size));
+        }
+
+        if (tags != null) {
+            predicates.add(cb.equal(product.get("tags"), tags));
+        }
+
+        // Thêm điều kiện cho khoảng giá
+        if (minPrice != null && maxPrice != null) {
+            predicates.add(cb.between(product.get("price"), minPrice, maxPrice));
+        }
+
+        cq.where(predicates.toArray(new Predicate[0]));
+        TypedQuery<Product> query = em.createQuery(cq);
+
         return query.getResultList();
     }
 

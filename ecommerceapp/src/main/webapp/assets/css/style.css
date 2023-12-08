@@ -1762,11 +1762,13 @@ ol {
 	margin-bottom: 26px;
 }
 
-.filter-widget .filter-catagories li {
-	list-style: none;
+
+.filter-widget .filter-catagories label {
+	display: flex;
+	gap: 1rem;
 }
 
-.filter-widget .filter-catagories li a {
+.filter-widget .filter-catagories label input {
 	display: inline-block;
 	color: #636363;
 	font-size: 16px;
@@ -1777,23 +1779,27 @@ ol {
 	margin-bottom: 3px;
 }
 
-.filter-widget .fw-brand-check .bc-item label {
+.filter-widget .fw-brand-check .bc-item label,
+.filter-widget .fw-tags label {
 	position: relative;
 	cursor: pointer;
 	padding-left: 28px;
 }
 
-.filter-widget .fw-brand-check .bc-item label input {
+.filter-widget .fw-brand-check .bc-item label input,
+.filter-widget .fw-tags label input {
 	position: absolute;
 	visibility: hidden;
 }
 
-.filter-widget .fw-brand-check .bc-item label input:checked~span {
+.filter-widget .fw-brand-check .bc-item label input:checked~span,
+.filter-widget .fw-tags label input:checked~span {
 	background: #e7ab3c;
 	border-color: #e7ab3c;
 }
 
-.filter-widget .fw-brand-check .bc-item label .checkmark {
+.filter-widget .fw-brand-check .bc-item label .checkmark,
+.filter-widget .fw-tags label .checkmark {
 	position: absolute;
 	left: 0;
 	top: 5px;
@@ -1803,7 +1809,13 @@ ol {
 	border-radius: 2px;
 }
 
-.filter-widget .fw-brand-check .bc-item label .checkmark:after {
+.filter-widget .fw-tags label .checkmark {
+	top: 10px;
+	left: 12px;
+}
+
+.filter-widget .fw-brand-check .bc-item label .checkmark:after,
+.filter-widget .fw-tags label .checkmark::after {
 	left: 0;
 	top: 0;
 	width: 10px;
@@ -1885,6 +1897,7 @@ ol {
 	color: #ffffff;
 	font-weight: 700;
 	background: #e7ab3c;
+	border: none;
 	padding: 7px 20px 5px;
 	border-radius: 2px;
 	display: inline-block;
@@ -1973,11 +1986,11 @@ ol {
 	color: #ffffff;
 }
 
-.filter-widget .fw-tags a {
+.filter-widget .fw-tags label {
 	display: inline-block;
 	font-size: 16px;
 	color: #636363;
-	padding: 5px 15px;
+	padding: 5px 35px;
 	border: 1px solid #ebebeb;
 	margin-right: 5px;
 	margin-bottom: 9px;

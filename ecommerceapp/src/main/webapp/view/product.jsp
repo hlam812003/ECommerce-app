@@ -320,8 +320,8 @@
                                             <label for="l-size">l</label>
                                         </div>
                                         <div class="sc-item">
-                                            <input type="radio" id="xs-size">
-                                            <label for="xs-size">xs</label>
+                                            <input type="radio" id="xl-size">
+                                            <label for="xl-size">xl</label>
                                         </div>
                                     </div>
                                 </div>
