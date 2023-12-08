@@ -205,7 +205,7 @@
                             <div class="col-lg-12">
                                 <div class="breadcrumb-text">
                                     <a href="/"><i class="fa fa-home"></i> Home</a>
-                                    <span>Forgot Password</span>
+                                    <span>Reset Password</span>
                                 </div>
                             </div>
                         </div>
@@ -218,34 +218,21 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 offset-lg-3">
-								<div class="register-form">
-									<h2>Forgot Password?</h2>
-									<c:choose>
-										<c:when test="${emailSent}">
-											<form action="verify-code" method="post">
-												<input type="hidden" name="action" value="verify-code" />
-												<div class="group-input">
-													<label for="code">Enter Code</label>
-													<input type="text" name="code" required />
-												</div>
-												<button type="submit" class="site-btn register-btn">Verify Code</button>
-											</form>
-										</c:when>
-										<c:otherwise>
-											<form action="forgot-password" method="post">
-												<input type="hidden" name="action" value="forgot-password" />
-												<div class="group-input">
-													<label for="email">Your Email</label>
-													<input type="email" name="email" required autocomplete="off" />
-												</div>
-												<button type="submit" class="site-btn register-btn">Send Code</button>
-											</form>
-										</c:otherwise>
-									</c:choose>
-									<div class="switch-login">
-										<a href="/login" class="or-login">Return to login</a>
-									</div>
-								</div>
+                                <div class="register-form">
+                                    <h2>Reset Your Password</h2>
+                                    <form action="reset-password" method="post">
+                                        <input type="hidden" name="action" value="reset-password" />
+                                        <div class="group-input">
+                                            <label for="newPassword">New Password</label>
+                                            <input type="password" name="newPassword" required />
+                                        </div>
+                                        <div class="group-input">
+                                            <label for="confirmPassword">Confirm New Password</label>
+                                            <input type="password" name="confirmPassword" required />
+                                        </div>
+                                        <button type="submit" class="site-btn register-btn">Reset Password</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -359,18 +346,18 @@
                 <script type="module">
                     import Toast from '../assets/js/Toast/Toast.js';
 
-					const message = "<c:out value='${message}'/>";
+                    const message = "<c:out value='${message}'/>";
 					const error = "<c:out value='${error}'/>";
 			
 					document.addEventListener('DOMContentLoaded', () => {
 						if (message !== "") {
-							displayToast(message, "Reset Password", "success");
+							displayToast(message, "Successfully!", "success");
 						}
 						if (error !== "") {
 							displayToast(error, "Error!", "error");
 						}
 					});
-
+                
                     const displayToast = (message, title, type) => {
                         new Toast({
                             autoClose: 5000,
@@ -389,13 +376,8 @@
                             },
                         });
                     };
+            
                 </script>
-				<c:if test="${not empty message}">
-					<script>displayToast("${message}", "Reset Password Successfully!", "success");</script>
-				</c:if>
-				<c:if test="${not empty error}">
-					<script>displayToast("${error}", "Error!", "error");</script>
-				</c:if>
             </body>
 
             </html>

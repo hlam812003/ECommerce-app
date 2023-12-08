@@ -104,30 +104,32 @@
 											<i class="icon_heart_alt"></i>
 											<!-- <span>1</span> -->
 										</a>
-										<div class="select-items">
-											<table>
-												<tbody>
-													<c:forEach items="${favorites.products}" var="product">
-														<tr>
-															<td class="si-pic">
-																<c:if test="${not empty product.imageUrls}">
-																	<img src="${product.imageUrls[0]}"
-																		alt="${product.name}" />
-																</c:if>
-															</td>
-															<td class="si-text">
-																<div class="product-selected">
-																	<p>$${product.price}</p>
-																	<h6>${product.name}</h6>
-																</div>
-															</td>
-															<td class="si-close">
-																<i class="ti-close"></i>
-															</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
+										<div class="cart-hover">
+											<div class="select-items">
+												<table>
+													<tbody>
+														<c:forEach items="${favorites.products}" var="product">
+															<tr>
+																<td class="si-pic">
+																	<c:if test="${not empty product.imageUrls}">
+																		<img src="${product.imageUrls[0]}"
+																			alt="${product.name}" />
+																	</c:if>
+																</td>
+																<td class="si-text">
+																	<div class="product-selected">
+																		<p>$${product.price}</p>
+																		<h6>${product.name}</h6>
+																	</div>
+																</td>
+																<td class="si-close">
+																	<i class="ti-close"></i>
+																</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</li>
 									<li class="cart-icon">
@@ -844,6 +846,29 @@
 			<script src="./assets/js/jquery.slicknav.js"></script>
 			<script src="./assets/js/owl.carousel.min.js"></script>
 			<script src="./assets/js/main.js"></script>
+
+			<script type="module">
+				import Toast from './assets/js/Toast/Toast.js';
+
+				const displayToast = (message, title, type) => {
+                    new Toast({
+                        autoClose: 5000,
+                        canCloseOnClick: true,
+                        darkMode: true,
+                        onClose: () => { },
+                        position: "top-center",
+                        pauseOnHover: true,
+                        pauseOnFocusLoss: true,
+                        playNotificationSound: false,
+                        showProgressBar: true,
+                        toastContent: {
+                            message,
+                            title,
+                            type
+                        },
+                    });
+                };
+			</script>
 		</body>
 
 </html>
