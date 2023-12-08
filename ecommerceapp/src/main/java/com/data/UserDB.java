@@ -75,4 +75,17 @@ public class UserDB {
         User u = selectUser(email);
         return u != null;
     }
+
+    public static User getUserByVerificationCode(String code) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            return em.createQuery("SELECT u FROM User u WHERE u.verificationCode = :code", User.class)
+                     .setParameter("code", code)
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }    
 }

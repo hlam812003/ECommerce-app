@@ -17,6 +17,8 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
+    private boolean isVerified;
+    private String verificationCode;
     private String firstName;
     private String lastName;
     private String gender;
@@ -31,6 +33,8 @@ public class User implements Serializable {
 
     public User() {
         this.userId = null;
+        this.isVerified = false;
+        this.verificationCode = "";
         this.firstName = "";
         this.lastName = "";
         this.gender = "";
@@ -42,9 +46,11 @@ public class User implements Serializable {
         this.registerDate = LocalDateTime.now();
     }
 
-    public User(Long userId, String firstName, String lastName, String gender, LocalDate dateOfBirth,
+    public User(Long userId, boolean isVerified, String verificationCode, String firstName, String lastName, String gender, LocalDate dateOfBirth,
             String shippingAddress, String email, String password, boolean isAdmin, LocalDateTime registerDate) {
         this.userId = userId;
+        this.isVerified = isVerified;
+        this.verificationCode = verificationCode;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -62,6 +68,22 @@ public class User implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+    
+    public void setVerified(boolean isVerified) {
+        this.isVerified = isVerified;
+    }
+    
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+    
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public String getFirstName() {

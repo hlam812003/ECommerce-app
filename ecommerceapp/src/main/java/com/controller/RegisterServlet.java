@@ -1,10 +1,13 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.data.UserDB;
+import com.mail.MailSendTSL;
 import com.model.User;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -38,40 +41,40 @@ public class RegisterServlet extends HttpServlet {
             if (!password.equals(confirmPassword)) {
                 message = "Those passwords didn't match. Try again.";
                 url = "/view/register.jsp";
+            } else if (UserDB.isEmailExists(email)) {
+                message = "This email address already exists. Please enter another email address.";
+                url = "/view/register.jsp";
             } else {
-                User user = UserDB.selectUser(email);
+                // Tạo mã xác thực
+                String verificationCode = UUID.randomUUID().toString();
 
-                if (user != null) {
-                    message = "This email address already exists.<br>" +
-                            "Please enter another email address.";
-                    url = "/view/register.jsp";
-                } else {
-                    message = "";
+                User user = new User();
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setVerificationCode(verificationCode);
+                UserDB.insert(user);
 
-                    user = new User();
-                    user.setEmail(email);
-                    user.setPassword(password);
-                    UserDB.insert(user);
+                // Send Verif
+                String subject = "Account Verification";
+                String content = "Please click on the following link to verify your account: "
+                                + "<a href='http://localhost:8080/verify?code=" + verificationCode + "'>Verify Account</a>";
 
-                    HttpSession session = request.getSession();
-                    session.setAttribute("user", user);
-
-                    Cookie emailCookie = new Cookie("email", email);
-                    emailCookie.setMaxAge(30 * 24 * 60 * 60);
-                    emailCookie.setPath("/");
-                    response.addCookie(emailCookie);
-
-                    response.sendRedirect(request.getContextPath() + "/");
-                    return;
+                try {
+                    MailSendTSL.sendEmail(email, subject, content);
+                    message = "Verification email sent. Please check your email to verify your account.";
+                } catch (MessagingException e) {
+                    message = "Failed to send verification email.";
+                    e.printStackTrace();
                 }
-                // request.setAttribute("user", user);
+
+                url = "/view/message.jsp"; 
             }
+
             request.setAttribute("message", message);
         }
 
-        getServletContext()
-                .getRequestDispatcher(url)
-                .forward(request, response);
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+
     }
 
     @Override

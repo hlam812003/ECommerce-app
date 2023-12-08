@@ -218,30 +218,31 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 offset-lg-3">
-                                <div class="register-form">
-                                    <h2>Register</h2>
-                                    <form action="register" method="post">
-                                        <input type="hidden" name="action" value="register" />
-                                        <div class="group-input">
-                                            <label for="email">Email address *</label>
-                                            <input type="email" name="email" required autocomplete="off" />
-                                        </div>
-                                        <div class="group-input">
-                                            <label for="password">Password *</label>
-                                            <input type="password" name="password" required autocomplete="off" />
-                                        </div>
-                                        <div class="group-input">
-                                            <label for="confirm-password">Confirm Password *</label>
-                                            <input type="password" name="confirm-password" required
-                                                autocomplete="off" />
-                                        </div>
-                                        <button type="submit" class="site-btn register-btn">REGISTER</button>
-                                    </form>
-                                    <p><i>${message}</i></p>
-                                    <div class="switch-login">
-                                        <a href="/login" class="or-login">Or Login</a>
-                                    </div>
-                                </div>
+								<div class="register-form">
+									<h2>Register</h2>
+									<form action="register" method="post">
+										<input type="hidden" name="action" value="register" />
+										<div class="group-input">
+											<label for="email">Email address *</label>
+											<input type="email" name="email" required autocomplete="off" />
+										</div>
+										<div class="group-input">
+											<label for="password">Password *</label>
+											<input type="password" name="password" required autocomplete="off" />
+										</div>
+										<div class="group-input">
+											<label for="confirm-password">Confirm Password *</label>
+											<input type="password" name="confirm-password" required autocomplete="off" />
+										</div>
+										<button type="submit" class="site-btn register-btn">REGISTER</button>
+									</form>
+									<c:if test="${not empty message}">
+										<p class="message"><i>${message}</i></p>
+									</c:if>
+									<div class="switch-login">
+										<a href="/login" class="or-login">Or Login</a>
+									</div>
+								</div>								
                             </div>
                         </div>
                     </div>
