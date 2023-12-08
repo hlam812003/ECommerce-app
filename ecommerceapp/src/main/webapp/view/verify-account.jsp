@@ -231,7 +231,7 @@
 									<div class="switch-login">
 										<a href="/login" class="or-login">Or Login</a>
 									</div>
-								</div>								
+								</div>
                             </div>
                         </div>
                     </div>

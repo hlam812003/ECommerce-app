@@ -348,7 +348,7 @@
 
                     const message = "<c:out value='${message}'/>";
 					const error = "<c:out value='${error}'/>";
-			
+
 					document.addEventListener('DOMContentLoaded', () => {
 						if (message !== "") {
 							displayToast(message, "Successfully!", "success");
@@ -357,7 +357,7 @@
 							displayToast(error, "Error!", "error");
 						}
 					});
-                
+
                     const displayToast = (message, title, type) => {
                         new Toast({
                             autoClose: 5000,
@@ -376,7 +376,7 @@
                             },
                         });
                     };
-            
+
                 </script>
             </body>
 

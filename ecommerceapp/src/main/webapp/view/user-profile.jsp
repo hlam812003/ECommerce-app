@@ -51,17 +51,22 @@
                             </div>
                             <div class="ht-right">
                                 <c:choose>
-									<c:when test="${cookie.email.value != null}">
-										<a href="#" class="login-panel">Welcome back,
-											<strong><c:out value='${fn:split(cookie.email.value, "@")[0]}' /></strong>
-										</a>
-										<div class="cart-hover">
-											<div class="select-button">
-												<a href="/profile" class="primary-btn account-detail" style="margin-bottom: 16px;">YOUR PROFILE</a>
-												<a href="${pageContext.request.contextPath}/logout" class="primary-btn log-out">LOG OUT</a>
-											</div>
-										</div>
-									</c:when>
+                                    <c:when test="${cookie.email.value != null}">
+                                        <div class="login__sec">
+                                            <a href="#" class="login-panel">Welcome back,
+                                                <strong>
+                                                    <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
+                                                </strong>
+                                            </a>
+                                            <div class="cart-hover">
+                                                <div class="select-button">
+                                                    <a href="/profile" class="primary-btn account-detail"
+                                                        style="margin-bottom: 16px;">YOUR PROFILE</a>
+                                                    <a href="/logout" class="primary-btn log-out">LOG OUT</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:when>
                                     <c:otherwise>
                                         <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                                     </c:otherwise>
@@ -74,12 +79,12 @@
                                 data-title="Bangladesh">German </option>
                         </select>
                     </div> -->
-                                <div class="top-social">
-                                    <a href="#"><i class="ti-facebook"></i></a>
+                                <!-- <div class="top-social"> -->
+                                <!-- <a href="#"><i class="ti-facebook"></i></a>
                                     <a href="#"><i class="ti-twitter-alt"></i></a>
                                     <a href="#"><i class="ti-linkedin"></i></a>
                                     <a href="#"><i class="ti-pinterest"></i></a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -224,30 +229,42 @@
                             <div class="col-lg-6 offset-lg-3">
                                 <div class="register-form">
                                     <h2>Your Account</h2>
-                                    <form action="/update-profile" method="post">
+                                    <form action="update-profile" method="post">
                                         <input type="hidden" name="action" value="update-profile" />
                                         <div class="group-input">
                                             <label for="email">Email address</label>
-                                            <input type="email" name="email" value="${user.email}" required autocomplete="off" disabled/>
+                                            <input type="email" name="email" value="${user.email}" autocomplete="off"
+                                                required disabled />
                                         </div>
                                         <div class="group-input">
                                             <label for="firstName">First Name</label>
-                                            <input type="text" name="firstName" value="${user.firstName}" required autocomplete="off"/>
+                                            <input type="text" name="firstName" value="${user.firstName}"
+                                                autocomplete="off" />
                                         </div>
                                         <div class="group-input">
                                             <label for="lastName">Last Name</label>
-                                            <input type="text" name="lastName" value="${user.lastName}" required autocomplete="off"/>
+                                            <input type="text" name="lastName" value="${user.lastName}"
+                                                autocomplete="off" />
                                         </div>
-                                        <button type="submit" class="site-btn register-btn" style="background: #191919;">Save Information</button>
+                                        <c:if test="${cookie.password.value == null}">
+                                            <div class="group-input">
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" required autocomplete="off" />
+                                            </div>
+                                        </c:if>
+                                        <button type="submit" class="site-btn register-btn"
+                                            style="background: #191919;">Save Information</button>
                                     </form>
                                     <form action="${pageContext.request.contextPath}/delete-account" method="post">
-                                        <button type="submit" class="site-btn register-btn" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+                                        <button type="submit" class="site-btn register-btn"
+                                            onclick="return confirm('Are you sure you want to delete your account?');">Delete
+                                            Account</button>
                                     </form>
                                     <c:if test="${not empty message}">
                                         <p class="message"><i>${message}</i></p>
                                     </c:if>
                                 </div>
-                                                                
+
                             </div>
                         </div>
                     </div>

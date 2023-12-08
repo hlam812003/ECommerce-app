@@ -39,7 +39,8 @@ public class LoginServlet extends HttpServlet {
 
             User selectedUser = UserDB.selectUser(email);
 
-            if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword()) || !selectedUser.isVerified()) {
+            if (selectedUser == null || !passwordHash.verify(password.toCharArray(), selectedUser.getPassword())
+                    || !selectedUser.isVerified()) {
                 request.setAttribute("loginError", "true");
                 request.setAttribute("message", "Incorrect email address or password, or account not verified.");
             } else {
