@@ -54,47 +54,12 @@
 							<div class="login__sec">
 								<c:choose>
 									<c:when test="${cookie.email.value != null}">
-										<a href="/profile" class="login-panel">Welcome back,
+										<a href="#" class="login-panel">Welcome back,
 											<strong><c:out value='${fn:split(cookie.email.value, "@")[0]}' /></strong>
 										</a>
 										<div class="cart-hover">
-											<div class="select-items">
-												<table>
-													<tbody>
-														<c:if test="${not empty user}">
-															<tr>
-																<td class="si-pic">
-																	<img src="${user.avatar}" alt="${user.name}" />
-																</td>
-																<td class="si-text">
-																	<div class="product-selected">
-																		<h6>${user.name}</h6>
-																	</div>
-																</td>
-																<td class="si-close">
-																	<a href="/logout"><i class="ti-close"></i></a>
-																</td>
-															</tr>
-														</c:if>
-														<c:if test="${empty user}">
-															<tr>
-																<td class="si-pic">
-																	<img src="./public/img/user.png" alt="user" />
-																</td>
-																<td class="si-text">
-																	<div class="product-selected">
-																		<h6>Guest</h6>
-																	</div>
-																</td>
-																<td class="si-close">
-																	<a href="/login"><i class="ti-close"></i></a>
-																</td>
-															</tr>
-														</c:if>
-													</tbody>
-												</table>
-											</div>
 											<div class="select-button">
+												<a href="/profile" class="primary-btn account-detail" style="margin-bottom: 16px;">YOUR PROFILE</a>
 												<a href="${pageContext.request.contextPath}/logout" class="primary-btn log-out">LOG OUT</a>
 											</div>
 										</div>

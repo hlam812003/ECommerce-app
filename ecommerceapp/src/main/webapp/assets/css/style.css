@@ -662,7 +662,8 @@ ol {
 }
 
 .inner-header .nav-right li.cart-icon .cart-hover .select-button .checkout-btn,
-.inner-header .nav-right li.heart-icon .cart-hover .select-button .checkout-btn {
+.inner-header .nav-right li.heart-icon .cart-hover .select-button .checkout-btn,
+.header-top .ht-right .login__sec .cart-hover .select-button .account-detail {
 	font-size: 12px;
 	letter-spacing: 2px;
 	display: block;
