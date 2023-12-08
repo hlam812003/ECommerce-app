@@ -12,7 +12,7 @@ import jakarta.servlet.http.*;
 @WebServlet("/verify")
 public class VerificationServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
         User user = UserDB.getUserByVerificationCode(code);
@@ -20,9 +20,17 @@ public class VerificationServlet extends HttpServlet {
         if (user != null && !user.isVerified()) {
             user.setVerified(true);
             UserDB.update(user);
+
             // Chuyển hướng đến trang đăng nhập với thông báo thành công
+            request.setAttribute("loginError", "false");
+            request.setAttribute("message", "Email address verified successfully.");
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         } else {
-            // Xử lý trường hợp mã xác thực không hợp lệ
+            request.setAttribute("loginError", "true");
+            request.setAttribute("message", "Incorrect verify link. Please reset password to verify your account.");
+            response.sendRedirect(request.getContextPath() + "/login");
+
         }
     }
 }

@@ -355,9 +355,9 @@
                                     <div class="col-lg-5 col-md-5 text-right">
                                         <div id="productCount" style="display:none;">
                                             ${fn:length(products)}
-                                        </div>                                        
+                                        </div>
                                         <p id="displayCount">Show 01 - 09 Of ${fn:length(products)} Products</p>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="product-list">
@@ -543,41 +543,41 @@
                     const allProducts = document.querySelectorAll('.product-item');
                     const nextLimit = productsDisplayed + 9;
                     let newProductsShown = false;
-                
+
                     allProducts.forEach((product, index) => {
                         if (index < nextLimit && product.style.display !== 'block') {
                             product.style.display = 'block';
                             newProductsShown = true;
                         }
                     });
-                
+
                     productsDisplayed = nextLimit;
-                
+
                     if (!newProductsShown) {
                         displayToast('There are no more products to display.', 'Notice!', 'info');
                         document.getElementById('loadMoreBtn').style.display = 'none';
                     }
-                
-                    updateDisplayedProductCount(totalProductCount);
+
+                    updateDisplayedProductCount('${totalProductCount}');
                     updateShowOption();
-                };    
-                
+                };
+
                 function updateShowOption() {
                     const showOption = document.querySelector('.p-show option');
                     showOption.textContent = `Show: ${productsDisplayed}`;
-                };                
-            
+                };
+
                 function updateDisplayedProductCount(totalProductCount) {
                     const displayCountElement = document.getElementById('displayCount');
                     displayCountElement.textContent = `Show 01 - ${productsDisplayed < 10 ? '0' : ''}${productsDisplayed} Of ${totalProductCount} Products`;
                 };
-            
+
                 document.addEventListener('DOMContentLoaded', () => {
                     loadMoreProducts();
                     document.getElementById('loadMoreBtn').addEventListener('click', loadMoreProducts);
-                    updateDisplayedProductCount(totalProductCount);
+                    updateDisplayedProductCount("${totalProductCount}");
                     updateShowOption();
-                });                
+                });
             </script>
     </body>
 </html>

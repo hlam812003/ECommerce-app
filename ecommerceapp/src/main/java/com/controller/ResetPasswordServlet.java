@@ -3,18 +3,20 @@ package com.controller;
 import java.io.IOException;
 
 import com.data.UserDB;
-import com.hash.Pbkdf2PasswordHashImpl;
 import com.model.User;
 
 // import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/reset-password")
 public class ResetPasswordServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String newPassword = request.getParameter("newPassword");
         String confirmPassword = request.getParameter("confirmPassword");
@@ -24,13 +26,16 @@ public class ResetPasswordServlet extends HttpServlet {
         if (newPassword != null && newPassword.equals(confirmPassword)) {
             User user = UserDB.selectUser(emailForReset);
             if (user != null) {
-                user.setPassword(new Pbkdf2PasswordHashImpl().generate(newPassword.toCharArray()));
+                user.setPassword(newPassword);
+                user.setVerified(true);
                 UserDB.update(user);
                 session.removeAttribute("emailForReset");
                 session.removeAttribute("resetCode");
-                
+
                 request.setAttribute("message", "Password has been successfully reset.");
-                getServletContext().getRequestDispatcher("/view/login.jsp").forward(request, response);
+
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
             } else {
                 request.setAttribute("error", "Error resetting password.");
                 getServletContext().getRequestDispatcher("/view/reset-password.jsp").forward(request, response);
@@ -38,6 +43,19 @@ public class ResetPasswordServlet extends HttpServlet {
         } else {
             request.setAttribute("error", "Passwords do not match.");
             getServletContext().getRequestDispatcher("/view/reset-password.jsp").forward(request, response);
-        }        
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (!LoginServlet.isLoggedIn(request, response)) {
+            String url = "/view/reset-password.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/");
+            return;
+        }
+
     }
 }

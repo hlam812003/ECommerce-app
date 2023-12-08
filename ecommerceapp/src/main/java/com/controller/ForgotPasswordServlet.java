@@ -3,19 +3,21 @@ package com.controller;
 import java.io.IOException;
 import java.util.Random;
 
-import com.mail.MailSendTSL;
 import com.data.UserDB;
+import com.mail.MailSendTSL;
 import com.model.User;
 
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/forgot-password")
 public class ForgotPasswordServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
         User user = UserDB.selectUser(email);
@@ -40,8 +42,21 @@ public class ForgotPasswordServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/view/forgot-password.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (!LoginServlet.isLoggedIn(request, response)) {
+            String url = "/view/forgot-password.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/");
+            return;
+        }
+
+    }
+
     private String createHtmlContent(String resetCode) {
-        return null;
+        return "Please reset your Fashi account password with this code: " + resetCode;
     }
 
     private String generateResetCode() {

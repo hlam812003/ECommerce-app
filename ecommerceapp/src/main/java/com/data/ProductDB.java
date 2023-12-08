@@ -79,12 +79,12 @@ public class ProductDB {
             em.close();
         }
     }
-    
+
     public static List<Product> findProductsByName(String name) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         TypedQuery<Product> query = em.createQuery("SELECT p FROM Product p WHERE p.name LIKE :name", Product.class);
         query.setParameter("name", "%" + name + "%");
         return query.getResultList();
-    }    
+    }
 
 }

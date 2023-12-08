@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+        <%@ taglib prefix="c" uri="jakarta.tags.core" %>
             <!DOCTYPE html>
             <html lang="en">
 
@@ -218,34 +218,34 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6 offset-lg-3">
-								<div class="register-form">
-									<h2>Forgot Password?</h2>
-									<c:choose>
-										<c:when test="${emailSent}">
-											<form action="verify-code" method="post">
-												<input type="hidden" name="action" value="verify-code" />
-												<div class="group-input">
-													<label for="code">Enter Code</label>
-													<input type="text" name="code" required />
-												</div>
-												<button type="submit" class="site-btn register-btn">Verify Code</button>
-											</form>
-										</c:when>
-										<c:otherwise>
-											<form action="forgot-password" method="post">
-												<input type="hidden" name="action" value="forgot-password" />
-												<div class="group-input">
-													<label for="email">Your Email</label>
-													<input type="email" name="email" required autocomplete="off" />
-												</div>
-												<button type="submit" class="site-btn register-btn">Send Code</button>
-											</form>
-										</c:otherwise>
-									</c:choose>
-									<div class="switch-login">
-										<a href="/login" class="or-login">Return to login</a>
-									</div>
-								</div>
+                                <div class="register-form">
+                                    <h2>Forgot Password?</h2>
+                                    <c:choose>
+                                        <c:when test="${emailSent}">
+                                            <form action="verify-code" method="post">
+                                                <input type="hidden" name="action" value="verify-code" />
+                                                <div class="group-input">
+                                                    <label for="code">Enter Code</label>
+                                                    <input type="text" name="code" required />
+                                                </div>
+                                                <button type="submit" class="site-btn register-btn">Verify Code</button>
+                                            </form>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <form action="forgot-password" method="post">
+                                                <input type="hidden" name="action" value="forgot-password" />
+                                                <div class="group-input">
+                                                    <label for="email">Your Email</label>
+                                                    <input type="email" name="email" required autocomplete="off" />
+                                                </div>
+                                                <button type="submit" class="site-btn register-btn">Send Code</button>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <div class="switch-login">
+                                        <a href="/login" class="or-login">Return to login</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -359,17 +359,17 @@
                 <script type="module">
                     import Toast from '../assets/js/Toast/Toast.js';
 
-					const message = "<c:out value='${message}'/>";
-					const error = "<c:out value='${error}'/>";
-			
-					document.addEventListener('DOMContentLoaded', () => {
-						if (message !== "") {
-							displayToast(message, "Reset Password", "success");
-						}
-						if (error !== "") {
-							displayToast(error, "Error!", "error");
-						}
-					});
+                    const message = "<c:out value='${message}'/>";
+                    const error = "<c:out value='${error}'/>";
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        if (message !== "") {
+                            displayToast(message, "Reset Password", "success");
+                        }
+                        if (error !== "") {
+                            displayToast(error, "Error!", "error");
+                        }
+                    });
 
                     const displayToast = (message, title, type) => {
                         new Toast({
@@ -390,12 +390,12 @@
                         });
                     };
                 </script>
-				<c:if test="${not empty message}">
-					<script>displayToast("${message}", "Reset Password Successfully!", "success");</script>
-				</c:if>
-				<c:if test="${not empty error}">
-					<script>displayToast("${error}", "Error!", "error");</script>
-				</c:if>
+                <c:if test="${not empty message}">
+                    <script>displayToast("${message}", "Reset Password Successfully!", "success");</script>
+                </c:if>
+                <c:if test="${not empty error}">
+                    <script>displayToast("${error}", "Error!", "error");</script>
+                </c:if>
             </body>
 
             </html>

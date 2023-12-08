@@ -1,7 +1,12 @@
 package com.data;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.logging.Logger;
 
+import com.hash.Pbkdf2PasswordHashImpl;
 import com.model.User;
 
 import jakarta.persistence.EntityManager;
@@ -11,6 +16,7 @@ import jakarta.persistence.TypedQuery;
 
 public class UserDB {
     private static Logger logger = Logger.getLogger(UserDB.class.getName());
+    private static Pbkdf2PasswordHashImpl verifyHash = new Pbkdf2PasswordHashImpl();
 
     public static void insert(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -80,21 +86,36 @@ public class UserDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
-                     .setParameter("email", email)
-                     .getSingleResult();
+                    .setParameter("email", email)
+                    .getSingleResult();
         } catch (NoResultException e) {
             return null;
         } finally {
             em.close();
         }
-    }    
+    }
 
     public static User getUserByVerificationCode(String code) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String decodedCode = "";
         try {
-            return em.createQuery("SELECT u FROM User u WHERE u.verificationCode = :code", User.class)
-                     .setParameter("code", code)
-                     .getSingleResult();
+            decodedCode = URLDecoder.decode(code, StandardCharsets.UTF_8.toString());
+            System.out.println(decodedCode);
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String queryString = "SELECT u FROM User u";
+        TypedQuery<User> query = em.createQuery(queryString, User.class);
+        try {
+            List<User> users = query.getResultList();
+
+            String finalDecodedCode = decodedCode.replace(" ", "+");
+            System.out.println(decodedCode);
+
+            return users.stream().filter(
+                    user -> verifyHash.verify((user.getEmail() + user.getVerificationCode()).toCharArray(),
+                            finalDecodedCode))
+                    .findFirst().orElse(null);
         } catch (NoResultException e) {
             return null;
         } finally {
