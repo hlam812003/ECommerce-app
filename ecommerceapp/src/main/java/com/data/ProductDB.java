@@ -92,7 +92,8 @@ public class ProductDB {
         return query.getResultList();
     }
 
-    public static List<Product> getFilteredProducts(String category, String brand, String color, String size, String tags, Double minPrice, Double maxPrice) {
+    public static List<Product> getFilteredProducts(String category, String brand, String color, String size,
+            String tags, String minPrice, String maxPrice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Product> cq = cb.createQuery(Product.class);
@@ -122,13 +123,24 @@ public class ProductDB {
 
         // Thêm điều kiện cho khoảng giá
         if (minPrice != null && maxPrice != null) {
-            predicates.add(cb.between(product.get("price"), minPrice, maxPrice));
+            Double minDouble = parseDouble(minPrice);
+            Double maxDouble = parseDouble(maxPrice);
+
+            predicates.add(cb.between(product.get("price"), minDouble, maxDouble));
         }
 
         cq.where(predicates.toArray(new Predicate[0]));
         TypedQuery<Product> query = em.createQuery(cq);
 
         return query.getResultList();
+    }
+
+    public static Double parseDouble(String value) {
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 }

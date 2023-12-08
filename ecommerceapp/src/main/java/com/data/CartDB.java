@@ -60,7 +60,7 @@ public class CartDB {
     public static Cart findCartByUser(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            TypedQuery<Cart> q = em.createQuery("SELECT c FROM Cart c WHERE c.user = :user", Cart.class);
+            TypedQuery<Cart> q = em.createQuery("SELECT c FROM Cart c WHERE c.user=:user", Cart.class);
             q.setParameter("user", user);
             return q.getSingleResult();
         } finally {
