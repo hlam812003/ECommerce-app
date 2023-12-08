@@ -8,6 +8,7 @@ import com.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -21,9 +22,25 @@ public class DeleteAccountServlet extends HttpServlet {
 
         if (user != null) {
             UserDB.delete(user);
-            session.invalidate(); // Xóa session
-        }
+            
+            // Xóa session
+            session.invalidate();
 
-        response.sendRedirect("/"); 
+            // Xóa cookies
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }
+
+            session.setAttribute("accountDeletionMessage", "Your account has been successfully deleted.");
+
+            response.sendRedirect(request.getContextPath() + "/");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
 }

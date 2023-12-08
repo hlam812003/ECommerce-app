@@ -375,6 +375,11 @@
                 <script src="../assets/js/jquery.slicknav.js"></script>
                 <script src="../assets/js/owl.carousel.min.js"></script>
                 <script src="../assets/js/main.js"></script>
+
+                <c:if test="${not empty sessionScope.accountDeletionMessage}">
+                    <c:remove var="accountDeletionMessage" scope="session"/>
+                </c:if>
+                
                 <script type="module">
                     import Toast from '../assets/js/Toast/Toast.js';
 
@@ -399,8 +404,14 @@
 
                     document.addEventListener('DOMContentLoaded', () => {
                         const message = '${requestScope.message}';
+                        const deletionMessage = '${sessionScope.accountDeletionMessage}';
+                
                         if (message) {
                             displayToast(message, "Account Update!", "info");
+                        }
+                
+                        if (deletionMessage) {
+                            displayToast(deletionMessage, "Account Deletion!", "info");
                         }
                     });
                 </script>
