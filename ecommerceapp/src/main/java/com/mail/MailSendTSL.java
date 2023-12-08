@@ -14,10 +14,6 @@ import jakarta.mail.internet.MimeMessage;
 public class MailSendTSL {
     public static void sendEmail(String recipientsEmail, String subject, String htmlContent) throws MessagingException {
         Properties props = new Properties();
-        // props.put("mail.smtp.auth", "true");
-        // props.put("mail.smtp.host", MailConfig.HOST);
-        // props.put("mail.smtp.starttls.enable", "true");
-        // props.put("mail.smtp.port", MailConfig.TSL_PORT);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", MailConfig.HOST);
