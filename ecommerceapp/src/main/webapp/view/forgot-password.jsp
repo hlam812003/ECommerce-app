@@ -350,7 +350,7 @@
                         new Toast({
                             autoClose: 5000,
                             canCloseOnClick: true,
-                            darkMode: false,
+                            darkMode: true,
                             onClose: () => { },
                             position: "top-center",
                             pauseOnHover: true,

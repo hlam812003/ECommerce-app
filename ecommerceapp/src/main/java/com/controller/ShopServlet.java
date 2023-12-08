@@ -44,12 +44,15 @@ public class ShopServlet extends HttpServlet {
 
         ProductDB.insert(product);
 
+        // Lấy danh sách tất cả sản phẩm
         List<Product> productList = ProductDB.getAllProducts();
+        
+        // Gán danh sách sản phẩm và tổng số lượng sản phẩm vào request
         request.setAttribute("products", productList);
+        request.setAttribute("totalProductCount", productList.size());
 
+        // Chuyển tiếp request và response tới trang JSP
         String url = "/view/shop.jsp";
-
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
-
 }

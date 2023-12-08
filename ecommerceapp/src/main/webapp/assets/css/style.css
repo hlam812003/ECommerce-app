@@ -1166,6 +1166,10 @@ ol {
 	border-radius: 50px;
 }
 
+.product-list .product-item:nth-child(n+10) {
+    display: none;
+}
+
 .product-item {
 	margin-bottom: 26px;
 }
@@ -2024,7 +2028,7 @@ ol {
 	position: absolute;
 	right: 48px;
 	top: 0;
-	content: "09";
+	content: "";
 	font-size: 16px;
 	color: #252525;
 }
