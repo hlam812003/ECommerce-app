@@ -101,61 +101,79 @@
                             </div>
                             <div class="col-lg-3 text-right col-md-3">
                                 <ul class="nav-right">
-                                    <li class="heart-icon"><a href="#">
+                                    <li class="heart-icon">
+                                        <a href="#">
                                             <i class="icon_heart_alt"></i>
                                             <!-- <span>1</span> -->
                                         </a>
+                                        <div class="select-items">
+                                            <table>
+                                                <tbody>
+                                                    <c:forEach items="${favorites.products}" var="product">
+                                                        <tr>
+                                                            <td class="si-pic">
+                                                                <c:if test="${not empty product.imageUrls}">
+                                                                    <img src="${product.imageUrls[0]}"
+                                                                        alt="${product.name}" />
+                                                                </c:if>
+                                                            </td>
+                                                            <td class="si-text">
+                                                                <div class="product-selected">
+                                                                    <p>$${product.price}</p>
+                                                                    <h6>${product.name}</h6>
+                                                                </div>
+                                                            </td>
+                                                            <td class="si-close">
+                                                                <i class="ti-close"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </li>
                                     <li class="cart-icon"><a href="#">
                                             <i class="icon_bag_alt"></i>
                                             <!-- <span>3</span> -->
                                         </a>
-                                        <div class="cart-hover">
-                                            <div class="select-items">
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="si-pic"><img
-                                                                    src="../public/img/select-product-1.jpg" alt="">
-                                                            </td>
-                                                            <td class="si-text">
-                                                                <div class="product-selected">
-                                                                    <p>$60.00 x 1</p>
-                                                                    <h6>Kabino Bedside Table</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td class="si-close">
-                                                                <i class="ti-close"></i>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="si-pic"><img
-                                                                    src="../public/img/select-product-2.jpg" alt="">
-                                                            </td>
-                                                            <td class="si-text">
-                                                                <div class="product-selected">
-                                                                    <p>$60.00 x 1</p>
-                                                                    <h6>Kabino Bedside Table</h6>
-                                                                </div>
-                                                            </td>
-                                                            <td class="si-close">
-                                                                <i class="ti-close"></i>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <div class="cart-hover">
+                                                <div class="select-items">
+                                                    <table>
+                                                        <tbody>
+                                                            <c:forEach items="${cart.items}" var="item">
+                                                                <tr>
+                                                                    <td class="si-pic">
+                                                                        <c:if test="${not empty item.item.imageUrls}">
+                                                                            <img src="${item.item.imageUrls[0]}"
+                                                                                alt="${item.item.name}" />
+                                                                        </c:if>
+                                                                    </td>
+                                                                    <td class="si-text">
+                                                                        <div class="product-selected">
+                                                                            <p>$${item.item.price} x ${item.quantity}
+                                                                            </p>
+                                                                            <h6>${item.item.name}</h6>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="si-close">
+                                                                        <i class="ti-close"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="select-total">
+                                                    <span>total:</span>
+                                                    <h5>$${cartTotal}</h5>
+                                                </div>
+                                                <div class="select-button">
+                                                    <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
+                                                </div>
                                             </div>
-                                            <div class="select-total">
-                                                <span>total:</span>
-                                                <h5>$120.00</h5>
-                                            </div>
-                                            <div class="select-button">
-                                                <a href="#" class="primary-btn view-cart">VIEW CART</a>
-                                                <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                            </div>
-                                        </div>
                                     </li>
-                                    <li class="cart-price">$0</li>
+                                   <li class="cart-price">$${cartTotal}</li>
                                 </ul>
                             </div>
                         </div>
@@ -163,7 +181,6 @@
                 </div>
                 <div class="nav-item">
                     <div class="container">
-
                         <nav class="nav-menu mobile-menu"
                             style="display: flex; justify-content: center; align-items: center;">
                             <ul>
@@ -455,7 +472,7 @@
                                     <a href="#"><img src="../public/img/footer-logo.png" alt=""></a>
                                 </div>
                                 <ul>
-                                    <li>Address: 60-49 Road 11378 New York</li>
+                                    <li>Address: 1 Vo Van Ngan Street</li>
                                     <li>Phone: +84 90.188.888</li>
                                     <li>Email: group1.dev@gmail.com</li>
                                 </ul>

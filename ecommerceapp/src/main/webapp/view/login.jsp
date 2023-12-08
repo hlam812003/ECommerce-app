@@ -105,6 +105,33 @@
 									<i class="icon_heart_alt"></i>
 									<!-- <span>1</span> -->
 								</a>
+								<div class="cart-hover">
+									<div class="select-items">
+										<table>
+											<tbody>
+												<c:forEach items="${favorites.products}" var="product">
+													<tr>
+														<td class="si-pic">
+															<c:if test="${not empty product.imageUrls}">
+																<img src="${product.imageUrls[0]}"
+																	alt="${product.name}" />
+															</c:if>
+														</td>
+														<td class="si-text">
+															<div class="product-selected">
+																<p>$${product.price}</p>
+																<h6>${product.name}</h6>
+															</div>
+														</td>
+														<td class="si-close">
+															<i class="ti-close"></i>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</li>
 							<li class="cart-icon">
 								<a href="#">
@@ -297,7 +324,7 @@
 							<a href="#"><img src="../public/img/footer-logo.png" alt="" /></a>
 						</div>
 						<ul>
-							<li>Address: 60-49 Road 11378 New York</li>
+							<li>Address: 1 Vo Van Ngan Street</li>
 							<li>Phone: +84 90.188.888</li>
 							<li>Email: group1.dev@gmail.com</li>
 						</ul>

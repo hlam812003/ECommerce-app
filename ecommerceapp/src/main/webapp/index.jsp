@@ -178,7 +178,7 @@
                                                 </div>
                                                 <div class="select-total">
                                                     <span>total:</span>
-                                                    <h5>$120.00</h5>
+                                                    <h5>$${cartTotal}</h5>
                                                 </div>
                                                 <div class="select-button">
                                                     <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
@@ -186,7 +186,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="cart-price">$${cartTotal}</li>
+										<li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -798,7 +798,7 @@
                                         <a href="#"><img src="./public/img/footer-logo.png" alt="" /></a>
                                     </div>
                                     <ul>
-                                        <li>Address: 60-49 Road 11378 New York</li>
+                                        <li>Address: 1 Vo Van Ngan Street</li>
                                         <li>Phone: +84 90.188.888</li>
                                         <li>Email: group1.dev@gmail.com</li>
                                     </ul>

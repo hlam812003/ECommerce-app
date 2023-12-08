@@ -50,13 +50,22 @@
                                 </div>
                             </div>
                             <div class="ht-right">
-                                <c:choose>
+                                  <c:choose>
                                     <c:when test="${cookie.email.value != null}">
-                                        <a href="/profile" class="login-panel">Welcome back,
-                                            <strong>
-                                                <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
-                                            </strong>
-                                        </a>
+                                        <div class="login__sec">
+                                            <a href="#" class="login-panel">Welcome back,
+                                                <strong>
+                                                    <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
+                                                </strong>
+                                            </a>
+                                            <div class="cart-hover">
+                                                <div class="select-button">
+                                                    <a href="/profile" class="primary-btn account-detail"
+                                                        style="margin-bottom: 16px;">YOUR PROFILE</a>
+                                                    <a href="/logout" class="primary-btn log-out">LOG OUT</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
@@ -181,7 +190,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="cart-price">$${cartTotal}</li>
+										<li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -361,7 +370,7 @@
                                         <a href="#"><img src="../public/img/footer-logo.png" alt=""></a>
                                     </div>
                                     <ul>
-                                        <li>Address: 60-49 Road 11378 New York</li>
+                                        <li>Address: 1 Vo Van Ngan Street</li>
                                         <li>Phone: +84 90.188.888</li>
                                         <li>Email: group1.dev@gmail.com</li>
                                     </ul>
