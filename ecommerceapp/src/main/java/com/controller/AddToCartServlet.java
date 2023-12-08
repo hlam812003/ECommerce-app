@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.data.CartDB;
@@ -40,6 +41,10 @@ public class AddToCartServlet extends HttpServlet {
             }
 
             List<LineItem> lineItems = cart.getItems();
+            if (lineItems == null) {
+                lineItems = new ArrayList<LineItem>();
+            }
+
             boolean added = false;
 
             for (int i = 0; i < lineItems.size(); i++) {
@@ -60,6 +65,8 @@ public class AddToCartServlet extends HttpServlet {
             CartDB.update(cart);
 
             request.setAttribute("cart", cart);
+
+            response.sendRedirect(request.getContextPath() + "/shop");
         }
     }
 }

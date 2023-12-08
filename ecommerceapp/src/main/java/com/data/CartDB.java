@@ -63,7 +63,12 @@ public class CartDB {
             TypedQuery<Cart> q = em.createQuery("SELECT c FROM Cart c WHERE c.user=:user", Cart.class);
             q.setParameter("user", user);
             return q.getSingleResult();
-        } finally {
+        } catch (Exception e) {
+            return null;
+
+        } finally
+
+        {
             em.close();
         }
     }
