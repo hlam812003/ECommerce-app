@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,7 +19,7 @@ public class Cart {
     @OneToOne
     private User user;
 
-    @OneToMany(targetEntity = LineItem.class)
+    @OneToMany(targetEntity = LineItem.class, fetch = FetchType.EAGER)
     private List<LineItem> items;
 
     public Cart() {
