@@ -370,7 +370,7 @@
                                             <label><input type="checkbox" name="tags" value="Shoes"><span class="checkmark"></span> Shoes</label>
                                             <label><input type="checkbox" name="tags" value="Coat"><span class="checkmark"></span> Coat</label>
                                             <label><input type="checkbox" name="tags" value="Dresses"><span class="checkmark"></span> Dresses</label>
-                                            <label><input type="checkbox" name="tags" value="Trousers"><span class="checkmark"></span> Coat</label>
+                                            <label><input type="checkbox" name="tags" value="Trousers"><span class="checkmark"></span> Trousers</label>
                                             <label><input type="checkbox" name="tags" value="Men's hats"><span class="checkmark"></span> Men's hats</label>
                                             <label><input type="checkbox" name="tags" value="Backpack"><span class="checkmark"></span> Backpack</label>
                                         </div>

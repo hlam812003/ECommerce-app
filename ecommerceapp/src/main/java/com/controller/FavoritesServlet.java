@@ -48,7 +48,7 @@ public class FavoritesServlet extends HttpServlet {
             }
         } else if ("remove".equals(action)) {
             // Xóa sản phẩm khỏi danh sách yêu thích
-            favorites.removeProduct(productId.toString());
+            favorites.removeProduct(productId);
             FavoriteDB.update(favorites);
         }
 

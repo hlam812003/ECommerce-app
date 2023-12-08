@@ -7,6 +7,7 @@ import com.model.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 public class CartDB {
@@ -62,14 +63,16 @@ public class CartDB {
         try {
             TypedQuery<Cart> q = em.createQuery("SELECT c FROM Cart c WHERE c.user=:user", Cart.class);
             q.setParameter("user", user);
-            return q.getSingleResult();
-        } catch (Exception e) {
-            return null;
-
-        } finally
-
-        {
+            try {
+                return q.getSingleResult();
+            } catch (NoResultException e) {
+                return null;
+            }
+        } finally {
             em.close();
         }
     }
+
+
+    
 }

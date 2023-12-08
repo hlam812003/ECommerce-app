@@ -52,7 +52,7 @@ public class Favorites {
         this.products.add(product);
     }
 
-    public void removeProduct(String productId) {
+    public void removeProduct(Long productId) {
         this.products.removeIf(product -> product.getProductId().equals(productId));
     }
 }
