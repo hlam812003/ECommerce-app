@@ -7,8 +7,8 @@ import com.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +22,7 @@ public class DeleteAccountServlet extends HttpServlet {
 
         if (user != null) {
             UserDB.delete(user);
-            
+
             // Xóa session
             session.invalidate();
 

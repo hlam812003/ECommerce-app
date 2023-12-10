@@ -46,7 +46,8 @@ public class User implements Serializable {
         this.registerDate = LocalDateTime.now();
     }
 
-    public User(Long userId, boolean isVerified, String verificationCode, String firstName, String lastName, String gender, LocalDate dateOfBirth,
+    public User(Long userId, boolean isVerified, String verificationCode, String firstName, String lastName,
+            String gender, LocalDate dateOfBirth,
             String shippingAddress, String email, String password, boolean isAdmin, LocalDateTime registerDate) {
         this.userId = userId;
         this.isVerified = isVerified;
@@ -73,15 +74,15 @@ public class User implements Serializable {
     public boolean isVerified() {
         return isVerified;
     }
-    
+
     public void setVerified(boolean isVerified) {
         this.isVerified = isVerified;
     }
-    
+
     public String getVerificationCode() {
         return verificationCode;
     }
-    
+
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }

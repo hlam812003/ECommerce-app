@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.logging.Logger;
 
 import com.hash.Pbkdf2PasswordHashImpl;
 import com.model.User;
@@ -15,7 +14,6 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 public class UserDB {
-    private static Logger logger = Logger.getLogger(UserDB.class.getName());
     private static Pbkdf2PasswordHashImpl verifyHash = new Pbkdf2PasswordHashImpl();
 
     public static void insert(User user) {
@@ -26,7 +24,7 @@ public class UserDB {
             em.persist(user);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -41,7 +39,7 @@ public class UserDB {
             em.merge(user);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -56,7 +54,7 @@ public class UserDB {
             em.remove(em.merge(user));
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();

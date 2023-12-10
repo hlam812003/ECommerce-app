@@ -2,7 +2,6 @@ package com.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import com.model.Product;
 
@@ -16,8 +15,6 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 public class ProductDB {
-    private static Logger logger = Logger.getLogger(ProductDB.class.getName());
-
     public static void insert(Product product) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -26,7 +23,7 @@ public class ProductDB {
             em.persist(product);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -41,7 +38,7 @@ public class ProductDB {
             em.merge(product);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -56,7 +53,7 @@ public class ProductDB {
             em.remove(em.merge(product));
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -80,6 +77,8 @@ public class ProductDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             return em.find(Product.class, productId);
+        } catch (Exception e) {
+            return null;
         } finally {
             em.close();
         }

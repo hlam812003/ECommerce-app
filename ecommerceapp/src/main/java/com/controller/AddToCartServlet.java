@@ -1,10 +1,10 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.data.CartDB;
+import com.data.LineItemDB;
 import com.data.ProductDB;
 import com.model.Cart;
 import com.model.LineItem;
@@ -36,34 +36,45 @@ public class AddToCartServlet extends HttpServlet {
 
             Cart cart = CartDB.findCartByUser(user);
             if (cart == null) {
-                cart = new Cart();
-                cart.setUser(user);
-                CartDB.insert(cart);
-            }
 
-            List<LineItem> lineItems = cart.getItems();
-            if (lineItems == null) {
-                lineItems = new ArrayList<LineItem>();
-            }
-
-            boolean added = false;
-
-            for (int i = 0; i < lineItems.size(); i++) {
-                LineItem item = lineItems.get(i);
-                if (item.getItem().getProductId() == productId) {
-                    int quantity = item.getQuantity();
-                    item.setQuantity(quantity + 1);
-                    added = true;
-                }
-            }
-            if (!added) {
                 Product product = ProductDB.findProductById(productId);
                 int quantity = 1;
-                LineItem item = new LineItem(product, quantity);
-                cart.addItem(item);
+                LineItem item = new LineItem();
+                item.setItem(product);
+                item.setQuantity(quantity);
+                cart = new Cart(user, item);
+
+                LineItemDB.insert(item);
+
+                CartDB.insert(cart);
+            } else {
+                boolean added = false;
+
+                List<LineItem> lineItems = cart.getItems();
+                for (int i = 0; i < lineItems.size(); i++) {
+                    LineItem item = lineItems.get(i);
+                    if (item.getItem().getProductId().equals(productId)) {
+                        int quantity = item.getQuantity();
+                        item.setQuantity(quantity + 1);
+                        LineItemDB.update(item);
+                        added = true;
+                        break;
+                    }
+                }
+
+                if (!added) {
+                    Product product = ProductDB.findProductById(productId);
+                    int quantity = 1;
+                    LineItem item = new LineItem();
+                    item.setItem(product);
+                    item.setQuantity(quantity);
+
+                    LineItemDB.insert(item);
+                    cart.addItem(item);
+                }
+
+                CartDB.update(cart);
             }
-            cart.setItems(lineItems);
-            CartDB.update(cart);
 
             request.setAttribute("cart", cart);
 

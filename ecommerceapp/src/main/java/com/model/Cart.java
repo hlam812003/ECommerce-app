@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,24 +13,25 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Cart {
-
+public class Cart implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @OneToOne
     private User user;
 
-    @OneToMany(targetEntity = LineItem.class, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<LineItem> items;
 
     public Cart() {
         this.user = new User();
-        this.items = new ArrayList<>();
+        this.items = new ArrayList<LineItem>();
     }
 
-    public Cart(User user) {
+    public Cart(User user, LineItem item) {
+        this();
+
         this.user = user;
-        this.items = new ArrayList<>();
+        this.items.add(item);
     }
 
     public User getUser() {

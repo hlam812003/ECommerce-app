@@ -1,7 +1,5 @@
 package com.data;
 
-import java.util.logging.Logger;
-
 import com.model.Cart;
 import com.model.User;
 
@@ -11,7 +9,6 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 public class CartDB {
-    private static Logger logger = Logger.getLogger(CartDB.class.getName());
 
     public static void insert(Cart cart) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -21,7 +18,7 @@ public class CartDB {
             em.persist(cart);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -36,7 +33,7 @@ public class CartDB {
             em.merge(cart);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -51,7 +48,7 @@ public class CartDB {
             em.remove(em.merge(cart));
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -60,19 +57,16 @@ public class CartDB {
 
     public static Cart findCartByUser(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String queryString = "SELECT c FROM Cart c WHERE c.user = :user";
+        TypedQuery<Cart> query = em.createQuery(queryString, Cart.class);
+        query.setParameter("user", user);
         try {
-            TypedQuery<Cart> q = em.createQuery("SELECT c FROM Cart c WHERE c.user=:user", Cart.class);
-            q.setParameter("user", user);
-            try {
-                return q.getSingleResult();
-            } catch (NoResultException e) {
-                return null;
-            }
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         } finally {
             em.close();
         }
     }
 
-
-    
 }

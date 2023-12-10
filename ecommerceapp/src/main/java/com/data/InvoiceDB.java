@@ -1,12 +1,11 @@
 package com.data;
 
 import java.util.logging.Logger;
+
 import com.model.Invoice;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
 
 public class InvoiceDB {
         private static Logger logger = Logger.getLogger(InvoiceDB.class.getName());
@@ -19,7 +18,7 @@ public class InvoiceDB {
             em.persist(invoice);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -34,7 +33,7 @@ public class InvoiceDB {
             em.merge(invoice);
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();
@@ -49,7 +48,7 @@ public class InvoiceDB {
             em.remove(em.merge(invoice));
             trans.commit();
         } catch (Exception e) {
-            logger.info(e.getMessage());
+            System.out.println(e.getMessage());
             trans.rollback();
         } finally {
             em.close();

@@ -1,5 +1,7 @@
 package com.model;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,22 +9,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class LineItem {
+public class LineItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long lineItemId;
+
     @OneToOne
     private Product item;
     private int quantity;
 
     public LineItem() {
+        this.lineItemId = null;
         this.item = new Product();
         this.quantity = 0;
     }
 
-    public LineItem(Product item, int quantity) {
+    public LineItem(Long lineItemId, Product item, int quantity) {
+        this.lineItemId = lineItemId;
         this.item = item;
         this.quantity = quantity;
+    }
+
+    public Long getLineItemId() {
+        return lineItemId;
+    }
+
+    public void setLineItemId(Long lineItemId) {
+        this.lineItemId = lineItemId;
     }
 
     public Product getItem() {

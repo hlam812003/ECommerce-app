@@ -1,12 +1,13 @@
 package com.controller;
 
+import java.io.IOException;
+
 import com.data.CartDB;
 import com.data.ProductDB;
 import com.model.Cart;
 import com.model.LineItem;
 import com.model.Product;
 import com.model.User;
-import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,14 +25,16 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Cart cart = CartDB.findCartByUser(user);
-    
+
         switch (action) {
             case "add":
                 Long productId = Long.parseLong(request.getParameter("productId"));
-                int quantity = Integer.parseInt(request.getParameter("quantity"));
                 Product product = ProductDB.findProductById(productId);
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
                 if (product != null) {
-                    LineItem newItem = new LineItem(product, quantity);
+                    LineItem newItem = new LineItem();
+                    newItem.setItem(product);
+                    newItem.setQuantity(quantity);
                     cart.addItem(newItem);
                     CartDB.update(cart);
                 }
@@ -58,7 +61,7 @@ public class CartServlet extends HttpServlet {
             default:
                 break;
         }
-    
+
         response.sendRedirect(request.getContextPath() + "/view/shopping-cart.jsp");
     }
 
