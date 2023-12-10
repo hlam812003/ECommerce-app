@@ -627,9 +627,6 @@
                             displayToast('Applying filters...', 'Filter!', 'info');
                         });
                     });
-
-
-
                 </script>
             </body>
 
