@@ -997,7 +997,7 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="../../view/admin/js/jquery-2.1.1.js"></script>
+    <script src="../../view/admin/js/jquery-3.7.1.js"></script>
     <script src="../../view/admin/js/bootstrap.min.js"></script>
     <script src="../../view/admin/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../../view/admin/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -1034,6 +1034,8 @@
 
     <!-- Sparkline demo data  -->
     <script src="../../view/admin/js/demo/sparkline-demo.js"></script>
+
+    <script src="../../view/admin/js/main.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

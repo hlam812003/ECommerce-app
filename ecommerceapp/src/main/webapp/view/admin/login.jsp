@@ -13,11 +13,12 @@
 
     <title>Fashi | Admin Login</title>
 
-    <link href="../../view/admin/css/bootstrap.min.css" rel="stylesheet">
-    <<link href="../../view/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../../view/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <<link href="../../view/admin/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
-    <link href="../../view/admin/css/animate.css" rel="stylesheet">
-    <link href="../../view/admin/css/style.css" rel="stylesheet">
+    <link href="../../view/admin/css/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="../../view/admin/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="../../view/admin/css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -46,9 +47,11 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="../../view/admin/js/jquery-2.1.1.js"></script>
+    <script src="../../view/admin/js/jquery-3.7.1.js"></script>
     <script src="../../view/admin/js/bootstrap.min.js"></script>
+    <script src="../../view/admin/js/plugins/toastr/toastr.min.js"></script>
 
+    <script src="../../view/admin/js/main.js"></script>
 </body>
 
 </html>

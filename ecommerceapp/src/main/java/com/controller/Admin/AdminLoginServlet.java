@@ -18,13 +18,6 @@ public class AdminLoginServlet extends HttpServlet {
     private static Pbkdf2PasswordHashImpl passwordHash = new Pbkdf2PasswordHashImpl();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        String url = "/view/admin/login.jsp";
-        getServletContext().getRequestDispatcher(url).forward(request, response);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         String email = request.getParameter("email");
@@ -41,11 +34,19 @@ public class AdminLoginServlet extends HttpServlet {
             emailCookie.setPath("/");
             response.addCookie(emailCookie);
 
+            request.setAttribute("loginSuccess", true);
             response.sendRedirect(request.getContextPath() + "/admin");
         } else {
             request.setAttribute("loginError", "Invalid email or password");
             String url = "/view/admin/login.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        String url = "/view/admin/login.jsp";
+        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 }

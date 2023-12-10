@@ -17,6 +17,7 @@ public class AdminLogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         // Xóa session
         HttpSession session = request.getSession();
+        session.setAttribute("logoutSuccess", true);
         session.invalidate();
 
         // Xóa cookie
