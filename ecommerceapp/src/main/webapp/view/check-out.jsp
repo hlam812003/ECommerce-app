@@ -11,7 +11,7 @@
                 <meta name="keywords" content="Fashi, unica, creative, html">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <title>Fashi | Template</title>
+                <title>Fashi | Checkout</title>
 
                 <!-- Google Font -->
                 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
@@ -50,22 +50,13 @@
                                 </div>
                             </div>
                             <div class="ht-right">
-                                  <c:choose>
+                                <c:choose>
                                     <c:when test="${cookie.email.value != null}">
-                                        <div class="login__sec">
-                                            <a href="#" class="login-panel">Welcome back,
-                                                <strong>
-                                                    <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
-                                                </strong>
-                                            </a>
-                                            <div class="cart-hover">
-                                                <div class="select-button">
-                                                    <a href="/profile" class="primary-btn account-detail"
-                                                        style="margin-bottom: 16px;">YOUR PROFILE</a>
-                                                    <a href="/logout" class="primary-btn log-out">LOG OUT</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="/profile" class="login-panel">Welcome back,
+                                            <strong>
+                                                <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
+                                            </strong>
+                                        </a>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
@@ -103,10 +94,11 @@
                                         <button type="button" class="category-btn">All Categories</button>
                                         <form action="search" method="GET">
                                             <div class="input-group">
-                                                <input type="text" name="query" placeholder="What do you need?" required />
+                                                <input type="text" name="query" placeholder="What do you need?"
+                                                    required />
                                                 <button type="submit"><i class="ti-search"></i></button>
                                             </div>
-                                        </form> 
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 text-right col-md-3">
@@ -144,56 +136,50 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="cart-icon"><a href="#">
+                                        <li class="cart-icon">
+                                            <a href="/shopping-cart">
                                                 <i class="icon_bag_alt"></i>
-                                                <!-- <span>3</span> -->
+                                                <span>${cartQuantity}</span>
                                             </a>
                                             <div class="cart-hover">
                                                 <div class="select-items">
                                                     <table>
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="si-pic"><img
-                                                                        src="../public/img/select-product-1.jpg" alt="">
-                                                                </td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>$60.00 x 1</p>
-                                                                        <h6>Kabino Bedside Table</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close"></i>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="si-pic"><img
-                                                                        src="../public/img/select-product-2.jpg" alt="">
-                                                                </td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>$60.00 x 1</p>
-                                                                        <h6>Kabino Bedside Table</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close"></i>
-                                                                </td>
-                                                            </tr>
+                                                            <c:forEach items="${cart.items}" var="item">
+                                                                <tr>
+                                                                    <td class="si-pic">
+                                                                        <c:if test="${not empty item.item.imageUrl}">
+                                                                            <img src="${item.item.imageUrl}"
+                                                                                alt="${item.item.name}" />
+                                                                        </c:if>
+                                                                    </td>
+                                                                    <td class="si-text">
+                                                                        <div class="product-selected">
+                                                                            <p>
+                                                                                $${item.item.price} x ${item.quantity}
+                                                                            </p>
+                                                                            <h6>${item.item.name}</h6>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="si-close">
+                                                                        <i class="ti-close"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="select-total">
-                                                    <span>total:</span>
+                                                    <span>subtotal:</span>
                                                     <h5>$${cartTotal}</h5>
                                                 </div>
                                                 <div class="select-button">
-                                                    <a href="#" class="primary-btn view-cart">VIEW CART</a>
-                                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                                    <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>
-                                       <li class="cart-price">$${cartTotal}</li>
+                                        <li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -201,7 +187,6 @@
                     </div>
                     <div class="nav-item">
                         <div class="container">
-
                             <nav class="nav-menu mobile-menu"
                                 style="display: flex; justify-content: center; align-items: center;">
                                 <ul>
@@ -241,7 +226,7 @@
                                 <div class="breadcrumb-text product-more">
                                     <a href="/"><i class="fa fa-home"></i> Home</a>
                                     <a href="/shop">Shop</a>
-                                    <span>Check Out</span>
+                                    <span>CHECKOUT</span>
                                 </div>
                             </div>
                         </div>
@@ -255,50 +240,50 @@
                         <form id="checkoutForm" method="post" class="checkout-form" onsubmit="handleFormSubmit()">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="checkout-content">
+                                    <!-- <div class="checkout-content">
                                         <a href="/" class="content-btn">Click Here To Login</a>
-                                    </div>
-                                    <h4>Biiling Details</h4>
+                                    </div> -->
+                                    <h4>Billing Details</h4>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <label for="fir">First Name<span>*</span></label>
+                                            <label for="fir">First Name <span>*</span></label>
                                             <input type="text" id="fir" name="firstName" required>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label for="last">Last Name<span>*</span></label>
+                                            <label for="last">Last Name <span>*</span></label>
                                             <input type="text" id="last" name="lastName" required>
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="cun-name">Company Name</label>
-                                            <input type="text" id="cun-name" name="companyName" required>
+                                            <input type="text" id="cun-name" name="companyName">
                                         </div>
                                         <div class="col-lg-12">
-                                            <label for="cun">Country<span>*</span></label>
+                                            <label for="cun">Country <span>*</span></label>
                                             <input type="text" id="cun" name="countryName" required>
                                         </div>
                                         <div class="col-lg-12">
-                                            <label for="street">Street Address<span>*</span></label>
+                                            <label for="street">Street Address <span>*</span></label>
                                             <input type="text" id="street" class="street-first" name="streetAddress"
                                                 required>
                                             <!-- <input type="text"> -->
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="zip">Postcode / ZIP (optional)</label>
-                                            <input type="text" id="zip" name="postCode" required>
+                                            <input type="text" id="zip" name="postCode">
                                         </div>
                                         <div class="col-lg-12">
-                                            <label for="town">Town / City<span>*</span></label>
+                                            <label for="town">Town / City <span>*</span></label>
                                             <input type="text" id="town" name="cityName" required>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label for="email">Email Address<span>*</span></label>
+                                            <label for="email">Email Address <span>*</span></label>
                                             <input type="text" id="email" name="emailAddress" required>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label for="phone">Phone<span>*</span></label>
+                                            <label for="phone">Phone <span>*</span></label>
                                             <input type="text" id="phone" name="phoneNumber" required>
                                         </div>
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="create-item">
                                                 <label for="acc-create">
                                                     Create an account?
@@ -306,13 +291,10 @@
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="checkout-content">
-                                        <input type="text" placeholder="Enter Your Coupon Code">
-                                    </div>
                                     <div class="place-order">
                                         <h4>Your Order</h4>
                                         <div class="order-total">
@@ -320,11 +302,12 @@
                                                 <li>Product <span>Total</span></li>
                                                 <c:forEach items="${cart.items}" var="item">
                                                     <li class="fw-normal">${item.item.name} x ${item.quantity}
-                                                        <span>$${item.totalPrice}</span></li>
+                                                        <span>$${item.item.price * item.quantity}</span>
+                                                    </li>
                                                 </c:forEach>
                                                 <li class="fw-normal">Subtotal <span>$${cartTotal}</span></li>
-                                                <li class="fw-normal">Shipping <span>$${shippingFee}</span></li>
-                                                <li class="total-price">Total <span>$${cartTotal + shippingFee}</span>
+                                                <li class="fw-normal">Tax Rate <span>5%</span></li>
+                                                <li class="total-price">Total <span>$${cartTotal*(1+0.05)}</span>
                                                 </li>
                                             </ul>
                                             <div class="payment-check">
@@ -347,6 +330,9 @@
                                                 <button type="submit" class="site-btn place-btn">Place Order</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="checkout-content">
+                                        <input type="text" placeholder="Enter Your Coupon Code">
                                     </div>
                                 </div>
                             </div>

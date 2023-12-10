@@ -1,8 +1,18 @@
 package com.model;
 
-import java.util.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
+@Entity
 public class OrderDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @OneToOne
+    private Invoice invoice;
+
     private String firstName;
     private String lastName;
     private String companyName;
@@ -12,13 +22,13 @@ public class OrderDetail {
     private String cityName;
     private String emailAddress;
     private String phoneNumber;
-    private double totalAmount;
-    private double subtotalAmount;
-    private double shipping;
-    private Date orderDate;
+    private Double totalAmount;
+    private Double subtotalAmount;
+    private Double taxRate;
     private String paymentMethod;
-    
-    public OrderDetail() { 
+
+    public OrderDetail() {
+        this.invoice = new Invoice();
         this.firstName = "";
         this.lastName = "";
         this.companyName = "";
@@ -30,12 +40,15 @@ public class OrderDetail {
         this.phoneNumber = "";
         this.totalAmount = 0.0;
         this.subtotalAmount = 0.0;
-        this.shipping = 0.0;
-        this.orderDate = new Date();
+        this.taxRate = 0.0;
         this.paymentMethod = "";
     }
 
-    public OrderDetail(String firstName, String lastName, String companyName, String countryName, String streetAddress, String postCode, String cityName, String emailAddress, String phoneNumber, double totalAmount, double subtotalAmount, double shipping, Date orderDate, String paymentMethod) {
+    public OrderDetail(Invoice invoice, String firstName, String lastName, String companyName, String countryName,
+            String streetAddress,
+            String postCode, String cityName, String emailAddress, String phoneNumber, double totalAmount,
+            double subtotalAmount, double taxRate, String paymentMethod) {
+        this.invoice = invoice;
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
@@ -47,9 +60,16 @@ public class OrderDetail {
         this.phoneNumber = phoneNumber;
         this.totalAmount = totalAmount;
         this.subtotalAmount = subtotalAmount;
-        this.shipping = shipping;
-        this.orderDate = orderDate;
+        this.taxRate = taxRate;
         this.paymentMethod = paymentMethod;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public String getFirstName() {
@@ -129,8 +149,8 @@ public class OrderDetail {
     }
 
     public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount + this.shipping;
-    }    
+        this.totalAmount = totalAmount + this.taxRate;
+    }
 
     public double getSubtotalAmount() {
         return subtotalAmount;
@@ -140,20 +160,12 @@ public class OrderDetail {
         this.subtotalAmount = subtotalAmount;
     }
 
-    public double getShipping() {
-        return shipping;
+    public Double getTaxRate() {
+        return taxRate;
     }
 
-    public void setShipping(double shipping) {
-        this.shipping = shipping;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setTaxRate(double taxRate) {
+        this.taxRate = taxRate;
     }
 
     public String getPaymentMethod() {

@@ -103,10 +103,11 @@
                                         <button type="button" class="category-btn">All Categories</button>
                                         <form action="search" method="GET">
                                             <div class="input-group">
-                                                <input type="text" name="query" placeholder="What do you need?" required />
+                                                <input type="text" name="query" placeholder="What do you need?"
+                                                    required />
                                                 <button type="submit"><i class="ti-search"></i></button>
                                             </div>
-                                        </form> 
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 text-right col-md-3">
@@ -177,16 +178,16 @@
                                                     </table>
                                                 </div>
                                                 <div class="select-total">
-                                                    <span>total:</span>
+                                                    <span>subtotal:</span>
                                                     <h5>$${cartTotal}</h5>
                                                 </div>
                                                 <div class="select-button">
                                                     <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
-                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
+                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>
-                                       <li class="cart-price">$${cartTotal}</li>
+                                        <li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -265,12 +266,13 @@
                                             <input type="text" name="lastName" value="${user.lastName}"
                                                 autocomplete="off" />
                                         </div>
-                                        <c:if test="${cookie.password.value == null}">
-                                            <div class="group-input">
-                                                <label for="password">Password</label>
-                                                <input type="password" name="password" required autocomplete="off" />
-                                            </div>
-                                        </c:if>
+                                        <div class="group-input">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" required autocomplete="off" />
+                                        </div>
+                                        <!-- <c:if test="${cookie.password.value == null}">
+
+                                        </c:if> -->
                                         <button type="submit" class="site-btn register-btn"
                                             style="background: #191919;">Save Information</button>
                                     </form>
@@ -396,9 +398,9 @@
                 <script src="../assets/js/main.js"></script>
 
                 <c:if test="${not empty sessionScope.accountDeletionMessage}">
-                    <c:remove var="accountDeletionMessage" scope="session"/>
+                    <c:remove var="accountDeletionMessage" scope="session" />
                 </c:if>
-                
+
                 <script type="module">
                     import Toast from '../assets/js/Toast/Toast.js';
 
@@ -424,11 +426,11 @@
                     document.addEventListener('DOMContentLoaded', () => {
                         const message = '${requestScope.message}';
                         const deletionMessage = '${sessionScope.accountDeletionMessage}';
-                
+
                         if (message) {
                             displayToast(message, "Account Update!", "info");
                         }
-                
+
                         if (deletionMessage) {
                             displayToast(deletionMessage, "Account Deletion!", "info");
                         }

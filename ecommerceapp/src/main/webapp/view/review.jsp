@@ -36,7 +36,7 @@
                                 <td>${requestScope.emailAddress}</td>
                             </tr>
                             <tr>
-                                <td>Subtotal:</td>
+                                <td>Subsubtotal:</td>
                                 <td>${requestScope.subtotal} USD</td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                                 <td>${requestScope.shipping} USD</td>
                             </tr>
                             <tr>
-                                <td>Total:</td>
+                                <td>subtotal:</td>
                                 <td>${requestScope.total} USD</td>
                             </tr>
                             <tr>

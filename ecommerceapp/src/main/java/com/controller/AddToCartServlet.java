@@ -75,6 +75,7 @@ public class AddToCartServlet extends HttpServlet {
                 CartDB.update(cart);
             }
 
+            session.setAttribute("cart", cart);
             request.setAttribute("cart", cart);
 
             response.sendRedirect(request.getContextPath() + "/shop");

@@ -2,14 +2,12 @@ package com.controller;
 
 import java.io.IOException;
 
-import com.cookie.CookieUtil;
 import com.data.UserDB;
 import com.hash.Pbkdf2PasswordHashImpl;
 import com.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,11 +33,12 @@ public class UpdateProfileServlet extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
 
-            Cookie[] cookies = request.getCookies();
-            String password = CookieUtil.getCookieValue(cookies, "password");
-            if (password == null) {
-                password = request.getParameter("password");
-            }
+            // Cookie[] cookies = request.getCookies();
+            // String password = CookieUtil.getCookieValue(cookies, "password");
+            // if (password == null) {
+            //     password = request.getParameter("password");
+            // }
+            String password = request.getParameter("password");
 
             if (!passwordHash.verify(password.toCharArray(), selectedUser.getPassword())) {
                 String message = "Incorrect password or the cookies have been changed";

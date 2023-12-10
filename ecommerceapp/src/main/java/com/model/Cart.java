@@ -14,6 +14,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cart implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @OneToOne

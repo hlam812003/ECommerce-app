@@ -1,20 +1,17 @@
 package com.data;
 
-import com.model.Invoice;
-import com.model.User;
+import com.model.OrderDetail;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
 
-public class InvoiceDB {
-    public static void insert(Invoice invoice) {
+public class OrderDetailDB {
+    public static void insert(OrderDetail detail) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.persist(invoice);
+            em.persist(detail);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -24,12 +21,12 @@ public class InvoiceDB {
         }
     }
 
-    public static void update(Invoice invoice) {
+    public static void update(OrderDetail detail) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.merge(invoice);
+            em.merge(detail);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -39,12 +36,12 @@ public class InvoiceDB {
         }
     }
 
-    public static void delete(Invoice invoice) {
+    public static void delete(OrderDetail detail) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.remove(em.merge(invoice));
+            em.remove(em.merge(detail));
             trans.commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -54,29 +51,14 @@ public class InvoiceDB {
         }
     }
 
-    public static Invoice findInvoiceById(Long invoiceId) {
+    public static OrderDetail findDetailById(Long invoiceId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            return em.find(Invoice.class, invoiceId);
+            return em.find(OrderDetail.class, invoiceId);
         } catch (Exception e) {
             return null;
         } finally {
             em.close();
         }
     }
-
-    public static Invoice findLastInvoiceByUser(User user) {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String queryString = "SELECT i FROM Invoice i " + "WHERE i.user = :user " + "ORDER BY i.invoiceId desc";
-        TypedQuery<Invoice> query = em.createQuery(queryString, Invoice.class);
-        query.setParameter("user", user);
-        try {
-            return query.getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        } finally {
-            em.close();
-        }
-    }
-
 }

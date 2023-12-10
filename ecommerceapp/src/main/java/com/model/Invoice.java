@@ -1,46 +1,51 @@
 package com.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
 
 @Entity
 public class Invoice {
-    @Id
-    private String invoiceId;
 
-    @OneToMany(targetEntity = LineItem.class)
-    private List<LineItem> items;
-    @Temporal(jakarta.persistence.TemporalType.DATE)
-    private Date invoiceDateTime;
-    @ManyToOne
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long invoiceId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<LineItem> items;
+
+    private LocalDateTime invoiceDateTime;
+
     public Invoice() {
-        this.invoiceId = "";
+        this.invoiceId = null;
         this.user = new User();
-        this.items = new ArrayList<>();
-        this.invoiceDateTime = new Date();
+        this.items = new ArrayList<LineItem>();
+        this.invoiceDateTime = null;
     }
 
-    public Invoice(String invoiceId, User user, List<LineItem> items, Date invoiceDateTime) {
+    public Invoice(Long invoiceId, User user, List<LineItem> items, LocalDateTime invoiceDateTime) {
         this.invoiceId = invoiceId;
         this.user = user;
         this.items = items;
         this.invoiceDateTime = invoiceDateTime;
     }
 
-    public String getInvoiceId() {
+    public Long getInvoiceId() {
         return invoiceId;
     }
 
-    public void setInvoiceId(String invoiceId) {
+    public void setInvoiceId(Long invoiceId) {
         this.invoiceId = invoiceId;
     }
 
@@ -60,11 +65,11 @@ public class Invoice {
         this.items = items;
     }
 
-    public Date getInvoiceDateTime() {
+    public LocalDateTime getInvoiceDateTime() {
         return invoiceDateTime;
     }
 
-    public void setInvoiceDateTime(Date invoiceDateTime) {
+    public void setInvoiceDateTime(LocalDateTime invoiceDateTime) {
         this.invoiceDateTime = invoiceDateTime;
     }
 

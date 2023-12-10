@@ -2,13 +2,15 @@ package com.controller.PaymentMethod;
 
 import java.io.IOException;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-
 import com.model.OrderDetail;
 import com.payment.paypal.PaypalServices;
 import com.paypal.base.rest.PayPalRESTException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/paypal-authorize")
 public class AuthorizePaypalServlet extends HttpServlet {
@@ -33,7 +35,7 @@ public class AuthorizePaypalServlet extends HttpServlet {
         String subtotal = request.getParameter("subtotal");
         String shipping = request.getParameter("shipping");
         String total = request.getParameter("total");
-    
+
         // Tạo đối tượng
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setFirstName(firstName);
@@ -51,7 +53,7 @@ public class AuthorizePaypalServlet extends HttpServlet {
             double subtotalAmount = (subtotal != null && !subtotal.trim().isEmpty()) ? Double.parseDouble(subtotal) : 0.0;
             double shippingAmount = (shipping != null && !shipping.trim().isEmpty()) ? Double.parseDouble(shipping) : 0.0;
             double totalAmount = (total != null && !total.trim().isEmpty()) ? Double.parseDouble(total) : 0.0;
-    
+
             // Kiểm tra nếu tổng số tiền là 0, thì thông báo lỗi
             if (totalAmount <= 0) {
                 request.setAttribute("errorMessage", "Total amount cannot be zero.");
@@ -61,7 +63,7 @@ public class AuthorizePaypalServlet extends HttpServlet {
 
             orderDetail.setSubtotalAmount(subtotalAmount);
             orderDetail.setTotalAmount(totalAmount);
-            orderDetail.setShipping(shippingAmount);
+            orderDetail.setTaxRate(shippingAmount);
 
             // Tạo và gửi yêu cầu thanh toán
             PaypalServices paymentServices = new PaypalServices();

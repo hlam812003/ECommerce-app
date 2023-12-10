@@ -46,8 +46,6 @@ public class RemoveFromCartServlet extends HttpServlet {
                         break;
                     }
                 }
-            } else {
-
             }
 
             String referer = request.getHeader("referer");

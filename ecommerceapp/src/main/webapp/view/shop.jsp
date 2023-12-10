@@ -95,10 +95,11 @@
                                         <button type="button" class="category-btn">All Categories</button>
                                         <form action="search" method="GET">
                                             <div class="input-group">
-                                                <input type="text" name="query" placeholder="What do you need?" required />
+                                                <input type="text" name="query" placeholder="What do you need?"
+                                                    required />
                                                 <button type="submit"><i class="ti-search"></i></button>
                                             </div>
-                                        </form> 
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 text-right col-md-3">
@@ -108,30 +109,32 @@
                                                 <i class="icon_heart_alt"></i>
                                                 <!-- <span>1</span> -->
                                             </a>
-                                            <div class="select-items">
-                                                <table>
-                                                    <tbody>
-                                                        <c:forEach items="${favorites.products}" var="product">
-                                                            <tr>
-                                                                <td class="si-pic">
-                                                                    <c:if test="${not empty product.imageUrls}">
-                                                                        <img src="${product.imageUrls[0]}"
-                                                                            alt="${product.name}" />
-                                                                    </c:if>
-                                                                </td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>$${product.price}</p>
-                                                                        <h6>${product.name}</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close"></i>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
+                                            <div class="cart-hover">
+                                                <div class="select-items">
+                                                    <table>
+                                                        <tbody>
+                                                            <c:forEach items="${favorites.products}" var="product">
+                                                                <tr>
+                                                                    <td class="si-pic">
+                                                                        <c:if test="${not empty product.imageUrls}">
+                                                                            <img src="${product.imageUrls[0]}"
+                                                                                alt="${product.name}" />
+                                                                        </c:if>
+                                                                    </td>
+                                                                    <td class="si-text">
+                                                                        <div class="product-selected">
+                                                                            <p>$${product.price}</p>
+                                                                            <h6>${product.name}</h6>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="si-close">
+                                                                        <i class="ti-close"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </li>
                                         <li class="cart-icon">
@@ -168,12 +171,12 @@
                                                     </table>
                                                 </div>
                                                 <div class="select-total">
-                                                    <span>total:</span>
+                                                    <span>subtotal:</span>
                                                     <h5>$${cartTotal}</h5>
                                                 </div>
                                                 <div class="select-button">
                                                     <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
-                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
+                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>

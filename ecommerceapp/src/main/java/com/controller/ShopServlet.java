@@ -31,8 +31,9 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        setCart(request, response);
+        if (LoginServlet.isLoggedIn(request, response)) {
+            setCart(request, response);
+        }
 
         Product product = new Product();
 
@@ -102,6 +103,13 @@ public class ShopServlet extends HttpServlet {
             }
         }
         Cart cart = CartDB.findCartByUser(user);
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUser(user);
+            CartDB.insert(cart);
+        }
+
+        session.setAttribute("cart", cart);
         request.setAttribute("cart", cart);
         request.setAttribute("cartQuantity", cart.getQuantity());
         request.setAttribute("cartTotal", cart.getTotal());

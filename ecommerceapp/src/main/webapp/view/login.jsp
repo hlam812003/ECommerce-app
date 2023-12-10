@@ -97,7 +97,7 @@
 									<input type="text" name="query" placeholder="What do you need?" required />
 									<button type="submit"><i class="ti-search"></i></button>
 								</div>
-							</form> 
+							</form>
 						</div>
 					</div>
 					<div class="col-lg-3 text-right col-lg-3">
@@ -178,12 +178,12 @@
 										</table>
 									</div>
 									<div class="select-total">
-										<span>total:</span>
+										<span>subtotal:</span>
 										<h5>$${cartTotal}</h5>
 									</div>
 									<div class="select-button">
-										<a href="#" class="primary-btn view-cart">VIEW CART</a>
-										<a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                        <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+                                        <a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
 									</div>
 								</div>
 							</li>

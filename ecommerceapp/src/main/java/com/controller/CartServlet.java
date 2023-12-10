@@ -59,26 +59,14 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "load";
-        }
+        if (LoginServlet.isLoggedIn(request, response)) {
+            ShopServlet.setCart(request, response);
 
-        switch (action) {
-            case "load":
-                if (LoginServlet.isLoggedIn(request, response)) {
-                    ShopServlet.setCart(request, response);
-
-                    String url = "/view/shopping-cart.jsp";
-                    getServletContext().getRequestDispatcher(url).forward(request, response);
-                } else {
-                    response.sendRedirect(request.getContextPath() + "/login");
-                    return;
-                }
-                break;
-
-            default:
-                break;
+            String url = "/view/shopping-cart.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         }
     }
 }
