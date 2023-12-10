@@ -261,8 +261,8 @@ import Toast from './assets/js/Toast/Toast.js';
 		$button.parent().find('input').val(newVal);
 	});
 
-    $('.addToCartLink').click(function(event) {
-        event.preventDefault();
+    $('.addToCartLink').on('click', function(e) {
+        e.preventDefault();
         const productId = $(this).data('product-id');
         addToCart(productId);
     });
