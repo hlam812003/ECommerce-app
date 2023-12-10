@@ -8,6 +8,7 @@ import com.cookie.CookieUtil;
 import com.data.CartDB;
 import com.data.ProductDB;
 import com.data.UserDB;
+import com.google.gson.JsonObject;
 import com.model.Cart;
 import com.model.Product;
 import com.model.User;
@@ -31,6 +32,15 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        JsonObject responseJson = new JsonObject();
+        responseJson.addProperty("status", "success");
+        responseJson.addProperty("message", "Product added to cart successfully.");
+
+        // Thiết lập content type và gửi phản hồi
+        response.setContentType("application/json");
+        response.getWriter().write(responseJson.toString());
+
         setCart(request, response);
 
         Product product = new Product();
