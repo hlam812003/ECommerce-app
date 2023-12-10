@@ -4,14 +4,21 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.cookie.CookieUtil;
+import com.data.CartDB;
 import com.data.ProductDB;
+import com.data.UserDB;
+import com.model.Cart;
 import com.model.Product;
+import com.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/shop")
 public class ShopServlet extends HttpServlet {
@@ -24,11 +31,12 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        setCart(request, response);
 
         Product product = new Product();
 
         product.setName("ESSENTIALS SINGLE JERSEY BIG LOGO TEE");
-        product.setDescription("Whether you're throwing it on after the gym or getting ready to start the day, this adidas staple tee is calling your name. ");
+        product.setDescription("Whether you're throwing it on after the gym or getting ready to start the day, this adidas staple tee is calling your name.");
         product.setType("T-Shirts");
         product.setPrice(Double.valueOf(15));
         product.setSize("M");
@@ -66,5 +74,28 @@ public class ShopServlet extends HttpServlet {
 
         String url = "/view/shop.jsp";
         getServletContext().getRequestDispatcher(url).forward(request, response);
+    }
+
+    public static void setCart(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            Cookie[] cookies = request.getCookies();
+            String email = CookieUtil.getCookieValue(cookies, "email");
+            // if cookie doesn't exist, go to Registration page
+            if (email == null || email.isEmpty()) {
+                return;
+            } else {
+                user = UserDB.selectUser(email);
+                if (user != null && user.isVerified()) {
+                    session.setAttribute("user", user);
+                } else {
+                    return;
+                }
+            }
+        }
+        Cart cart = CartDB.findCartByUser(user);
+        request.setAttribute("cart", cart);
     }
 }
