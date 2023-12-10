@@ -26,9 +26,9 @@
 
 <body>
     <!-- Page preloader -->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -344,7 +344,12 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active">
+                                                <form action="/shop/addToCart" method="post">
+            
+                                                <input type="hidden" name="productId" value="${product.productId}" />
+                                                <button type="submit"><i class="icon_bag_alt"></i></button>
+                                            </form></li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
@@ -444,7 +449,12 @@
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="w-icon active">
+                                            <!-- <form action="/shop/addToCart" method="post">
+                                                <input type="hidden" name="productId" value="${product.productId}" />
+                                                <button type="submit"><i class="icon_bag_alt"></i></button>
+                                            </form> -->
+                                            </li>
                                             <li class="quick-view"><a href="#">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>

@@ -261,44 +261,4 @@ import Toast from './assets/js/Toast/Toast.js';
 		$button.parent().find('input').val(newVal);
 	});
 
-    $('.addToCartLink').on('click', function(e) {
-        e.preventDefault();
-        const productId = $(this).data('product-id');
-        addToCart(productId);
-    });
-
 })(jQuery);
-
-function addToCart(productId) {
-    $.ajax({
-        url: `/shop/addToCart?id=${productId}`,
-        type: 'GET',
-        success: function(response) {
-            displayToast("Product added to cart successfully!", "Successfully!", "success");
-            // alert("Product added to cart successfully");
-        },
-        error: function(error) {
-            displayToast("Error adding product to cart!", "Error!", "error");
-            // alert("Error adding product to cart");
-        }
-    });
-};
-
-const displayToast = (message, title, type) => {
-    new Toast({
-        autoClose: 5000,
-        canCloseOnClick: true,
-        darkMode: false,
-        onClose: () => { },
-        position: "top-center",
-        pauseOnHover: true,
-        pauseOnFocusLoss: true,
-        playNotificationSound: false,
-        showProgressBar: true,
-        toastContent: {
-            message,
-            title,
-            type
-        },
-    });
-};

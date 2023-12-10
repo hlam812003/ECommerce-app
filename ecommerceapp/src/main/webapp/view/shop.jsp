@@ -412,7 +412,7 @@
                                                         </div>
                                                         <ul>
                                                             <li class="w-icon active">
-                                                                <a href="#" class="addToCartLink" data-product-id="${product.productId}">
+                                                                <a href="/shop/addToCart?id=${product.productId}">
                                                                     <i class="icon_bag_alt"></i>
                                                                 </a>
                                                             </li>
@@ -627,6 +627,8 @@
                             displayToast('Applying filters...', 'Filter!', 'info');
                         });
                     });
+
+
 
                 </script>
             </body>

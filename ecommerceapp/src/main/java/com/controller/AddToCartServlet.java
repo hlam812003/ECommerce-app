@@ -6,7 +6,6 @@ import java.util.List;
 import com.data.CartDB;
 import com.data.LineItemDB;
 import com.data.ProductDB;
-import com.google.gson.JsonObject;
 import com.model.Cart;
 import com.model.LineItem;
 import com.model.Product;
@@ -48,7 +47,6 @@ public class AddToCartServlet extends HttpServlet {
                 LineItemDB.insert(item);
 
                 CartDB.insert(cart);
-
             } else {
                 boolean added = false;
 
@@ -80,22 +78,7 @@ public class AddToCartServlet extends HttpServlet {
 
             request.setAttribute("cart", cart);
 
-            // response.sendRedirect(request.getContextPath() + "/shop");
-
-            JsonObject responseJson = new JsonObject();
-            responseJson.addProperty("status", "success");
-            responseJson.addProperty("message", "Product added to cart successfully.");
-    
-            response.setContentType("application/json");
-            response.getWriter().write(responseJson.toString());
-        } else {
-            // Nếu người dùng không đăng nhập
-            JsonObject responseJson = new JsonObject();
-            responseJson.addProperty("status", "error");
-            responseJson.addProperty("message", "User not logged in.");
-    
-            response.setContentType("application/json");
-            response.getWriter().write(responseJson.toString());
+            response.sendRedirect(request.getContextPath() + "/shop");
         }
     }
 }
