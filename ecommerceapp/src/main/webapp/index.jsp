@@ -251,7 +251,7 @@
                                             tempor
                                             incididunt ut labore et dolore
                                         </p>
-                                        <a href="#" class="primary-btn">Shop Now</a>
+                                        <a href="/shop" class="primary-btn">Shop Now</a>
                                     </div>
                                 </div>
                                 <div class="off-card">
@@ -456,7 +456,7 @@
                                     <p>Secs</p>
                                 </div>
                             </div>
-                            <a href="#" class="primary-btn">Shop Now</a>
+                            <a href="/shop" class="primary-btn">Shop Now</a>
                         </div>
                     </div>
                 </section>
@@ -591,7 +591,7 @@
                 <!-- Man Banner Section End -->
 
                 <!-- Instagram Section Begin -->
-                <div class="instagram-photo">
+                <!-- <div class="instagram-photo">
                     <div class="insta-item set-bg" data-setbg="./public/img/insta-1.jpg">
                         <div class="inside-text">
                             <i class="ti-instagram"></i>
@@ -628,13 +628,13 @@
                             <h5><a href="#">colorlib_Collection</a></h5>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Instagram Section End -->
 
                 <!-- Latest Blog Section Begin -->
                 <section class="latest-blog spad">
                     <div class="container">
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-lg-12">
                                 <div class="section-title">
                                     <h2>From The Blog</h2>
@@ -714,7 +714,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="benefit-items">
                             <div class="row">
                                 <div class="col-lg-4">
