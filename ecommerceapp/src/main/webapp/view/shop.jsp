@@ -628,11 +628,6 @@
                         });
                     });
 
-                    function addToCart(productId) {
-
-                    }
-
-
                 </script>
             </body>
 
