@@ -31,7 +31,6 @@ public class AdminLogoutServlet extends HttpServlet {
             }
         }
 
-        // Chuyển hướng đến trang đăng nhập của quản trị viên
         response.sendRedirect(request.getContextPath() + "/admin/login");
     }
 }
