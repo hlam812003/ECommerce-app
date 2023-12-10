@@ -132,9 +132,15 @@
                                                 </table>
                                             </div>
                                         </li>
-                                        <li class="cart-icon"><a href="#">
+                                        <li class="cart-icon">
+                                            <a href="/shopping-cart">
                                                 <i class="icon_bag_alt"></i>
-                                                <!-- <span>3</span> -->
+                                                <c:set var="cartQuantity" value="${0}" />
+                                                <c:forEach items="${cart.items}" var="item">
+                                                    <c:set var="cartQuantity"
+                                                        value="${cartQuantity + item.quantity}" />
+                                                </c:forEach>
+                                                <span>${cartQuantity}</span>
                                             </a>
                                             <div class="cart-hover">
                                                 <div class="select-items">
@@ -153,7 +159,8 @@
                                                                         <div class="product-selected">
                                                                             <p>
                                                                                 $${item.item.price} x ${item.quantity}
-                                                                                <c:set var="cartTotal" value="${cartTotal + item.item.price * item.quantity}" />
+                                                                                <c:set var="cartTotal"
+                                                                                    value="${cartTotal + item.item.price * item.quantity}" />
                                                                             </p>
                                                                             <h6>${item.item.name}</h6>
                                                                         </div>
