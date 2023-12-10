@@ -55,7 +55,7 @@ public class LineItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public double getTotalPrice() {
+    public double getTotal() {
         return this.item.getPrice() * this.quantity;
     }
 }

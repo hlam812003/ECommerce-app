@@ -1,12 +1,13 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import com.data.CartDB;
-import com.data.ProductDB;
+import com.data.LineItemDB;
 import com.model.Cart;
 import com.model.LineItem;
-import com.model.Product;
 import com.model.User;
 
 import jakarta.servlet.ServletException;
@@ -22,63 +23,62 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Cart cart = CartDB.findCartByUser(user);
 
         switch (action) {
-            case "add":
-                Long productId = Long.parseLong(request.getParameter("productId"));
-                Product product = ProductDB.findProductById(productId);
-                int quantity = Integer.parseInt(request.getParameter("quantity"));
-                if (product != null) {
-                    LineItem newItem = new LineItem();
-                    newItem.setItem(product);
-                    newItem.setQuantity(quantity);
-                    cart.addItem(newItem);
-                    CartDB.update(cart);
+            case "update-quantity":
+                Map<String, String[]> parameterMap = request.getParameterMap();
+
+                for (String key : parameterMap.keySet()) {
+                    System.out.println("'" + key + "' | " + key.getClass().getName());
+
+                    if (key.equals("quantity")) {
+                        HttpSession session = request.getSession();
+                        User user = (User) session.getAttribute("user");
+                        Cart cart = (Cart) CartDB.findCartByUser(user);
+                        List<LineItem> lineItems = cart.getItems();
+
+                        int index = 0;
+                        String[] quantityList = (String[]) parameterMap.get(key);
+                        for (String quantity : quantityList) {
+                            LineItem item = lineItems.get(index++);
+                            item.setQuantity(Integer.parseInt(quantity));
+                            LineItemDB.update(item);
+                        }
+                    }
                 }
                 break;
-            case "update":
-                productId = Long.parseLong(request.getParameter("productId"));
-                quantity = Integer.parseInt(request.getParameter("quantity"));
-                cart.getItems().forEach(item -> {
-                    if (item.getItem().getProductId().equals(productId)) {
-                        item.setQuantity(quantity);
-                    }
-                });
-                CartDB.update(cart);
-                break;
-            case "remove":
-                productId = Long.parseLong(request.getParameter("productId"));
-                cart.removeItem(productId);
-                CartDB.update(cart);
-                break;
-            case "empty":
-                cart.removeAll();
-                CartDB.update(cart);
-                break;
+
             default:
                 break;
         }
 
-        response.sendRedirect(request.getContextPath() + "/view/shopping-cart.jsp");
+        response.sendRedirect(request.getContextPath() + "/shopping-cart");
+        return;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Cart cart = CartDB.findCartByUser(user);
-
-        if (cart != null) {
-            double total = cart.getTotalPrice();
-            request.setAttribute("cartTotal", total);
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "load";
         }
 
-        request.setAttribute("cart", cart);
-        String url = "/view/shopping-cart.jsp";
-        getServletContext().getRequestDispatcher(url).forward(request, response);
+        switch (action) {
+            case "load":
+                if (LoginServlet.isLoggedIn(request, response)) {
+                    ShopServlet.setCart(request, response);
+
+                    String url = "/view/shopping-cart.jsp";
+                    getServletContext().getRequestDispatcher(url).forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/login");
+                    return;
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 }

@@ -37,7 +37,8 @@ public class ShopServlet extends HttpServlet {
         Product product = new Product();
 
         product.setName("ESSENTIALS SINGLE JERSEY BIG LOGO TEE");
-        product.setDescription("Whether you're throwing it on after the gym or getting ready to start the day, this adidas staple tee is calling your name.");
+        product.setDescription(
+                "Whether you're throwing it on after the gym or getting ready to start the day, this adidas staple tee is calling your name.");
         product.setType("T-Shirts");
         product.setPrice(Double.valueOf(15));
         product.setSize("M");
@@ -46,7 +47,8 @@ public class ShopServlet extends HttpServlet {
         product.setBrand("adidas");
         product.setCategory("Clothing");
         product.setTags("Men, Essentials");
-        product.setImageUrl("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
+        product.setImageUrl(
+                "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
         product.setReleaseDate(LocalDate.now());
 
         ProductDB.insert(product);
@@ -61,15 +63,18 @@ public class ShopServlet extends HttpServlet {
 
         List<Product> products;
 
-        // Nếu có ít nhất một tham số lọc, lọc sản phẩm
-        if (category != null || brand != null || color != null || size != null || tags != null || minPrice != null
-                || maxPrice != null) {
+        if (category != null ||
+                brand != null ||
+                color != null ||
+                size != null ||
+                tags != null ||
+                minPrice != null ||
+                maxPrice != null) {
             products = ProductDB.getFilteredProducts(category, brand, color, size, tags, minPrice, maxPrice);
         } else {
             products = ProductDB.getAllProducts();
         }
 
-        // Gán danh sách sản phẩm và tổng số lượng sản phẩm vào request
         request.setAttribute("products", products);
         request.setAttribute("totalProductCount", products.size());
 
@@ -98,5 +103,7 @@ public class ShopServlet extends HttpServlet {
         }
         Cart cart = CartDB.findCartByUser(user);
         request.setAttribute("cart", cart);
+        request.setAttribute("cartQuantity", cart.getQuantity());
+        request.setAttribute("cartTotal", cart.getTotal());
     }
 }

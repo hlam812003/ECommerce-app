@@ -62,11 +62,20 @@ public class Cart implements Serializable {
         this.items.clear();
     }
 
-    public double getTotalPrice() {
-        double total = 0.0;
+    public int getQuantity() {
+        int quantity = 0;
         for (LineItem item : items) {
-            total += item.getTotalPrice();
+            quantity += item.getQuantity();
+        }
+        return quantity;
+    }
+
+    public Double getTotal() {
+        Double total = 0.0;
+        for (LineItem item : items) {
+            total += item.getTotal();
         }
         return total;
     }
+
 }

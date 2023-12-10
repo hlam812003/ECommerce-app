@@ -36,7 +36,6 @@ public class AddToCartServlet extends HttpServlet {
 
             Cart cart = CartDB.findCartByUser(user);
             if (cart == null) {
-
                 Product product = ProductDB.findProductById(productId);
                 int quantity = 1;
                 LineItem item = new LineItem();
@@ -79,6 +78,9 @@ public class AddToCartServlet extends HttpServlet {
             request.setAttribute("cart", cart);
 
             response.sendRedirect(request.getContextPath() + "/shop");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         }
     }
 }

@@ -33,7 +33,7 @@ public class InvoiceServlet extends HttpServlet {
 
             // Test thôi có gì ô làm rồi chỉnh lại nhé!
             double shippingFee = 30.0;
-            double totalAmount = cart.getTotalPrice() + shippingFee;
+            double totalAmount = cart.getTotal() + shippingFee;
 
             // Lưu hóa đơn
             InvoiceDB.insert(invoice);

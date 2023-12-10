@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="ht-right">
-                                  <c:choose>
+                                <c:choose>
                                     <c:when test="${cookie.email.value != null}">
                                         <div class="login__sec">
                                             <a href="#" class="login-panel">Welcome back,
@@ -122,8 +122,8 @@
                                                         <c:forEach items="${favorites.products}" var="product">
                                                             <tr>
                                                                 <td class="si-pic">
-                                                                    <c:if test="${not empty product.imageUrls}">
-                                                                        <img src="${product.imageUrls[0]}"
+                                                                    <c:if test="${not empty product.imageUrl}">
+                                                                        <img src="${product.imageUrl}"
                                                                             alt="${product.name}" />
                                                                     </c:if>
                                                                 </td>
@@ -143,9 +143,9 @@
                                             </div>
                                         </li>
                                         <li class="cart-icon">
-                                            <a href="#">
+                                            <a href="/shopping-cart">
                                                 <i class="icon_bag_alt"></i>
-                                                <!-- <span>3</span> -->
+                                                <span>${cartQuantity}</span>
                                             </a>
                                             <div class="cart-hover">
                                                 <div class="select-items">
@@ -154,45 +154,39 @@
                                                             <c:forEach items="${cart.items}" var="item">
                                                                 <tr>
                                                                     <td class="si-pic">
-                                                                        <c:if test="${not empty item.item.imageUrls}">
-                                                                            <img src="${item.item.imageUrls[0]}"
+                                                                        <c:if test="${not empty item.item.imageUrl}">
+                                                                            <img src="${item.item.imageUrl}"
                                                                                 alt="${item.item.name}" />
                                                                         </c:if>
                                                                     </td>
                                                                     <td class="si-text">
                                                                         <div class="product-selected">
-                                                                            <p>$${item.item.price} x ${item.quantity}
+                                                                            <p>
+                                                                                $${item.item.price} x ${item.quantity}
                                                                             </p>
                                                                             <h6>${item.item.name}</h6>
                                                                         </div>
                                                                     </td>
                                                                     <td class="si-close">
-                                                                        <i class="ti-close"></i>
+                                                                        <a href="/shop/removeFromCart?id=${item.item.productId}"
+                                                                            class="ti-close"></a>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <c:set var="total" value="0" />
-                                                <c:forEach items="${cart.items}" var="item">
-                                                    <c:set var="total" value="${total + item.totalPrice}" />
-                                                </c:forEach>
-
                                                 <div class="select-total">
                                                     <span>total:</span>
-                                                    <h5>$${total}</h5>
+                                                    <h5>$${cartTotal}</h5>
                                                 </div>
-
                                                 <div class="select-button">
-                                                    <a href="/shopping-cart"
-                                                        class="primary-btn view-cart">VIEW CART</a>
-                                                    <a href="/shopping-cart"
-                                                        class="primary-btn checkout-btn">CHECK OUT</a>
+                                                    <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+                                                    <a href="/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
                                                 </div>
                                             </div>
                                         </li>
-										<li class="cart-price">$${cartTotal}</li>
+                                        <li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -262,30 +256,36 @@
                                                 <th>Price</th>
                                                 <th>Quantity</th>
                                                 <th>Total</th>
-                                                <th><i class="ti-close"></i></th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <c:forEach items="${cart.items}" var="item">
                                                 <tr>
                                                     <td class="cart-pic">
-                                                        <c:if test="${not empty item.item.imageUrls}">
-                                                            <img src="${item.item.imageUrls[0]}"
-                                                                alt="${item.item.name}">
+                                                        <c:if test="${not empty item.item.imageUrl}">
+                                                            <img src="${item.item.imageUrl}" alt="${item.item.name}">
                                                         </c:if>
                                                     </td>
                                                     <td class="cart-title">
-                                                        <h5>${item.item.name}</h5>
+                                                        <h5>
+                                                            ${item.item.name}
+                                                        </h5>
                                                     </td>
-                                                    <td class="p-price">$${item.item.price}</td>
+                                                    <td class="p-price">
+                                                        $${item.item.price}
+                                                    </td>
                                                     <td class="qua-col">
                                                         <div class="quantity">
-                                                            <input type="text" value="${item.quantity}">
+                                                            <input type="number" name="quantity"
+                                                                value="${item.quantity}" form="update-quantity" min="1">
+
                                                         </div>
                                                     </td>
-                                                    <td class="total-price">$${item.totalPrice}</td>
+                                                    <td class="total-price">$${item.item.price * item.quantity}</td>
                                                     <td class="close-td">
-                                                        <i class="ti-close"></i>
+                                                        <a href="/shop/removeFromCart?id=${item.item.productId}"
+                                                            class="ti-close"></a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -295,8 +295,12 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="cart-buttons">
-                                            <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                            <a href="#" class="primary-btn up-cart">Update cart</a>
+                                            <form action="/shopping-cart" method="post" id="update-quantity">
+                                                <input type="hidden" name="action" value="update-quantity">
+                                            </form>
+                                            <input type="submit" class="primary-btn up-cart" value="Update cart"
+                                                form="update-quantity">
+                                            <a href="/shop" class="primary-btn continue-shop">Continue shopping</a>
                                         </div>
                                         <div class="discount-coupon">
                                             <h6>Discount Codes</h6>
@@ -307,15 +311,10 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 offset-lg-4">
-                                        <c:set var="total" value="0" />
-                                        <c:forEach items="${cart.items}" var="item">
-                                            <c:set var="total" value="${total + item.totalPrice}" />
-                                        </c:forEach>
-
                                         <div class="proceed-checkout">
                                             <ul>
-                                                <li class="subtotal">Subtotal <span>$${total}</span></li>
-                                                <li class="cart-total">Total <span>$${total}</span></li>
+                                                <li class="subtotal">Subtotal <span>$${cartTotal}</span></li>
+                                                <li class="cart-total">Total <span>$${cartTotal}</span></li>
                                             </ul>
                                             <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
                                         </div>
@@ -324,6 +323,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </section>
                 <!-- Shopping Cart Section End -->

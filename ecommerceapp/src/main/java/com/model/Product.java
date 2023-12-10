@@ -153,8 +153,8 @@ public class Product implements Serializable {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrls) {
-        this.imageUrl = imageUrls;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public LocalDate getReleaseDate() {

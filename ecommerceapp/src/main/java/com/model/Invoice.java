@@ -71,7 +71,7 @@ public class Invoice {
     public double getInvoiceTotal() {
         double total = 0.0;
         for (LineItem item : items) {
-            total += item.getTotalPrice();
+            total += item.getTotal();
         }
         return total;
     }
