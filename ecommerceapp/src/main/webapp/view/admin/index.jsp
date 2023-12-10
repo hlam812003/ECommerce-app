@@ -37,8 +37,15 @@
                             <img alt="image" class="img-circle" src="../../view/admin/img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Hello World</strong>
-                             </span> <span class="text-muted text-xs block">Admin </span>
+                            <span class="clear"> 
+                                <span class="block m-t-xs"> 
+                                    <strong class="font-bold">
+                                        <c:out value='${fn:split(cookie.email.value, "@")[0]}' />
+                                        <!-- <c:out value="${sessionScope.adminUser.firstName} ${sessionScope.adminUser.lastName}" default="Hwan Dep Trai" /> -->
+                                    </strong>
+                                </span> 
+                                <span class="text-muted text-xs block">Admin</span>
+                            </span>
                         </a>
                     </div>
                     <div class="logo-element">
