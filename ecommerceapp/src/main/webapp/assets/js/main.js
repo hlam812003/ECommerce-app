@@ -9,8 +9,6 @@
 
 'use strict';
 
-import Toast from './assets/js/Toast/Toast.js';
-
 (function ($) {
     $("body").css("overflow", "hidden");
     // var current = location.pathname;
