@@ -283,7 +283,7 @@
                                                 disabled required>
                                         </div>
                                         <div class="col-lg-6">
-                                            <label for="phone">Phone <span>*</span></label>
+                                            <label for="phone">Phone Number <span>*</span></label>
                                             <input type="text" id="phone" name="phoneNumber" required>
                                         </div>
                                         <!-- <div class="col-lg-12">
