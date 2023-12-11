@@ -194,7 +194,7 @@
                     <div class="breadcrumb-text product-more">
                         <a href="/"><i class="fa fa-home"></i> Home</a>
                         <a href="/shop">Shop</a>
-                        <span>Checkout</span>
+                        <span>Review Payment</span>
                     </div>
                 </div>
             </div>
@@ -222,12 +222,16 @@
                                 <input type="text" id="last">
                             </div>
                             <div class="col-lg-12">
-                                <label for="cun-name">Company Name</label>
-                                <input type="text" id="cun-name">
+                                <label for="cun-name">Email</label>
+                                <input type="text" id="email-name">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" id="phone">
                             </div>
                             <div class="col-lg-12">
-                                <label for="cun">Country</label>
-                                <input type="text" id="cun">
+                                <label for="cun">Recipient Name</label>
+                                <input type="text" id="reci-name">
                             </div>
                             <div class="col-lg-12">
                                 <label for="street">Street Address</label>
@@ -235,20 +239,16 @@
                                 <!-- <input type="text"> -->
                             </div>
                             <div class="col-lg-12">
-                                <label for="zip">Postcode / ZIP (optional)</label>
-                                <input type="text" id="zip">
+                                <label for="city">Town / City</label>
+                                <input type="text" id="city">
                             </div>
                             <div class="col-lg-12">
-                                <label for="town">Town / City</label>
-                                <input type="text" id="town">
+                                <label for="state">State</label>
+                                <input type="text" id="state">
                             </div>
-                            <div class="col-lg-6">
-                                <label for="email">Email Address</label>
-                                <input type="text" id="email">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone">Phone Number</label>
-                                <input type="text" id="phone">
+                            <div class="col-lg-12">
+                                <label for="zip">Postcode / ZIP</label>
+                                <input type="text" id="zip">
                             </div>
                             <!-- <div class="col-lg-12">
                                 <div class="create-item">
@@ -270,10 +270,8 @@
                             <form action="paypal-execute" method="POST">
                                 <div class="order-total">
                                     <ul class="order-table">
-                                        <li>Product <span>Total</span></li>
-                                        <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                        <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                        <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
+                                        <li>Transaction Details</li>
+                                        <li class="fw-normal">Description <span>Hello World</span></li>
                                         <li class="fw-normal">Subtotal <span>$240.00</span></li>
                                         <li class="fw-normal">Tax <span>$240.00</span></li>
                                         <li class="fw-normal">Shipping <span>$240.00</span></li>

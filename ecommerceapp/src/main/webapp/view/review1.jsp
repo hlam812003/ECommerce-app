@@ -88,6 +88,7 @@
                             <tr>
                                 <td>State:</td>
                                 <td>${shippingAddress.state}</td>
+                                <td>${shippingAddress.phoneNumber}</td>
                             </tr>
                             <tr>
                                 <td>Country Code:</td>
