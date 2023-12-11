@@ -69,24 +69,18 @@ public class ShopServlet extends HttpServlet {
         String tags = request.getParameter("tags");
         String minPrice = request.getParameter("minPrice");
         String maxPrice = request.getParameter("maxPrice");
-
+    
         List<Product> products;
-
-        if (category != null ||
-                brand != null ||
-                color != null ||
-                size != null ||
-                tags != null ||
-                minPrice != null ||
-                maxPrice != null) {
+    
+        if (category != null || brand != null || color != null || size != null || tags != null || minPrice != null || maxPrice != null) {
             products = ProductDB.getFilteredProducts(category, brand, color, size, tags, minPrice, maxPrice);
         } else {
             products = ProductDB.getAllProducts();
         }
-
+    
         request.setAttribute("products", products);
         request.setAttribute("totalProductCount", products.size());
-
+    
         String url = "/view/shop.jsp";
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }

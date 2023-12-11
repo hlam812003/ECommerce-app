@@ -1199,7 +1199,7 @@ input::-webkit-inner-spin-button {
 	background: #e7ab3c;
 }
 
-.product-item .pi-pic .icon {
+.product-item .pi-pic .icon .icon_heart_alt {
 	font-size: 20px;
 	color: #252525;
 	position: absolute;
