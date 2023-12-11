@@ -384,14 +384,18 @@
                                         </div>
                                         <div class="product-thumbs">
                                             <div class="product-thumbs-track ps-slider owl-carousel">
-                                                <!-- <div class="pt active" data-imgbigurl="${product.imageUrl}">
-                                                    <img src="${product.imageUrl}" alt="${product.name}">
-                                                </div>
-                                                <c:forEach items="${product.imageUrls}" var="imageUrl">
-                                                    <div class="pt" data-imgbigurl="${imageUrl}">
-                                                        <img src="${imageUrl}" alt="${product.name}">
-                                                    </div>
-                                                </c:forEach> -->
+                                                <div class="pt active"
+                                                    data-imgbigurl="./public/img/product-single/product-1.jpg"><img
+                                                        src="../public/img/product-single/product-1.jpg" alt=""></div>
+                                                <div class="pt"
+                                                    data-imgbigurl="./public/img/product-single/product-2.jpg"><img
+                                                        src="../public/img/product-single/product-2.jpg" alt=""></div>
+                                                <div class="pt"
+                                                    data-imgbigurl="./public/img/product-single/product-3.jpg"><img
+                                                        src="../public/img/product-single/product-3.jpg" alt=""></div>
+                                                <div class="pt"
+                                                    data-imgbigurl="./public/img/product-single/product-3.jpg"><img
+                                                        src="../public/img/product-single/product-3.jpg" alt=""></div>
                                             </div>
                                         </div>
                                     </div>
