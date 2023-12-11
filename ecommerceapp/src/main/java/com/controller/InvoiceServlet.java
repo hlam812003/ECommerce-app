@@ -53,8 +53,8 @@ public class InvoiceServlet extends HttpServlet {
             InvoiceDB.insert(invoice);
 
             String emailAddress = user.getEmail();
-            String firstName = user.getFirstName();
-            String lastName = user.getLastName();
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
 
             String companyName = request.getParameter("companyName");
             String countryName = request.getParameter("countryName");
@@ -123,12 +123,6 @@ public class InvoiceServlet extends HttpServlet {
             throws ServletException, IOException {
         if (LoginServlet.isLoggedIn(request, response)) {
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-
-            if (user.getFirstName() == null || user.getLastName() == null) {
-                response.sendRedirect(request.getContextPath() + "/profile");
-                return;
-            }
 
             ShopServlet.setCart(request, response);
 

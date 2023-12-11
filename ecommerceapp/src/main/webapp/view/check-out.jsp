@@ -248,12 +248,12 @@
                                         <div class="col-lg-6">
                                             <label for="fir">First Name <span>*</span></label>
                                             <input type="text" id="fir" name="firstName" value="${user.firstName}"
-                                                disabled required>
+                                                required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="last">Last Name <span>*</span></label>
                                             <input type="text" id="last" name="lastName" value="${user.lastName}"
-                                                disabled required>
+                                                required>
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="cun-name">Company Name</label>

@@ -60,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
                 // Send Verification
                 String subject = "Account Verification";
                 String content = "Please click on the following link to verify your account: "
-                        + "<a href='http://localhost:8080/verify?code="
+                        + "<a href='" + request.getContextPath() + "/verify?code="
                         + URLEncoder.encode(verifyHash.generate((email + verificationCode).toCharArray()),
                                 StandardCharsets.UTF_8.toString())
                         + "'>Verify Account</a>";
