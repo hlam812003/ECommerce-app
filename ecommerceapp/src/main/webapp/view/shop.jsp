@@ -409,12 +409,12 @@
                                                         </div>
                                                         <ul>
                                                             <li class="w-icon active">
-                                                                <a href="/shop/addToCart?id=${product.productId}">
+                                                                <a href="#" onclick="window.location.href='/shop/addToCart?id=${product.productId}&currentPage=' + encodeURIComponent(window.location.href); return false;">
                                                                     <i class="icon_bag_alt"></i>
                                                                 </a>
                                                             </li>
                                                             <li class="quick-view">
-                                                                <a href="#">+ Quick View</a>
+                                                                <a href="/shop/viewProduct?id=${product.productId}">+ Quick View</a>
                                                             </li>
                                                             <li class="w-icon">
                                                                 <a href="#"><i class="fa fa-random"></i></a>

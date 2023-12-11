@@ -248,49 +248,59 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="cart-table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Image</th>
-                                                <th class="p-name">Product Name</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${cart.items}" var="item">
-                                                <tr>
-                                                    <td class="cart-pic">
-                                                        <c:if test="${not empty item.item.imageUrl}">
-                                                            <img src="${item.item.imageUrl}" alt="${item.item.name}">
-                                                        </c:if>
-                                                    </td>
-                                                    <td class="cart-title">
-                                                        <h5>
-                                                            ${item.item.name}
-                                                        </h5>
-                                                    </td>
-                                                    <td class="p-price">
-                                                        $${item.item.price}
-                                                    </td>
-                                                    <td class="qua-col">
-                                                        <div class="quantity">
-                                                            <input type="number" name="quantity"
-                                                                value="${item.quantity}" form="update-quantity" min="1">
-
-                                                        </div>
-                                                    </td>
-                                                    <td class="total-price">$${item.item.price * item.quantity}</td>
-                                                    <td class="close-td">
-                                                        <a href="/shop/removeFromCart?id=${item.item.productId}"
-                                                            class="ti-close"></a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
+                                    <c:choose>
+                                        <c:when test="${not empty cart and not empty cart.items}">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Image</th>
+                                                        <th class="p-name">Product Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${cart.items}" var="item">
+                                                        <tr>
+                                                            <td class="cart-pic">
+                                                                <c:if test="${not empty item.item.imageUrl}">
+                                                                    <img src="${item.item.imageUrl}" alt="${item.item.name}">
+                                                                </c:if>
+                                                            </td>
+                                                            <td class="cart-title">
+                                                                <h5>
+                                                                    ${item.item.name}
+                                                                </h5>
+                                                            </td>
+                                                            <td class="p-price">
+                                                                $${item.item.price}
+                                                            </td>
+                                                            <td class="qua-col">
+                                                                <div class="quantity">
+                                                                    <div class="pro-qty">
+                                                                        <input type="number" name="quantity"
+                                                                        value="${item.quantity}" form="update-quantity" min="1">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="total-price">$${item.item.price * item.quantity}</td>
+                                                            <td class="close-td">
+                                                                <a href="/shop/removeFromCart?id=${item.item.productId}"
+                                                                    class="ti-close"></a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="empty-cart text-center font-bold" style="font-size: 24px; color: black;">
+                                                <p>Your cart is empty.</p>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">

@@ -143,42 +143,36 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="cart-icon"><a href="#">
+                                        <li class="cart-icon">
+                                            <a href="/shopping-cart">
                                                 <i class="icon_bag_alt"></i>
-                                                <!-- <span>3</span> -->
+                                                <span>${cartQuantity}</span>
                                             </a>
                                             <div class="cart-hover">
                                                 <div class="select-items">
                                                     <table>
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="si-pic"><img
-                                                                        src="../public/img/select-product-1.jpg" alt="">
-                                                                </td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>$60.00 x 1</p>
-                                                                        <h6>Kabino Bedside Table</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close"></i>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="si-pic"><img
-                                                                        src="../public/img/select-product-2.jpg" alt="">
-                                                                </td>
-                                                                <td class="si-text">
-                                                                    <div class="product-selected">
-                                                                        <p>$60.00 x 1</p>
-                                                                        <h6>Kabino Bedside Table</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="si-close">
-                                                                    <i class="ti-close"></i>
-                                                                </td>
-                                                            </tr>
+                                                            <c:forEach items="${cart.items}" var="item">
+                                                                <tr>
+                                                                    <td class="si-pic">
+                                                                        <c:if test="${not empty item.item.imageUrl}">
+                                                                            <img src="${item.item.imageUrl}"
+                                                                                alt="${item.item.name}" />
+                                                                        </c:if>
+                                                                    </td>
+                                                                    <td class="si-text">
+                                                                        <div class="product-selected">
+                                                                            <p>
+                                                                                $${item.item.price} x ${item.quantity}
+                                                                            </p>
+                                                                            <h6>${item.item.name}</h6>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="si-close">
+                                                                        <i class="ti-close"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -192,7 +186,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                       <li class="cart-price">$${cartTotal}</li>
+                                        <li class="cart-price">$${cartTotal}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -383,8 +377,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="product-pic-zoom">
-                                            <img class="product-big-img"
-                                                src="../public/img/product-single/product-1.jpg" alt="">
+                                            <img class="product-big-img" src="${product.imageUrl}" alt="${product.name}">
                                             <div class="zoom-icon">
                                                 <i class="fa fa-search-plus"></i>
                                             </div>
@@ -409,23 +402,15 @@
                                     <div class="col-lg-6">
                                         <div class="product-details">
                                             <div class="pd-title">
-                                                <span>oranges</span>
-                                                <h3>Pure Pineapple</h3>
+                                                <span>${product.brand}</span>
+                                                <h3>${product.name}</h3>
                                                 <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                             </div>
-                                            <div class="pd-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>(5)</span>
-                                            </div>
                                             <div class="pd-desc">
-                                                <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod
-                                                    tempor sum dolor
-                                                    sit amet, consectetur adipisicing elit, sed do mod tempor</p>
-                                                <h4>$495.00 <span>629.99</span></h4>
+                                                <p>${product.description}</p>
+                                                <h4>$${product.price} 
+                                                    <!-- <span>629.99</span> -->
+                                                </h4>
                                             </div>
                                             <div class="pd-color">
                                                 <h6>Color</h6>
@@ -466,14 +451,17 @@
                                                 <div class="pro-qty">
                                                     <input type="text" value="1">
                                                 </div>
-                                                <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                                <a href="#" class="primary-btn pd-cart" 
+                                                    onclick="window.location.href='/shop/addToCart?id=${product.productId}&currentPage=' + encodeURIComponent(window.location.href); return false;">
+                                                    Add To Cart
+                                                </a>                               
                                             </div>
                                             <ul class="pd-tags">
-                                                <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
-                                                <li><span>TAGS</span>: Clothing, T-shirt, Woman</li>
+                                                <li><span>CATEGORIES</span>: ${product.category}</li>
+                                                <li><span>TAGS</span>: ${product.tags}</li>
                                             </ul>
                                             <div class="pd-share">
-                                                <div class="p-code">Sku : 00012</div>
+                                                <div class="p-code">Sku : ${product.productId}</div>
                                                 <div class="pd-social">
                                                     <a href="#"><i class="ti-facebook"></i></a>
                                                     <a href="#"><i class="ti-twitter-alt"></i></a>
@@ -483,7 +471,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-tab">
+                                <!-- <div class="product-tab">
                                     <div class="tab-item">
                                         <ul class="nav" role="tablist">
                                             <li>
@@ -659,7 +647,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

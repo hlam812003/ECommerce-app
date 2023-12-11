@@ -145,9 +145,9 @@
                                             </div>
                                         </li>
                                         <li class="cart-icon">
-                                            <a href="#">
+                                            <a href="/shopping-cart">
                                                 <i class="icon_bag_alt"></i>
-                                                <!-- <span>3</span> -->
+                                                <span>${cartQuantity}</span>
                                             </a>
                                             <div class="cart-hover">
                                                 <div class="select-items">
@@ -156,14 +156,15 @@
                                                             <c:forEach items="${cart.items}" var="item">
                                                                 <tr>
                                                                     <td class="si-pic">
-                                                                        <c:if test="${not empty item.item.imageUrls}">
-                                                                            <img src="${item.item.imageUrls[0]}"
+                                                                        <c:if test="${not empty item.item.imageUrl}">
+                                                                            <img src="${item.item.imageUrl}"
                                                                                 alt="${item.item.name}" />
                                                                         </c:if>
                                                                     </td>
                                                                     <td class="si-text">
                                                                         <div class="product-selected">
-                                                                            <p>$${item.item.price} x ${item.quantity}
+                                                                            <p>
+                                                                                $${item.item.price} x ${item.quantity}
                                                                             </p>
                                                                             <h6>${item.item.name}</h6>
                                                                         </div>

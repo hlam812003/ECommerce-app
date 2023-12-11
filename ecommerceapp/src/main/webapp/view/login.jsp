@@ -136,44 +136,35 @@
 								</div>
 							</li>
 							<li class="cart-icon">
-								<a href="#">
+								<a href="/shopping-cart">
 									<i class="icon_bag_alt"></i>
-									<!-- <span>3</span> -->
+									<span>${cartQuantity}</span>
 								</a>
 								<div class="cart-hover">
 									<div class="select-items">
 										<table>
 											<tbody>
-												<tr>
-													<td class="si-pic">
-														<img src="../public/img/select-product-1.jpg"
-															alt="" />
-													</td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close">
-														<i class="ti-close"></i>
-													</td>
-												</tr>
-												<tr>
-													<td class="si-pic">
-														<img src="../public/img/select-product-2.jpg"
-															alt="" />
-													</td>
-													<td class="si-text">
-														<div class="product-selected">
-															<p>$60.00 x 1</p>
-															<h6>Kabino Bedside Table</h6>
-														</div>
-													</td>
-													<td class="si-close">
-														<i class="ti-close"></i>
-													</td>
-												</tr>
+												<c:forEach items="${cart.items}" var="item">
+													<tr>
+														<td class="si-pic">
+															<c:if test="${not empty item.item.imageUrl}">
+																<img src="${item.item.imageUrl}"
+																	alt="${item.item.name}" />
+															</c:if>
+														</td>
+														<td class="si-text">
+															<div class="product-selected">
+																<p>
+																	$${item.item.price} x ${item.quantity}
+																</p>
+																<h6>${item.item.name}</h6>
+															</div>
+														</td>
+														<td class="si-close">
+															<i class="ti-close"></i>
+														</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -182,12 +173,12 @@
 										<h5>$${cartTotal}</h5>
 									</div>
 									<div class="select-button">
-                                        <a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
-                                        <a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
+										<a href="/shopping-cart" class="primary-btn view-cart">VIEW CART</a>
+										<a href="/checkout" class="primary-btn checkout-btn">CHECKOUT</a>
 									</div>
 								</div>
 							</li>
-							<li class="cart-price">$0</li>
+						   <li class="cart-price">$${cartTotal}</li>
 						</ul>
 					</div>
 				</div>
