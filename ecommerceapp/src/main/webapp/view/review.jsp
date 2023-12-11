@@ -233,7 +233,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="last">Last Name</label>
-                                            <input type="text" id="last" value="${payer.firstName}" disabled>
+                                            <input type="text" id="last" value="${payer.lastName}" disabled>
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="cun-name">Email</label>
@@ -241,7 +241,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="phone">Phone Number</label>
-                                            <input type="text" id="phone" value="${payer.phone}" disabled>
+                                            <input type="text" id="phone" value="${payer.phoneNumber}" disabled>
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="street">Street Address</label>
