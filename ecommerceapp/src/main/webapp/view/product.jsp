@@ -10,7 +10,7 @@
                 <meta name="keywords" content="Fashi, unica, creative, html">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <title>Fashi | Template</title>
+                <title>Fashi | Product</title>
 
                 <!-- Google Font -->
                 <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
@@ -384,18 +384,11 @@
                                         </div>
                                         <div class="product-thumbs">
                                             <div class="product-thumbs-track ps-slider owl-carousel">
-                                                <div class="pt active"
-                                                    data-imgbigurl="./public/img/product-single/product-1.jpg"><img
-                                                        src="../public/img/product-single/product-1.jpg" alt=""></div>
-                                                <div class="pt"
-                                                    data-imgbigurl="./public/img/product-single/product-2.jpg"><img
-                                                        src="../public/img/product-single/product-2.jpg" alt=""></div>
-                                                <div class="pt"
-                                                    data-imgbigurl="./public/img/product-single/product-3.jpg"><img
-                                                        src="../public/img/product-single/product-3.jpg" alt=""></div>
-                                                <div class="pt"
-                                                    data-imgbigurl="./public/img/product-single/product-3.jpg"><img
-                                                        src="../public/img/product-single/product-3.jpg" alt=""></div>
+                                                <c:forEach items="${product.imageUrls}" var="imageUrl" varStatus="status">
+                                                    <div class="pt ${status.index == 0 ? 'active' : ''}" data-imgbigurl="${imageUrl}">
+                                                        <img src="${imageUrl}" alt="${product.name}">
+                                                    </div>
+                                                </c:forEach>
                                             </div>
                                         </div>
                                     </div>

@@ -2,11 +2,16 @@ package com.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Product implements Serializable {
@@ -25,6 +30,11 @@ public class Product implements Serializable {
     private String category;
     private String tags;
     private String imageUrl;
+
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    private List<String> imageUrls = new ArrayList<>();
+
     private LocalDate releaseDate;
 
     public Product() {
@@ -155,6 +165,21 @@ public class Product implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public void addImageUrl(String imageUrl) {
+        if (this.imageUrls == null) {
+            this.imageUrls = new ArrayList<>();
+        }
+        this.imageUrls.add(imageUrl);
     }
 
     public LocalDate getReleaseDate() {
