@@ -449,7 +449,8 @@
                                             </div>
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" value="1">
+                                                    <input type="number" name="quantity"
+                                                    value="${item.quantity}" form="update-quantity" min="1">
                                                 </div>
                                                 <a href="#" class="primary-btn pd-cart" 
                                                     onclick="window.location.href='/shop/addToCart?id=${product.productId}&currentPage=' + encodeURIComponent(window.location.href); return false;">
