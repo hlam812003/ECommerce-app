@@ -14,10 +14,12 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ViewProductServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GeneralServlet.isLoaded(request, response);
+
         String productIdParam = request.getParameter("id");
-        if(productIdParam != null) {
+        if (productIdParam != null) {
             try {
                 Long productId = Long.parseLong(productIdParam);
                 Product product = ProductDB.findProductById(productId);

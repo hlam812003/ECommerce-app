@@ -34,6 +34,8 @@ public class GeneralServlet {
                 user = UserDB.selectUser(email);
                 if (user != null && user.isVerified()) {
                     session.setAttribute("user", user);
+                } else {
+                    return false;
                 }
             }
         }
@@ -60,6 +62,7 @@ public class GeneralServlet {
 
         session.setAttribute("favorites", favorites);
         request.setAttribute("favorites", favorites);
+        request.setAttribute("favoritesQuantity", favorites.getProducts().size());
 
         return true;
     }

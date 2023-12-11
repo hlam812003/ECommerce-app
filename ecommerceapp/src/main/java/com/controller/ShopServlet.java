@@ -32,9 +32,7 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (LoginServlet.isLoggedIn(request, response)) {
-            setCart(request, response);
-        }
+        GeneralServlet.isLoaded(request, response);
 
         Product product = new Product();
 
