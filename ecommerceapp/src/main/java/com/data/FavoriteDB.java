@@ -1,7 +1,5 @@
 package com.data;
 
-import java.util.logging.Logger;
-
 import com.model.Favorites;
 import com.model.User;
 
@@ -11,8 +9,6 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 public class FavoriteDB {
-    private static Logger logger = Logger.getLogger(FavoriteDB.class.getName());
-
     public static void insert(Favorites favorites) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -60,11 +56,13 @@ public class FavoriteDB {
 
     public static Favorites findByUser(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String queryString = "SELECT f FROM Favorites f " + "WHERE f.user = :user";
+        TypedQuery<Favorites> query = em.createQuery(queryString, Favorites.class);
+        query.setParameter("user", user);
         try {
-            TypedQuery<Favorites> q = em.createQuery("SELECT f FROM Favorites f WHERE f.user = :user", Favorites.class);
-            q.setParameter("user", user);
-            return q.getSingleResult();
+            return query.getSingleResult();
         } catch (NoResultException e) {
+            System.out.println(e.getMessage());
             return null;
         } finally {
             em.close();

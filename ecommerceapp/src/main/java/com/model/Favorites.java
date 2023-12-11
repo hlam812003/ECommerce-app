@@ -1,9 +1,11 @@
+
 package com.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,17 +16,16 @@ import jakarta.persistence.OneToOne;
 public class Favorites {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @OneToOne
     private User user;
-    @OneToMany(targetEntity = Product.class)
+
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Product> products;
 
     public Favorites() {
         this.user = new User();
-        this.products = new ArrayList<>();
+        this.products = new ArrayList<Product>();
     }
 
     public Favorites(User user, List<Product> products) {
