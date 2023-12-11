@@ -124,8 +124,8 @@
                                                             <c:forEach items="${favorites.products}" var="product">
                                                                 <tr>
                                                                     <td class="si-pic">
-                                                                        <c:if test="${not empty product.imageUrls}">
-                                                                            <img src="${product.imageUrls[0]}"
+                                                                        <c:if test="${not empty product.imageUrl}">
+                                                                            <img src="${product.imageUrl}"
                                                                                 alt="${product.name}" />
                                                                         </c:if>
                                                                     </td>

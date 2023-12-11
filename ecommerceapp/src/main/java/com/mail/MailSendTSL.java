@@ -19,7 +19,8 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 
 public class MailSendTSL {
-    public static void sendEmail(String recipientsEmail, String subject, String htmlContent, String filePath) throws MessagingException {
+    public static void sendEmail(String recipientsEmail, String subject, String htmlContent, String filePath)
+            throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -52,12 +53,15 @@ public class MailSendTSL {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
 
-            // Second part is attachment
-            messageBodyPart = new MimeBodyPart();
-            DataSource source = new FileDataSource(filePath);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName("/view/invoice-email.jsp");
-            multipart.addBodyPart(messageBodyPart);
+            if (filePath != null) {
+                // Second part is attachment
+                messageBodyPart = new MimeBodyPart();
+                DataSource source = new FileDataSource(filePath);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName("/view/invoice-email.jsp");
+                multipart.addBodyPart(messageBodyPart);
+
+            }
 
             // Send the complete message parts
             message.setContent(multipart);

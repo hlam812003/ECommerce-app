@@ -50,11 +50,9 @@ public class AddToCartServlet extends HttpServlet {
                 boolean added = false;
 
                 List<LineItem> lineItems = cart.getItems();
-                for (int i = 0; i < lineItems.size(); i++) {
-                    LineItem item = lineItems.get(i);
+                for (LineItem item : lineItems) {
                     if (item.getItem().getProductId().equals(productId)) {
-                        int quantity = item.getQuantity();
-                        item.setQuantity(quantity + 1);
+                        item.setQuantity(item.getQuantity() + 1);
                         LineItemDB.update(item);
                         added = true;
                         break;
@@ -64,9 +62,7 @@ public class AddToCartServlet extends HttpServlet {
                 if (!added) {
                     Product product = ProductDB.findProductById(productId);
                     int quantity = 1;
-                    LineItem item = new LineItem();
-                    item.setItem(product);
-                    item.setQuantity(quantity);
+                    LineItem item = new LineItem(null, product, quantity);
 
                     LineItemDB.insert(item);
                     cart.addItem(item);

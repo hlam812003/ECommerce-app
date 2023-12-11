@@ -26,7 +26,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             String resetCode = generateResetCode();
             String htmlContent = createHtmlContent(resetCode);
             try {
-                MailSendTSL.sendEmail(email, "Password Reset Code", htmlContent);
+                MailSendTSL.sendEmail(email, "Password Reset Code", htmlContent, null);
                 request.getSession().setAttribute("resetCode", resetCode); // Store reset code in session
                 request.getSession().setAttribute("resetEmail", email); // Store user email in session
                 request.setAttribute("message", "A reset code has been sent to your email.");

@@ -27,11 +27,14 @@ public class Invoice {
 
     private LocalDateTime invoiceDateTime;
 
+    private boolean isProcessed;
+
     public Invoice() {
         this.invoiceId = null;
         this.user = new User();
         this.items = new ArrayList<LineItem>();
         this.invoiceDateTime = null;
+        this.isProcessed = false;
     }
 
     public Invoice(Long invoiceId, User user, List<LineItem> items, LocalDateTime invoiceDateTime) {
@@ -39,6 +42,7 @@ public class Invoice {
         this.user = user;
         this.items = items;
         this.invoiceDateTime = invoiceDateTime;
+        this.isProcessed = false;
     }
 
     public Long getInvoiceId() {
@@ -79,5 +83,13 @@ public class Invoice {
             total += item.getTotal();
         }
         return total;
+    }
+
+    public boolean getIsProcessed() {
+        return isProcessed;
+    }
+
+    public void setIsProcessed(boolean isProcessed) {
+        this.isProcessed = isProcessed;
     }
 }

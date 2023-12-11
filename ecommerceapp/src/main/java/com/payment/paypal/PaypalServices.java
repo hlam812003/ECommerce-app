@@ -17,9 +17,17 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
 public class PaypalServices {
-    private static final String CLIENT_ID = "AZuC8jj38fh6_DjDjxT2dllPfz-IDTCcc8p_gLJIShDu1xyGNVbL-JcdUhwuQ_fGmijQv-ww_AcjVpCd";
-    private static final String CLIENT_SECRET = "EEcAVbsDsa75_MkjACYDRL_JqwW2ODFa43PPGiTYZIMtTPaQEpVhsytD6Q3UrPygBFNCEkmUy2J3Ipdy";
-    private static final String MODE = "sandbox";
+    // private static final String CLIENT_ID =
+    // "AZuC8jj38fh6_DjDjxT2dllPfz-IDTCcc8p_gLJIShDu1xyGNVbL-JcdUhwuQ_fGmijQv-ww_AcjVpCd";
+    // private static final String CLIENT_SECRET =
+    // "EEcAVbsDsa75_MkjACYDRL_JqwW2ODFa43PPGiTYZIMtTPaQEpVhsytD6Q3UrPygBFNCEkmUy2J3Ipdy";
+    // private static final String MODE = "sandbox";
+
+    public static final String CLIENT_ID = "ATBwxctchja2exEWDllNczOUS69fUG9IkTUhXDwuRIAZCeg_WMNMs2hFlgvWVcXlokf_V2xDI-pefSfG";
+
+    public static final String SECRET_KEY = "EGCza78gqONc8tGMk5T4h7LJYb-3twjynqGWRYT6iqUWAppbOQLo6xNHI4h03DEaR6kxdc4or8ojt4o4";
+
+    public static final String MODE = "sandbox";
 
     public String authorizePayment(OrderDetail orderDetail) throws PayPalRESTException {
 
@@ -33,7 +41,7 @@ public class PaypalServices {
         requestPayment.setPayer(payer);
         requestPayment.setIntent("authorize");
 
-        APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+        APIContext apiContext = new APIContext(CLIENT_ID, SECRET_KEY, MODE);
 
         Payment approvedPayment = requestPayment.create(apiContext);
 
@@ -41,7 +49,7 @@ public class PaypalServices {
     }
 
     public Payment getPaymentDetails(String paymentId) throws PayPalRESTException {
-        APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+        APIContext apiContext = new APIContext(CLIENT_ID, SECRET_KEY, MODE);
         return Payment.get(apiContext, paymentId);
     }
 
@@ -51,35 +59,35 @@ public class PaypalServices {
 
         PayerInfo payerInfo = new PayerInfo();
         payerInfo.setFirstName(orderDetail.getFirstName())
-                 .setLastName(orderDetail.getLastName())
-                 .setEmail(orderDetail.getEmailAddress());
-
+                .setLastName(orderDetail.getLastName())
+                .setEmail(orderDetail.getEmailAddress());
         payer.setPayerInfo(payerInfo);
         return payer;
     }
 
     private RedirectUrls getRedirectURLs() {
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/payment-cancel.html");
+        redirectUrls.setCancelUrl("http://localhost:8080/view/payment-cancel.html");
         redirectUrls.setReturnUrl("http://localhost:8080/paypal-review");
         return redirectUrls;
     }
 
     private List<Transaction> getTransactionInformation(OrderDetail orderDetail) {
         Details details = new Details();
-        details.setShipping(String.format("%.2f", orderDetail.getTaxRate()));
-        details.setSubtotal(String.format("%.2f", orderDetail.getTotalAmount()));
+        details.setShipping(String.format("%.2f", orderDetail.getShippingAmount()));
+        details.setTax(String.format("%.2f", orderDetail.getTaxAmount()));
+        details.setSubtotal(String.format("%.2f", orderDetail.getSubtotalAmount()));
 
         Amount amount = new Amount();
-        amount.setCurrency("USD");
         amount.setTotal(String.format("%.2f", orderDetail.getTotalAmount()));
+        amount.setCurrency("USD");
         amount.setDetails(details);
 
         Transaction transaction = new Transaction();
         transaction.setAmount(amount);
-        transaction.setDescription("Order at My Shop");
-
-        List<Transaction> listTransaction = new ArrayList<>();
+        transaction.setDescription("Order at Fashi");
+        transaction.setCustom(orderDetail.getInvoice().getInvoiceId().toString());
+        List<Transaction> listTransaction = new ArrayList<Transaction>();
         listTransaction.add(transaction);
         return listTransaction;
     }
@@ -94,18 +102,17 @@ public class PaypalServices {
                 break;
             }
         }
-
         return approvalLink;
     }
 
     public Payment executePayment(String paymentId, String payerId)
-        throws PayPalRESTException {
+            throws PayPalRESTException {
         PaymentExecution paymentExecution = new PaymentExecution();
         paymentExecution.setPayerId(payerId);
 
         Payment payment = new Payment().setId(paymentId);
 
-        APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+        APIContext apiContext = new APIContext(CLIENT_ID, SECRET_KEY, MODE);
 
         return payment.execute(apiContext, paymentExecution);
     }

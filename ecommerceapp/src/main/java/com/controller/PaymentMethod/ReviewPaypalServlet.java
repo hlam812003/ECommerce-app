@@ -3,21 +3,27 @@ package com.controller.PaymentMethod;
 import java.io.IOException;
 
 import com.payment.paypal.PaypalServices;
-import com.paypal.api.payments.*;
+import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.ShippingAddress;
+import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.PayPalRESTException;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/paypal-review")
 public class ReviewPaypalServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
-    public ReviewPaypalServlet() {}
+
+    public ReviewPaypalServlet() {
+    }
 
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String paymentId = request.getParameter("paymentId");
         String payerId = request.getParameter("PayerID");
@@ -42,6 +48,6 @@ public class ReviewPaypalServlet extends HttpServlet {
             request.setAttribute("errorMessage", ex.getMessage());
             ex.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/view/error.jsp");
-        }      
+        }
     }
 }

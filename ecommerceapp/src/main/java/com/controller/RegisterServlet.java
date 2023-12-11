@@ -66,7 +66,7 @@ public class RegisterServlet extends HttpServlet {
                         + "'>Verify Account</a>";
 
                 try {
-                    MailSendTSL.sendEmail(email, subject, content);
+                    MailSendTSL.sendEmail(email, subject, content, null);
                     message = "Verification email sent. Please check your email to verify your account.";
                 } catch (MessagingException e) {
                     message = "Failed to send verification email.";

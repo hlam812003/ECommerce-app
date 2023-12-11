@@ -115,8 +115,8 @@
                                                             <c:forEach items="${favorites.products}" var="product">
                                                                 <tr>
                                                                     <td class="si-pic">
-                                                                        <c:if test="${not empty product.imageUrls}">
-                                                                            <img src="${product.imageUrls[0]}"
+                                                                        <c:if test="${not empty product.imageUrl}">
+                                                                            <img src="${product.imageUrl}"
                                                                                 alt="${product.name}" />
                                                                         </c:if>
                                                                     </td>
@@ -226,7 +226,7 @@
                                 <div class="breadcrumb-text product-more">
                                     <a href="/"><i class="fa fa-home"></i> Home</a>
                                     <a href="/shop">Shop</a>
-                                    <span>CHECKOUT</span>
+                                    <span>Checkout</span>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@
                 <!-- Shopping Cart Section Begin -->
                 <section class="checkout-section spad">
                     <div class="container">
-                        <form id="checkoutForm" method="post" class="checkout-form" onsubmit="handleFormSubmit()">
+                        <form id="checkoutForm" method="post" class="checkout-form" action="checkout">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <!-- <div class="checkout-content">
@@ -247,11 +247,13 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <label for="fir">First Name <span>*</span></label>
-                                            <input type="text" id="fir" name="firstName" required>
+                                            <input type="text" id="fir" name="firstName" value="${user.firstName}"
+                                                disabled required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="last">Last Name <span>*</span></label>
-                                            <input type="text" id="last" name="lastName" required>
+                                            <input type="text" id="last" name="lastName" value="${user.lastName}"
+                                                disabled required>
                                         </div>
                                         <div class="col-lg-12">
                                             <label for="cun-name">Company Name</label>
@@ -268,7 +270,7 @@
                                             <!-- <input type="text"> -->
                                         </div>
                                         <div class="col-lg-12">
-                                            <label for="zip">Postcode / ZIP (optional)</label>
+                                            <label for="zip">Postal code / ZIP (optional)</label>
                                             <input type="text" id="zip" name="postCode">
                                         </div>
                                         <div class="col-lg-12">
@@ -277,7 +279,8 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="email">Email Address <span>*</span></label>
-                                            <input type="text" id="email" name="emailAddress" required>
+                                            <input type="text" id="email" name="emailAddress" value="${user.email}"
+                                                disabled required>
                                         </div>
                                         <div class="col-lg-6">
                                             <label for="phone">Phone <span>*</span></label>
@@ -306,8 +309,10 @@
                                                     </li>
                                                 </c:forEach>
                                                 <li class="fw-normal">Subtotal <span>$${cartTotal}</span></li>
-                                                <li class="fw-normal">Tax Rate <span>5%</span></li>
-                                                <li class="total-price">Total <span>$${cartTotal*(1+0.05)}</span>
+                                                <li class="fw-normal">Tax <span>$${cartTotal * 0.05} (5%)</span></li>
+                                                <li class="fw-normal">Shipping <span>$${cartTotal * 0.01} (1%)</span>
+                                                </li>
+                                                <li class="total-price">Total <span>$${cartTotal*(1+0.06)}</span>
                                                 </li>
                                             </ul>
                                             <div class="payment-check">
@@ -446,13 +451,13 @@
                 <script src="../assets/js/jquery.slicknav.js"></script>
                 <script src="../assets/js/owl.carousel.min.js"></script>
                 <script src="../assets/js/main.js"></script>
-                <script type="text/javascript">
+                <!-- <script type="text/javascript">
                     function handleFormSubmit() {
                         var form = document.getElementById('checkoutForm');
                         var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
                         form.action = paymentMethod === 'paypal' ? 'paypal-authorize' : 'checkout';
                     }
-                </script>
+                </script> -->
             </body>
 
             </html>

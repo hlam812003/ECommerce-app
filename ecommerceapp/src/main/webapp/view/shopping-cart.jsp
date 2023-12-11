@@ -324,7 +324,7 @@
                                         <div class="proceed-checkout">
                                             <ul>
                                                 <li class="subtotal">Subtotal <span>$${cartTotal}</span></li>
-                                                <li class="cart-total">Total <span>$${cartTotal*(1.05)}</span></li>
+                                                <li class="cart-total">Total <span>$${cartTotal*(1.06)}</span></li>
                                             </ul>
                                             <a href="/checkout" class="proceed-btn">PROCEED TO CHECKOUT</a>
                                         </div>

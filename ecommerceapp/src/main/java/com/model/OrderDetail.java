@@ -12,7 +12,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @OneToOne
     private Invoice invoice;
-
     private String firstName;
     private String lastName;
     private String companyName;
@@ -24,7 +23,8 @@ public class OrderDetail {
     private String phoneNumber;
     private Double totalAmount;
     private Double subtotalAmount;
-    private Double taxRate;
+    private Double taxAmount;
+    private Double shippingAmount;
     private String paymentMethod;
 
     public OrderDetail() {
@@ -40,14 +40,13 @@ public class OrderDetail {
         this.phoneNumber = "";
         this.totalAmount = 0.0;
         this.subtotalAmount = 0.0;
-        this.taxRate = 0.0;
+        this.taxAmount = 0.0;
         this.paymentMethod = "";
     }
 
     public OrderDetail(Invoice invoice, String firstName, String lastName, String companyName, String countryName,
-            String streetAddress,
-            String postCode, String cityName, String emailAddress, String phoneNumber, double totalAmount,
-            double subtotalAmount, double taxRate, String paymentMethod) {
+            String streetAddress, String postCode, String cityName, String emailAddress, String phoneNumber,
+            Double totalAmount, Double subtotalAmount, Double taxAmount, Double shippingAmount, String paymentMethod) {
         this.invoice = invoice;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,7 +59,8 @@ public class OrderDetail {
         this.phoneNumber = phoneNumber;
         this.totalAmount = totalAmount;
         this.subtotalAmount = subtotalAmount;
-        this.taxRate = taxRate;
+        this.taxAmount = taxAmount;
+        this.shippingAmount = shippingAmount;
         this.paymentMethod = paymentMethod;
     }
 
@@ -144,28 +144,36 @@ public class OrderDetail {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount + this.taxRate;
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount + this.taxAmount;
     }
 
-    public double getSubtotalAmount() {
+    public Double getSubtotalAmount() {
         return subtotalAmount;
     }
 
-    public void setSubtotalAmount(double subtotalAmount) {
+    public void setSubtotalAmount(Double subtotalAmount) {
         this.subtotalAmount = subtotalAmount;
     }
 
-    public Double getTaxRate() {
-        return taxRate;
+    public Double getTaxAmount() {
+        return taxAmount;
     }
 
-    public void setTaxRate(double taxRate) {
-        this.taxRate = taxRate;
+    public void setTaxAmount(Double taxAmount) {
+        this.taxAmount = taxAmount;
+    }
+
+    public Double getShippingAmount() {
+        return shippingAmount;
+    }
+
+    public void setShippingAmount(Double shippingAmount) {
+        this.shippingAmount = shippingAmount;
     }
 
     public String getPaymentMethod() {
