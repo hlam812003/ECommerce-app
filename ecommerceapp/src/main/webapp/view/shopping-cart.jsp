@@ -305,7 +305,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="cart-buttons">
-                                            <form action="/shopping-cart" method="post" id="update-quantity">
+                                            <form action="shopping-cart" method="post" id="update-quantity">
                                                 <input type="hidden" name="action" value="update-quantity">
                                             </form>
                                             <input type="submit" class="primary-btn up-cart" value="Update cart"

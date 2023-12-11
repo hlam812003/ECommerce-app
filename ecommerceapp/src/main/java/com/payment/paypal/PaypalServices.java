@@ -17,8 +17,10 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
 public class PaypalServices {
-    // private static final String CLIENT_ID = "AZuC8jj38fh6_DjDjxT2dllPfz-IDTCcc8p_gLJIShDu1xyGNVbL-JcdUhwuQ_fGmijQv-ww_AcjVpCd";
-    // private static final String SECRET_KEY = "EEcAVbsDsa75_MkjACYDRL_JqwW2ODFa43PPGiTYZIMtTPaQEpVhsytD6Q3UrPygBFNCEkmUy2J3Ipdy";
+    // private static final String CLIENT_ID =
+    // "AZuC8jj38fh6_DjDjxT2dllPfz-IDTCcc8p_gLJIShDu1xyGNVbL-JcdUhwuQ_fGmijQv-ww_AcjVpCd";
+    // private static final String SECRET_KEY =
+    // "EEcAVbsDsa75_MkjACYDRL_JqwW2ODFa43PPGiTYZIMtTPaQEpVhsytD6Q3UrPygBFNCEkmUy2J3Ipdy";
     // private static final String MODE = "sandbox";
 
     public static final String CLIENT_ID = "ATBwxctchja2exEWDllNczOUS69fUG9IkTUhXDwuRIAZCeg_WMNMs2hFlgvWVcXlokf_V2xDI-pefSfG";

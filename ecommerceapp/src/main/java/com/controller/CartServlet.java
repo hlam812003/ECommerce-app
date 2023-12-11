@@ -29,8 +29,6 @@ public class CartServlet extends HttpServlet {
                 Map<String, String[]> parameterMap = request.getParameterMap();
 
                 for (String key : parameterMap.keySet()) {
-                    System.out.println("'" + key + "' | " + key.getClass().getName());
-
                     if (key.equals("quantity")) {
                         HttpSession session = request.getSession();
                         User user = (User) session.getAttribute("user");

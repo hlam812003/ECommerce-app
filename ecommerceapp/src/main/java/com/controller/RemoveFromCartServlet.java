@@ -31,7 +31,6 @@ public class RemoveFromCartServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            System.out.println(request.getParameter("id"));
             Long productId = Long.parseLong(request.getParameter("id"));
 
             Cart cart = (Cart) CartDB.findCartByUser(user);

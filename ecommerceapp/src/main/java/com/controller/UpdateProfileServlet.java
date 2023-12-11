@@ -28,15 +28,13 @@ public class UpdateProfileServlet extends HttpServlet {
 
             User selectedUser = (User) session.getAttribute("user");
 
-            System.out.println(selectedUser.getEmail());
-
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
 
             // Cookie[] cookies = request.getCookies();
             // String password = CookieUtil.getCookieValue(cookies, "password");
             // if (password == null) {
-            //     password = request.getParameter("password");
+            // password = request.getParameter("password");
             // }
             String password = request.getParameter("password");
 

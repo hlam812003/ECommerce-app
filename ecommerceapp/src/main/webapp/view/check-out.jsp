@@ -312,7 +312,7 @@
                                                 <li class="fw-normal">Tax <span>$${cartTotal * 0.05} (5%)</span></li>
                                                 <li class="fw-normal">Shipping <span>$${cartTotal * 0.01} (1%)</span>
                                                 </li>
-                                                <li class="total-price">Total <span>$${cartTotal*(1+0.06)}</span>
+                                                <li class="total-price">Total <span>$${cartTotal * (1 + 0.06)}</span>
                                                 </li>
                                             </ul>
                                             <div class="payment-check">
@@ -324,7 +324,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="pc-item">
-                                                    <label for="pc-paypal">Paypal
+                                                    <label for="pc-paypal">PayPal
                                                         <input type="radio" id="pc-paypal" name="paymentMethod"
                                                             value="paypal">
                                                         <span class="checkmark"></span>
