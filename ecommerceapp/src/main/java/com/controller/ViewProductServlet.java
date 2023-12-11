@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/shop/viewProduct")
 public class ViewProductServlet extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class ViewProductServlet extends HttpServlet {
                     request.setAttribute("product", product);
 
                     ShopServlet.setCart(request, response);
-                    
+
                     getServletContext().getRequestDispatcher("/view/product.jsp").forward(request, response);
                 } else {
                     // Xử lý trường hợp không tìm thấy sản phẩm
@@ -41,4 +41,3 @@ public class ViewProductServlet extends HttpServlet {
         }
     }
 }
-

@@ -384,14 +384,14 @@
                                         </div>
                                         <div class="product-thumbs">
                                             <div class="product-thumbs-track ps-slider owl-carousel">
-                                                <div class="pt active" data-imgbigurl="${product.imageUrl}">
+                                                <!-- <div class="pt active" data-imgbigurl="${product.imageUrl}">
                                                     <img src="${product.imageUrl}" alt="${product.name}">
                                                 </div>
                                                 <c:forEach items="${product.imageUrls}" var="imageUrl">
                                                     <div class="pt" data-imgbigurl="${imageUrl}">
                                                         <img src="${imageUrl}" alt="${product.name}">
                                                     </div>
-                                                </c:forEach>
+                                                </c:forEach> -->
                                             </div>
                                         </div>
                                     </div>

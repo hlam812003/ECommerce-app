@@ -9,9 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ElementCollection;
+// import jakarta.persistence.CollectionTable;
+// import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Product implements Serializable {
@@ -31,9 +31,9 @@ public class Product implements Serializable {
     private String tags;
     private String imageUrl;
 
-    @ElementCollection
-    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
-    private List<String> imageUrls = new ArrayList<>();
+    // @ElementCollection
+    // @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    // private List<String> imageUrls = new ArrayList<>();
 
     private LocalDate releaseDate;
 
@@ -167,20 +167,20 @@ public class Product implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
+    // public List<String> getImageUrls() {
+    //     return imageUrls;
+    // }
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
+    // public void setImageUrls(List<String> imageUrls) {
+    //     this.imageUrls = imageUrls;
+    // }
 
-    public void addImageUrl(String imageUrl) {
-        if (this.imageUrls == null) {
-            this.imageUrls = new ArrayList<>();
-        }
-        this.imageUrls.add(imageUrl);
-    }
+    // public void addImageUrl(String imageUrl) {
+    //     if (this.imageUrls == null) {
+    //         this.imageUrls = new ArrayList<>();
+    //     }
+    //     this.imageUrls.add(imageUrl);
+    // }
 
     public LocalDate getReleaseDate() {
         return releaseDate;

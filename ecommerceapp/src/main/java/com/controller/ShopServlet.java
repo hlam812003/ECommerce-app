@@ -2,7 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 import com.cookie.CookieUtil;
@@ -53,14 +53,14 @@ public class ShopServlet extends HttpServlet {
                 "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
         product.setReleaseDate(LocalDate.now());
 
-        List<String> imageUrls = new ArrayList<>();
-        imageUrls.add("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
-        imageUrls.add("https://img1.theiconic.com.au/DNFYf2h4sn1bmvz_NcKwmbE65rg=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9384-8051181-2.jpg");
-        imageUrls.add("https://img1.theiconic.com.au/BoVTfOuXmUl1Oo4HN0bkMt5nIgo=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9394-8051181-3.jpg");
-        imageUrls.add("https://img1.theiconic.com.au/D5wDkqhb8yso3HM5FCNAA1xfcIw=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9404-8051181-4.jpg");
-        imageUrls.add("https://img1.theiconic.com.au/oa19E-lHCzIyyYeh5-nnWHMuqpw=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9414-8051181-5.jpg");
-        imageUrls.add("https://img1.theiconic.com.au/1kCCDLlOLX7kTDFITOQvsdbHxRk=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9424-8051181-6.jpg");
-        product.setImageUrls(imageUrls);
+        // List<String> imageUrls = new ArrayList<>();
+        // imageUrls.add("https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
+        // imageUrls.add("https://img1.theiconic.com.au/DNFYf2h4sn1bmvz_NcKwmbE65rg=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9384-8051181-2.jpg");
+        // imageUrls.add("https://img1.theiconic.com.au/BoVTfOuXmUl1Oo4HN0bkMt5nIgo=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9394-8051181-3.jpg");
+        // imageUrls.add("https://img1.theiconic.com.au/D5wDkqhb8yso3HM5FCNAA1xfcIw=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9404-8051181-4.jpg");
+        // imageUrls.add("https://img1.theiconic.com.au/oa19E-lHCzIyyYeh5-nnWHMuqpw=/fit-in/1000x0/filters:fill(ffffff):quality(85):format(webp)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9414-8051181-5.jpg");
+        // imageUrls.add("https://img1.theiconic.com.au/1kCCDLlOLX7kTDFITOQvsdbHxRk=/634x811/filters:quality(95):fill(ffffff)/http%3A%2F%2Fstatic.theiconic.com.au%2Fp%2Fadidas-sportswear-9424-8051181-6.jpg");
+        // product.setImageUrls(imageUrls);
 
         ProductDB.insert(product);
 
