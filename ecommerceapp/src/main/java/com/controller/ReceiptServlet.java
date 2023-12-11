@@ -20,6 +20,7 @@ public class ReceiptServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GeneralServlet.isLoaded(request, response);
         if (LoginServlet.isLoggedIn(request, response)) {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");

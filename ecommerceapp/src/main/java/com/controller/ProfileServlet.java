@@ -14,6 +14,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GeneralServlet.isLoaded(request, response);
         if (LoginServlet.isLoggedIn(request, response)) {
             String url = "/view/user-profile.jsp";
             getServletContext().getRequestDispatcher(url).forward(request, response);

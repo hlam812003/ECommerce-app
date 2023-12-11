@@ -16,6 +16,8 @@ public class VerificationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GeneralServlet.isLoaded(request, response);
+        
         String code = request.getParameter("code");
         User user = UserDB.getUserByVerificationCode(code);
 
