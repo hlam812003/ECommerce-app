@@ -152,27 +152,37 @@
                                                 <div class="select-items">
                                                     <table>
                                                         <tbody>
-                                                            <c:forEach items="${cart.items}" var="item">
-                                                                <tr>
-                                                                    <td class="si-pic">
-                                                                        <c:if test="${not empty item.item.imageUrl}">
-                                                                            <img src="${item.item.imageUrl}"
-                                                                                alt="${item.item.name}" />
-                                                                        </c:if>
-                                                                    </td>
-                                                                    <td class="si-text">
-                                                                        <div class="product-selected">
-                                                                            <p>
-                                                                                $${item.item.price} x ${item.quantity}
-                                                                            </p>
-                                                                            <h6>${item.item.name}</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="si-close">
-                                                                        <i class="ti-close"></i>
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
+                                                            <c:choose>
+                                                                <c:when test="${empty cart.items}">
+                                                                    <tr>
+                                                                        <td class="text-center" style="font-weight: bold;">Your cart is empty. Buy some?</td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:forEach items="${cart.items}" var="item">
+                                                                        <tr>
+                                                                            <td class="si-pic">
+                                                                                <c:if test="${not empty item.item.imageUrl}">
+                                                                                    <img src="${item.item.imageUrl}"
+                                                                                        alt="${item.item.name}" />
+                                                                                </c:if>
+                                                                            </td>
+                                                                            <td class="si-text">
+                                                                                <div class="product-selected">
+                                                                                    <p>
+                                                                                        $${item.item.price} x ${item.quantity}
+                                                                                    </p>
+                                                                                    <h6>${item.item.name}</h6>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="si-close">
+                                                                                <a href="/shop/removeFromCart?id=${item.item.productId}"
+                                                                                    class="ti-close"></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </c:forEach>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </tbody>
                                                     </table>
                                                 </div>

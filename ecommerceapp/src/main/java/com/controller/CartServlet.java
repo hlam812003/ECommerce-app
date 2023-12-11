@@ -24,30 +24,34 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        switch (action) {
-            case "update-quantity":
-                Map<String, String[]> parameterMap = request.getParameterMap();
+        HttpSession session = request.getSession();
+        final Object lock = session.getId().intern();
 
-                for (String key : parameterMap.keySet()) {
-                    if (key.equals("quantity")) {
-                        HttpSession session = request.getSession();
-                        User user = (User) session.getAttribute("user");
-                        Cart cart = (Cart) CartDB.findCartByUser(user);
-                        List<LineItem> lineItems = cart.getItems();
+        synchronized(lock) {
+            switch (action) {
+                case "update-quantity":
+                    Map<String, String[]> parameterMap = request.getParameterMap();
 
-                        int index = 0;
-                        String[] quantityList = (String[]) parameterMap.get(key);
-                        for (String quantity : quantityList) {
-                            LineItem item = lineItems.get(index++);
-                            item.setQuantity(Integer.parseInt(quantity));
-                            LineItemDB.update(item);
+                    for (String key : parameterMap.keySet()) {
+                        if (key.equals("quantity")) {
+                            User user = (User) session.getAttribute("user");
+                            Cart cart = (Cart) CartDB.findCartByUser(user);
+                            List<LineItem> lineItems = cart.getItems();
+
+                            int index = 0;
+                            String[] quantityList = (String[]) parameterMap.get(key);
+                            for (String quantity : quantityList) {
+                                LineItem item = lineItems.get(index++);
+                                item.setQuantity(Integer.parseInt(quantity));
+                                LineItemDB.update(item);
+                            }
                         }
                     }
-                }
-                break;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
 
         response.sendRedirect(request.getContextPath() + "/shopping-cart");

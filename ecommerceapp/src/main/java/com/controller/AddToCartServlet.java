@@ -31,50 +31,54 @@ public class AddToCartServlet extends HttpServlet {
             throws ServletException, IOException {
         if (LoginServlet.isLoggedIn(request, response)) {
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-            Long productId = Long.parseLong(request.getParameter("id"));
+            final Object lock = session.getId().intern();
 
-            Cart cart = CartDB.findCartByUser(user);
-            if (cart == null) {
-                Product product = ProductDB.findProductById(productId);
-                int quantity = 1;
-                LineItem item = new LineItem();
-                item.setItem(product);
-                item.setQuantity(quantity);
-                cart = new Cart(user, item);
+            synchronized(lock) {
+                User user = (User) session.getAttribute("user");
+                Long productId = Long.parseLong(request.getParameter("id"));
 
-                LineItemDB.insert(item);
-
-                CartDB.insert(cart);
-            } else {
-                boolean added = false;
-
-                List<LineItem> lineItems = cart.getItems();
-                for (LineItem item : lineItems) {
-                    if (item.getItem().getProductId().equals(productId)) {
-                        item.setQuantity(item.getQuantity() + 1);
-                        LineItemDB.update(item);
-                        added = true;
-                        break;
-                    }
-                }
-
-                if (!added) {
+                Cart cart = CartDB.findCartByUser(user);
+                if (cart == null) {
                     Product product = ProductDB.findProductById(productId);
                     int quantity = 1;
-                    LineItem item = new LineItem(null, product, quantity);
+                    LineItem item = new LineItem();
+                    item.setItem(product);
+                    item.setQuantity(quantity);
+                    cart = new Cart(user, item);
 
                     LineItemDB.insert(item);
-                    cart.addItem(item);
+
+                    CartDB.insert(cart);
+                } else {
+                    boolean added = false;
+
+                    List<LineItem> lineItems = cart.getItems();
+                    for (LineItem item : lineItems) {
+                        if (item.getItem().getProductId().equals(productId)) {
+                            item.setQuantity(item.getQuantity() + 1);
+                            LineItemDB.update(item);
+                            added = true;
+                            break;
+                        }
+                    }
+
+                    if (!added) {
+                        Product product = ProductDB.findProductById(productId);
+                        int quantity = 1;
+                        LineItem item = new LineItem(null, product, quantity);
+
+                        LineItemDB.insert(item);
+                        cart.addItem(item);
+                    }
+
+                    CartDB.update(cart);
                 }
 
-                CartDB.update(cart);
-            }
+                ShopServlet.setCart(request, response);
 
-            ShopServlet.setCart(request, response);
-
-            String currentPage = request.getParameter("currentPage");
-            response.sendRedirect(currentPage != null ? currentPage : request.getContextPath() + "/shop");
+                String currentPage = request.getParameter("currentPage");
+                response.sendRedirect(currentPage != null ? currentPage : request.getContextPath() + "/shop");
+            }                
         } else {
             response.sendRedirect(request.getContextPath() + "/login");
         }

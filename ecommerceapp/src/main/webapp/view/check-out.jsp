@@ -145,27 +145,37 @@
                                                 <div class="select-items">
                                                     <table>
                                                         <tbody>
-                                                            <c:forEach items="${cart.items}" var="item">
-                                                                <tr>
-                                                                    <td class="si-pic">
-                                                                        <c:if test="${not empty item.item.imageUrl}">
-                                                                            <img src="${item.item.imageUrl}"
-                                                                                alt="${item.item.name}" />
-                                                                        </c:if>
-                                                                    </td>
-                                                                    <td class="si-text">
-                                                                        <div class="product-selected">
-                                                                            <p>
-                                                                                $${item.item.price} x ${item.quantity}
-                                                                            </p>
-                                                                            <h6>${item.item.name}</h6>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="si-close">
-                                                                        <i class="ti-close"></i>
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
+                                                            <c:choose>
+                                                                <c:when test="${empty cart.items}">
+                                                                    <tr>
+                                                                        <td class="text-center" style="font-weight: bold;">Your cart is empty. Buy some?</td>
+                                                                    </tr>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:forEach items="${cart.items}" var="item">
+                                                                        <tr>
+                                                                            <td class="si-pic">
+                                                                                <c:if test="${not empty item.item.imageUrl}">
+                                                                                    <img src="${item.item.imageUrl}"
+                                                                                        alt="${item.item.name}" />
+                                                                                </c:if>
+                                                                            </td>
+                                                                            <td class="si-text">
+                                                                                <div class="product-selected">
+                                                                                    <p>
+                                                                                        $${item.item.price} x ${item.quantity}
+                                                                                    </p>
+                                                                                    <h6>${item.item.name}</h6>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="si-close">
+                                                                                <a href="/shop/removeFromCart?id=${item.item.productId}"
+                                                                                    class="ti-close"></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </c:forEach>
+                                                                </c:otherwise>
+                                                            </c:choose>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -244,7 +254,7 @@
                                         <a href="/" class="content-btn">Click Here To Login</a>
                                     </div> -->
                                     <h4>Billing Details</h4>
-                                    <div class="row">
+                                    <div class="row billing__details">
                                         <div class="col-lg-6">
                                             <label for="fir">First Name <span>*</span></label>
                                             <input type="text" id="fir" name="firstName" value="${user.firstName}"
@@ -317,7 +327,7 @@
                                             </ul>
                                             <div class="payment-check">
                                                 <div class="pc-item">
-                                                    <label for="pc-check">Cheque Payment
+                                                    <label for="pc-check">Home Delivery
                                                         <input type="radio" id="pc-check" name="paymentMethod"
                                                             value="cheque" checked>
                                                         <span class="checkmark"></span>
@@ -451,13 +461,33 @@
                 <script src="../assets/js/jquery.slicknav.js"></script>
                 <script src="../assets/js/owl.carousel.min.js"></script>
                 <script src="../assets/js/main.js"></script>
-                <!-- <script type="text/javascript">
-                    function handleFormSubmit() {
-                        var form = document.getElementById('checkoutForm');
-                        var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-                        form.action = paymentMethod === 'paypal' ? 'paypal-authorize' : 'checkout';
-                    }
-                </script> -->
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var homeDeliveryRadio = document.getElementById('pc-check');
+                        var paypalRadio = document.getElementById('pc-paypal');
+                
+                        homeDeliveryRadio.addEventListener('change', toggleInputs);
+                        paypalRadio.addEventListener('change', toggleInputs);
+                
+                        function toggleInputs() {
+                            var inputs = document.querySelectorAll('.billing__details input[type="text"]');
+                
+                            if (homeDeliveryRadio.checked) {
+                                inputs.forEach(function(input) {
+                                    input.disabled = false;
+                                });
+                            }
+                
+                            if (paypalRadio.checked) {
+                                inputs.forEach(function(input) {
+                                    input.disabled = true;
+                                });
+                            }
+                        }
+                
+                        toggleInputs();
+                    });
+                </script>
             </body>
 
             </html>

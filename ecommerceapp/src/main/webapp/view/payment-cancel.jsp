@@ -11,7 +11,7 @@
     <meta name="keywords" content="Fashi, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fashi | Payment Error</title>
+    <title>Fashi | Payment Cancelled</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -204,7 +204,7 @@
                     <div class="breadcrumb-text product-more">
                         <a href="/"><i class="fa fa-home"></i> Home</a>
                         <a href="/shop">Shop</a>
-                        <span>Payment Error</span>
+                        <span>Payment Cancelled</span>
                     </div>
                 </div>
             </div>
@@ -216,8 +216,7 @@
     <section class="checkout-section spad">
         <div class="container" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
             <img src="../public/img/error.png" alt="" style="width: 6rem; height: 6rem; margin-bottom: 1.6rem;">
-            <h2 class="text-center" style="font-weight: bold; margin-bottom: 1.6rem;">Your Payment Is Error</h2>
-            <h3 class="text-center" style="font-size: 1.2rem;">${errorMessage}</h3>
+            <h2 class="text-center" style="font-weight: bold; margin-bottom: 1.6rem;">Your Payment Is Cancelled</h2>
         </div>
     </section>
     <!-- Shopping Cart Section End -->

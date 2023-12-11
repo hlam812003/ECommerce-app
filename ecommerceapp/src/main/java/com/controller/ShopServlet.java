@@ -95,33 +95,37 @@ public class ShopServlet extends HttpServlet {
 
     public static void setCart(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        final Object lock = session.getId().intern();
 
-        if (user == null) {
-            Cookie[] cookies = request.getCookies();
-            String email = CookieUtil.getCookieValue(cookies, "email");
-            // if cookie doesn't exist, go to Registration page
-            if (email == null || email.isEmpty()) {
-                return;
-            } else {
-                user = UserDB.selectUser(email);
-                if (user != null && user.isVerified()) {
-                    session.setAttribute("user", user);
-                } else {
+        synchronized (lock) {
+            User user = (User) session.getAttribute("user");
+
+            if (user == null) {
+                Cookie[] cookies = request.getCookies();
+                String email = CookieUtil.getCookieValue(cookies, "email");
+                // if cookie doesn't exist, go to Registration page
+                if (email == null || email.isEmpty()) {
                     return;
+                } else {
+                    user = UserDB.selectUser(email);
+                    if (user != null && user.isVerified()) {
+                        session.setAttribute("user", user);
+                    } else {
+                        return;
+                    }
                 }
             }
-        }
-        Cart cart = CartDB.findCartByUser(user);
-        if (cart == null) {
-            cart = new Cart();
-            cart.setUser(user);
-            CartDB.insert(cart);
-        }
+            Cart cart = CartDB.findCartByUser(user);
+            if (cart == null) {
+                cart = new Cart();
+                cart.setUser(user);
+                CartDB.insert(cart);
+            }
 
-        session.setAttribute("cart", cart);
-        request.setAttribute("cart", cart);
-        request.setAttribute("cartQuantity", cart.getQuantity());
-        request.setAttribute("cartTotal", cart.getTotal());
+            session.setAttribute("cart", cart);
+            request.setAttribute("cart", cart);
+            request.setAttribute("cartQuantity", cart.getQuantity());
+            request.setAttribute("cartTotal", cart.getTotal());
+        }
     }
 }
