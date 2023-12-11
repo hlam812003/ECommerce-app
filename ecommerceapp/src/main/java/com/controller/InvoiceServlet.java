@@ -72,7 +72,8 @@ public class InvoiceServlet extends HttpServlet {
                 PayerInfo payerInfo = new PayerInfo();
                 payerInfo.setFirstName(orderDetail.getFirstName())
                         .setLastName(orderDetail.getLastName())
-                        .setEmail(orderDetail.getEmailAddress());
+                        .setEmail(orderDetail.getEmailAddress())
+                        .setPhone(orderDetail.getPhoneNumber());
 
                 Details details = new Details();
                 details.setShipping(String.format("%.2f", orderDetail.getShippingAmount()));
