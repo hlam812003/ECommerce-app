@@ -44,9 +44,9 @@ public class ShopServlet extends HttpServlet {
         product.setSize("M");
         product.setColor("Black");
         product.setMaterial("Cotton");
-        product.setBrand("adidas");
-        product.setCategory("Clothing");
-        product.setTags("Men, Essentials");
+        product.setBrand("Addidas");
+        product.setCategory("Men");
+        product.setTags("T-Shirts, Essentials");
         product.setImageUrl(
                 "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/39931d57eb8b46309362af0900e970c5_9366/Essentials_Single_Jersey_Big_Logo_Tee_Black_IC9347_21_model.jpg");
         product.setReleaseDate(LocalDate.now());
@@ -62,22 +62,28 @@ public class ShopServlet extends HttpServlet {
 
         ProductDB.insert(product);
 
-        String category = request.getParameter("category");
-        String brand = request.getParameter("brand");
+        String[] categories = request.getParameterValues("category");
+        String[] brands = request.getParameterValues("brand");
+        String[] tags = request.getParameterValues("tags");
         String color = request.getParameter("color");
         String size = request.getParameter("size");
-        String tags = request.getParameter("tags");
         String minPrice = request.getParameter("minPrice");
         String maxPrice = request.getParameter("maxPrice");
-    
+        
         List<Product> products;
-    
-        if (category != null || brand != null || color != null || size != null || tags != null || minPrice != null || maxPrice != null) {
-            products = ProductDB.getFilteredProducts(category, brand, color, size, tags, minPrice, maxPrice);
+        
+        if (categories != null || brands != null || color != null || size != null || tags != null || minPrice != null || maxPrice != null) {
+            products = ProductDB.getFilteredProducts(categories, brands, color, size, tags, minPrice, maxPrice);
         } else {
             products = ProductDB.getAllProducts();
         }
-    
+
+        if (minPrice != null && !minPrice.isEmpty() && maxPrice != null && !maxPrice.isEmpty()) {
+            products = ProductDB.getFilteredProducts(categories, brands, color, size, tags, minPrice, maxPrice);
+        } else {
+            products = ProductDB.getFilteredProducts(categories, brands, color, size, tags, null, null);
+        }
+            
         request.setAttribute("products", products);
         request.setAttribute("totalProductCount", products.size());
     

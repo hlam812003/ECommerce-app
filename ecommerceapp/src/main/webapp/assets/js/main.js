@@ -200,8 +200,12 @@
         max: maxPrice,
         values: [minPrice, maxPrice],
         slide: function(event, ui) {
+            // isSliderChanged = true;
             minamount.val('$' + ui.values[0]);
             maxamount.val('$' + ui.values[1]);
+            // Cập nhật giá trị cho các trường ẩn
+            $('#hiddenMinAmount').val(ui.values[0]);
+            $('#hiddenMaxAmount').val(ui.values[1]);
         }
     });
 

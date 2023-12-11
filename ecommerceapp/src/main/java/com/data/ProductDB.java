@@ -1,6 +1,7 @@
 package com.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.model.Product;
@@ -91,8 +92,8 @@ public class ProductDB {
         return query.getResultList();
     }
 
-    public static List<Product> getFilteredProducts(String category, String brand, String color, String size,
-            String tags, String minPrice, String maxPrice) {
+    public static List<Product> getFilteredProducts(String[] categories, String[] brands, String color, String size,
+        String[] tags, String minPrice, String maxPrice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Product> cq = cb.createQuery(Product.class);
@@ -100,12 +101,16 @@ public class ProductDB {
         Root<Product> product = cq.from(Product.class);
         List<Predicate> predicates = new ArrayList<>();
 
-        if (category != null) {
-            predicates.add(cb.equal(product.get("category"), category));
+        if (categories != null && categories.length > 0) {
+            predicates.add(product.get("category").in((Object[]) categories));
+        }        
+
+        if (brands != null && brands.length > 0) {
+            predicates.add(product.get("brand").in((Object[]) brands));
         }
 
-        if (brand != null) {
-            predicates.add(cb.equal(product.get("brand"), brand));
+        if (tags != null && tags.length > 0) {
+            predicates.add(product.get("tags").in((Object[]) tags));
         }
 
         if (color != null) {
@@ -114,10 +119,6 @@ public class ProductDB {
 
         if (size != null) {
             predicates.add(cb.equal(product.get("size"), size));
-        }
-
-        if (tags != null) {
-            predicates.add(cb.equal(product.get("tags"), tags));
         }
 
         // Thêm điều kiện cho khoảng giá
@@ -130,7 +131,6 @@ public class ProductDB {
 
         cq.where(predicates.toArray(new Predicate[0]));
         TypedQuery<Product> query = em.createQuery(cq);
-
         return query.getResultList();
     }
 

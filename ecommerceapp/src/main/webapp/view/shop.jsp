@@ -62,14 +62,14 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                                    <form action="/shop" method="get" id="filterForm">
+                                    <form action="/shop" method="GET" id="filterForm">
                                         <div class="filter-widget">
                                             <h4 class="fw-title">Categories</h4>
                                             <div class="filter-catagories">
-                                                <label><input type="checkbox" name="category" value="Men"> Men</label>
-                                                <label><input type="checkbox" name="category" value="Women">
+                                                <label><input type="checkbox" name="category" value="Men" onChange="this.form.submit()"> Men</label>
+                                                <label><input type="checkbox" name="category" value="Women" onChange="this.form.submit()">
                                                     Women</label>
-                                                <label><input type="checkbox" name="category" value="Kids"> Kids</label>
+                                                <label><input type="checkbox" name="category" value="Kids" onChange="this.form.submit()"> Kids</label>
                                             </div>
                                         </div>
                                         <div class="filter-widget">
@@ -79,7 +79,7 @@
                                                     <label for="bc-calvin">
                                                         Calvin Klein
                                                         <input type="checkbox" id="bc-calvin" name="brand"
-                                                            value="Calvin Klein">
+                                                            value="Calvin Klein" onChange="this.form.submit()">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -87,22 +87,22 @@
                                                     <label for="bc-diesel">
                                                         Diesel
                                                         <input type="checkbox" id="bc-diesel" name="brand"
-                                                            value="Diesel">
+                                                            value="Diesel" onChange="this.form.submit()">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="bc-item">
                                                     <label for="bc-polo">
                                                         Polo
-                                                        <input type="checkbox" id="bc-polo" name="brand" value="Polo">
+                                                        <input type="checkbox" id="bc-polo" name="brand" value="Polo" onChange="this.form.submit()">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="bc-item">
-                                                    <label for="bc-tommy">
-                                                        Tommy Hilfiger
-                                                        <input type="checkbox" id="bc-tommy" name="brand"
-                                                            value="Tommy Hilfiger">
+                                                    <label for="bc-addidas">
+                                                        Addidas
+                                                        <input type="checkbox" id="bc-addidas" name="brand"
+                                                            value="Addidas" onChange="this.form.submit()">
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -113,8 +113,10 @@
                                             <div class="filter-range-wrap">
                                                 <div class="range-slider">
                                                     <div class="price-input">
-                                                        <input type="text" name="minPrice" id="minamount">
-                                                        <input type="text" name="maxPrice" id="maxamount">
+                                                        <input type="text" id="minamount" value="$0" readonly>
+                                                        <input type="text" id="maxamount" value="$100" readonly>
+                                                        <input type="hidden" id="hiddenMinAmount" name="minPrice">
+                                                        <input type="hidden" id="hiddenMaxAmount" name="maxPrice">
                                                     </div>
                                                 </div>
                                                 <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
@@ -126,33 +128,33 @@
                                                         class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="filter-btn">Filter</button>
+                                            <!-- <button type="submit" class="filter-btn">Filter</button> -->
                                         </div>
                                         <div class="filter-widget">
                                             <h4 class="fw-title">Color</h4>
                                             <div class="fw-color-choose">
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-black" name="color" value="Black">
+                                                    <input type="radio" id="cs-black" name="color" value="Black" onChange="this.form.submit()">
                                                     <label class="cs-black" for="cs-black">Black</label>
                                                 </div>
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-violet" name="color" value="Violet">
+                                                    <input type="radio" id="cs-violet" name="color" value="Violet" onChange="this.form.submit()">
                                                     <label class="cs-violet" for="cs-violet">Violet</label>
                                                 </div>
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-blue" name="color" value="Blue">
+                                                    <input type="radio" id="cs-blue" name="color" value="Blue" onChange="this.form.submit()">
                                                     <label class="cs-blue" for="cs-blue">Blue</label>
                                                 </div>
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-yellow" name="color" value="Yellow">
+                                                    <input type="radio" id="cs-yellow" name="color" value="Yellow" onChange="this.form.submit()">
                                                     <label class="cs-yellow" for="cs-yellow">Yellow</label>
                                                 </div>
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-red" name="color" value="Red">
+                                                    <input type="radio" id="cs-red" name="color" value="Red" onChange="this.form.submit()">
                                                     <label class="cs-red" for="cs-red">Red</label>
                                                 </div>
                                                 <div class="cs-item">
-                                                    <input type="radio" id="cs-green" name="color" value="Green">
+                                                    <input type="radio" id="cs-green" name="color" value="Green" onChange="this.form.submit()">
                                                     <label class="cs-green" for="cs-green">Green</label>
                                                 </div>
                                             </div>
@@ -161,19 +163,19 @@
                                             <h4 class="fw-title">Size</h4>
                                             <div class="fw-size-choose">
                                                 <div class="sc-item">
-                                                    <input type="radio" id="s-size" name="size" value="s">
+                                                    <input type="radio" id="s-size" name="size" value="s" onChange="this.form.submit()">
                                                     <label for="s-size">s</label>
                                                 </div>
                                                 <div class="sc-item">
-                                                    <input type="radio" id="m-size" name="size" value="m">
+                                                    <input type="radio" id="m-size" name="size" value="m" onChange="this.form.submit()">
                                                     <label for="m-size">m</label>
                                                 </div>
                                                 <div class="sc-item">
-                                                    <input type="radio" id="l-size" name="size" value="l">
+                                                    <input type="radio" id="l-size" name="size" value="l" onChange="this.form.submit()">
                                                     <label for="l-size">l</label>
                                                 </div>
                                                 <div class="sc-item">
-                                                    <input type="radio" id="xl-size" name="size" value="xl">
+                                                    <input type="radio" id="xl-size" name="size" value="xl" onChange="this.form.submit()">
                                                     <label for="xl-size">xl</label>
                                                 </div>
                                             </div>
@@ -181,19 +183,21 @@
                                         <div class="filter-widget">
                                             <h4 class="fw-title">Tags</h4>
                                             <div class="fw-tags">
-                                                <label><input type="checkbox" name="tags" value="Towel"><span
+                                                <label><input type="checkbox" name="tags" value="Towel" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Towel</label>
-                                                <label><input type="checkbox" name="tags" value="Shoes"><span
+                                                <label><input type="checkbox" name="tags" value="Shoes" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Shoes</label>
-                                                <label><input type="checkbox" name="tags" value="Coat"><span
+                                                <label><input type="checkbox" name="tags" value="Coat" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Coat</label>
-                                                <label><input type="checkbox" name="tags" value="Dresses"><span
+                                                <label><input type="checkbox" name="tags" value="Dresses" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Dresses</label>
-                                                <label><input type="checkbox" name="tags" value="Trousers"><span
+                                                <label><input type="checkbox" name="tags" value="Trousers" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Trousers</label>
-                                                <label><input type="checkbox" name="tags" value="Men's hats"><span
+                                                <label><input type="checkbox" name="tags" value="Men's hats" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Men's hats</label>
-                                                <label><input type="checkbox" name="tags" value="Backpack"><span
+                                                <label><input type="checkbox" name="tags" value="T-Shirts" onChange="this.form.submit()"><span
+                                                    class="checkmark"></span> T-Shirts</label>
+                                                <label><input type="checkbox" name="tags" value="Backpack" onChange="this.form.submit()"><span
                                                         class="checkmark"></span> Backpack</label>
                                             </div>
                                         </div>
