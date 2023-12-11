@@ -48,6 +48,7 @@ public class UpdateProfileServlet extends HttpServlet {
             selectedUser.setFirstName(firstName);
             selectedUser.setLastName(lastName);
             UserDB.update(selectedUser);
+            session.setAttribute("user", selectedUser);
         }
 
         response.sendRedirect(request.getContextPath() + "/profile");

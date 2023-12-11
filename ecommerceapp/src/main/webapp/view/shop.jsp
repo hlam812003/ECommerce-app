@@ -37,7 +37,40 @@
                 </div>
 
                 <!-- Header Section Begin -->
-                <%@ include file="../includes/header.jsp" %>
+                <header class="header-section">
+                    <%@ include file="../includes/header.jsp" %>
+                        <div class="nav-item">
+                            <div class="container">
+                                <nav class="nav-menu mobile-menu"
+                                    style="display: flex; justify-content: center; align-items: center">
+                                    <ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/shop">Shop</a></li>
+                                        <li>
+                                            <a href="/collection">Collection</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/collection/men">Men's</a></li>
+                                                <li><a href="/collection/women">Women's</a></li>
+                                                <li><a href="/collection/kid">Kid's</a></li>
+                                            </ul>
+                                        </li>
+                                        <!-- <li><a href="./blog.html">Blog</a></li> -->
+                                        <li><a href="/contact">Contact</a></li>
+                                        <!-- <li><a href="#">Pages</a>
+                            <ul class="dropdown">
+                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                                <li><a href="./check-out.html">Checkout</a></li>
+                                <li><a href="./faq.html">Faq</a></li>
+                                <li><a href="./register.html">Register</a></li>
+                                <li><a href="./login.html">Login</a></li>
+                            </ul>
+                        </li> -->
+                                    </ul>
+                                </nav>
+                                <div id="mobile-menu-wrap"></div>
+                            </div>
+                        </div>
+                </header>
 
 
                 <!-- Header End -->

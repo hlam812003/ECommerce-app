@@ -103,13 +103,11 @@
                                         </div>
                                         <div class="group-input">
                                             <label for="firstName">First Name</label>
-                                            <input type="text" name="firstName" value="${user.firstName}"
-                                                autocomplete="off" />
+                                            <input type="text" name="firstName" value="${user.firstName}" autocomplete="off" />
                                         </div>
                                         <div class="group-input">
                                             <label for="lastName">Last Name</label>
-                                            <input type="text" name="lastName" value="${user.lastName}"
-                                                autocomplete="off" />
+                                            <input type="text" name="lastName" value="${user.lastName}" autocomplete="off" />
                                         </div>
                                         <div class="group-input">
                                             <label for="password">Password</label>
