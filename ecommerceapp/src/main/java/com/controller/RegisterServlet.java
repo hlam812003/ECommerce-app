@@ -57,10 +57,11 @@ public class RegisterServlet extends HttpServlet {
                 user.setVerificationCode(verificationCode);
                 UserDB.insert(user);
 
+                System.out.println(request.getContextPath().toString());;
                 // Send Verification
                 String subject = "Account Verification";
                 String content = "Please click on the following link to verify your account: "
-                        + "<a href='" + request.getContextPath() + "/verify?code="
+                        + "<a href='https://fashi-mny1.onrender.com/verify?code="
                         + URLEncoder.encode(verifyHash.generate((email + verificationCode).toCharArray()),
                                 StandardCharsets.UTF_8.toString())
                         + "'>Verify Account</a>";
