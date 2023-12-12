@@ -67,8 +67,10 @@ public class PaypalServices {
 
     private RedirectUrls getRedirectURLs() {
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/view/payment-cancel.jsp");
-        redirectUrls.setReturnUrl("http://localhost:8080/paypal-review");
+        // redirectUrls.setCancelUrl("http://localhost:8080/view/payment-cancel.jsp");
+        // redirectUrls.setReturnUrl("http://localhost:8080/paypal-review");
+        redirectUrls.setCancelUrl("https://fashi-mny1.onrender.com/view/payment-cancel.jsp");
+        redirectUrls.setReturnUrl("https://fashi-mny1.onrender.com/paypal-review");
         return redirectUrls;
     }
 
